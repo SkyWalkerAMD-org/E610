@@ -17,9 +17,8 @@ printf '%s\n' '8d23f2c329e0b93055236e67ffbf1de99d8dce32ccc75beb759774c7c24d7ed4 
 } | tee "$out/environment.txt"
 test -s "/usr/src/kernels/$KVER/Module.symvers"
 tar -xzf /input/ixgbe-6.4.5.tar.gz
-shopt -s nullglob
-patches=(/input/patches/*.patch)
-for patchfile in "${patches[@]}"; do
+for patchfile in /input/patches/*.patch; do
+    test -f "$patchfile" || continue
     patch --batch --fuzz=0 -d ixgbe-6.4.5 -p1 < "$patchfile"
     sha256sum "$patchfile" >> "$out/patches.sha256"
 done
