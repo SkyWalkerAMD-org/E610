@@ -1,0 +1,20 @@
+[c7-base]
+name=CentOS 7.9.2009 base
+baseurl=https://vault.centos.org/7.9.2009/os/$basearch/
+enabled=0
+gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-7
+
+[c7-updates]
+name=CentOS 7.9.2009 updates
+baseurl=https://vault.centos.org/7.9.2009/updates/$basearch/
+enabled=0
+gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-7
+
+[c7-extras]
+name=CentOS 7.9.2009 extras
+baseurl=https://vault.centos.org/7.9.2009/extras/$basearch/
+enabled=0
+gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-7

@@ -1,0 +1,4 @@
+output/
+artifacts/
+*.log
+ixgbe-6.4.5.tar.gz

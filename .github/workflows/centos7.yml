@@ -1,0 +1,49 @@
+name: E610 CentOS 7.9 compatibility
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'ci/**'
+      - 'patches/**'
+      - '.github/workflows/centos7.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build-and-load:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 25
+    strategy:
+      fail-fast: false
+      matrix:
+        kernel:
+          - 3.10.0-1160.el7.x86_64
+          - 3.10.0-1160.119.1.el7.x86_64
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - name: Build CentOS 7.9 environment
+        env:
+          KVER: ${{ matrix.kernel }}
+        run: |
+          mkdir -p output
+          set -o pipefail
+          docker build --build-arg KVER="$KVER" -f ci/Dockerfile -t e610-c7 . 2>&1 | tee output/container-build.log
+          docker image inspect e610-c7 --format '{{.Id}}' > output/container-image.txt
+      - name: Compile and inspect module
+        run: docker run --rm -v "$PWD/output:/output" e610-c7
+      - name: Install kernel boot test tools
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends qemu-system-x86 busybox-static cpio
+      - name: Load and unload module on the actual target kernel
+        run: bash ci/smoke.sh output
+      - name: Upload module and evidence
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: ixgbe-6.4.5-${{ matrix.kernel }}
+          path: output/
+          if-no-files-found: error
+          retention-days: 7
