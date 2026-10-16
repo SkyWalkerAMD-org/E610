@@ -1,5 +1,10 @@
 # E610 网卡的 CentOS 7.9 适配与验证
 
+**推荐安装方式：**下载 [最新 Release](https://github.com/skywalkeramd-org/E610/releases/latest)
+中的 r2 完整包，解压后运行 `sudo bash install.sh`。安装器自动选模块、校验、备份并
+更新 initramfs；回退使用 `sudo bash uninstall.sh`。具体步骤见
+[简化安装说明](INSTALL.zh-CN.md)。下文保留源码构建和手动部署细节。
+
 本项目使用 Intel 官方 ixgbe 6.4.5，目标架构为 x86_64。原始附件与
 [Intel 官方发布包](https://github.com/intel/ethernet-linux-ixgbe/releases/tag/v6.4.5)
 的 SHA-256 一致：

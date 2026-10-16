@@ -2,13 +2,19 @@
 
 [中文说明](README.zh-CN.md) · [Cloud tests](https://github.com/skywalkeramd-org/E610/actions/workflows/centos7.yml)
 
+Download the complete r2 bundle from [Releases](https://github.com/skywalkeramd-org/E610/releases/latest).
+Extract it, then run `sudo bash install.sh` inside the extracted directory. The
+offline installer selects the matching kernel module, verifies it, backs up the
+existing files and updates initramfs. It does not reboot. Use `sudo bash uninstall.sh`
+to restore the backup. See [简化安装说明](INSTALL.zh-CN.md).
+
 Source: Intel's public ixgbe 6.4.5 release, downloaded directly in the cloud. Its
 GitHub release asset digest and the user's local archive both have SHA-256
 `8d23f2c329e0b93055236e67ffbf1de99d8dce32ccc75beb759774c7c24d7ed4`.
 Upstream: https://github.com/intel/ethernet-linux-ixgbe/releases/tag/v6.4.5
 
-No local source archive is uploaded. This repository contains only the generated
-test scripts and, if needed, compatibility patches.
+The Git repository contains compatibility patches, installation/test scripts and
+validation evidence. Release bundles also contain the adapted source and modules.
 
 The cloud workflow compiles using CentOS 7.9 GCC and the exact CentOS kernel-devel
 package, then boots that kernel in QEMU to load/unload the module and its

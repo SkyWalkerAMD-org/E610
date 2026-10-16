@@ -2,6 +2,7 @@
 set -Eeuo pipefail
 export LC_ALL=C
 export PATH=/usr/sbin:/usr/bin:/sbin:/bin
+trap 'rc=$?; echo "TEST_FAIL line=$LINENO command=$BASH_COMMAND exit=$rc" >&2; exit "$rc"' ERR
 : "${KVER:?KVER is required}"
 [[ -f /.dockerenv && $EUID == 0 ]] || { echo 'Run only in the disposable test container.' >&2; exit 1; }
 
@@ -52,9 +53,18 @@ assert_baseline
 bash install.sh --kernel "$KVER"
 [[ $(sha256sum "$dest" | awk '{print $1}') == "$expected_module" ]]
 [[ $(readlink -f "$(modinfo -k "$KVER" -n ixgbe)") == $(readlink -f "$dest") ]]
-relative_module=usr/lib/modules/$KVER/updates/drivers/net/ethernet/intel/ixgbe/ixgbe.ko
+relative_module=$(lsinitrd "$initrd" | awk '$NF ~ /updates\/drivers\/net\/ethernet\/intel\/ixgbe\/ixgbe.ko$/ {print $NF}')
+[[ -n $relative_module && $relative_module != *$'\n'* ]]
+echo "Embedded module path: $relative_module"
 lsinitrd -f "$relative_module" "$initrd" > /tmp/initramfs-ixgbe.ko
-[[ $(sha256sum /tmp/initramfs-ixgbe.ko | awk '{print $1}') == "$expected_module" ]]
+sha256sum "$module" /tmp/initramfs-ixgbe.ko
+# dracut may strip debug sections, so compare module identity rather than
+# requiring the extracted ELF to retain the original debug information.
+modinfo /tmp/initramfs-ixgbe.ko
+for field in version vermagic srcversion; do
+    [[ $(modinfo -F "$field" /tmp/initramfs-ixgbe.ko) == $(modinfo -F "$field" "$module") ]]
+done
+[[ -n $(modinfo -F srcversion /tmp/initramfs-ixgbe.ko) ]]
 installed_initrd=$(sha256sum "$initrd" | awk '{print $1}')
 first_backup=$(readlink "$state/latest")
 backup_count=$(find "$state" -maxdepth 1 -type d -name 'backup.*' | wc -l)
@@ -107,4 +117,4 @@ mv -f "$dracut_bin.e610-real" "$dracut_bin"
 [[ -z $(find /boot -maxdepth 1 -name '.e610-initramfs-*' -print) ]]
 
 printf 'E610_INSTALLER_TEST_PASS kernel=%s\n' "$KVER"
-echo 'Verified preflight, unsupported kernel, corrupt payload, install, embedded module bytes, idempotency, corrupt backup, rollback, previous update preservation and dracut failure recovery.'
+echo 'Verified preflight, unsupported kernel, corrupt payload, install, embedded module identity, idempotency, corrupt backup, rollback, previous update preservation and dracut failure recovery.'

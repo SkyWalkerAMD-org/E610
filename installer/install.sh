@@ -74,12 +74,22 @@ restore_backup() {
     saved_state=$(cat "$backup/module-state") || return 1
     case "$saved_state" in
         present)
-            rm -f -- "$dest" || return 1
-            cp -a -- "$backup/previous-module" "$dest" || return 1 ;;
+            tmp_module=$(mktemp "${dest%/*}/.e610-restore.XXXXXXXX") || return 1
+            cp -a -- "$backup/previous-module" "$tmp_module" || return 1
+            mv -f -- "$tmp_module" "$dest" || return 1
+            tmp_module= ;;
         absent) rm -f -- "$dest" || return 1 ;;
         *) return 1 ;;
     esac
-    cp -a -- "$backup/initramfs" "$initrd" || return 1
+    # Do not rewrite a healthy old image after a failed dracut run. If the
+    # installed image changed, restore through a temporary file on /boot.
+    if [[ ! -f $initrd ]] ||
+        [[ $(sha256sum "$initrd" | awk '{print $1}') != $(sha256sum "$backup/initramfs" | awk '{print $1}') ]]; then
+        tmp_initrd=$(mktemp "/boot/.e610-restore-${kver}.XXXXXXXX.img") || return 1
+        cp -a -- "$backup/initramfs" "$tmp_initrd" || return 1
+        mv -f -- "$tmp_initrd" "$initrd" || return 1
+        tmp_initrd=
+    fi
     depmod -a "$kver" || return 1
     write_status rolled-back || return 1
 }
@@ -89,6 +99,9 @@ failed() {
     trap - ERR INT TERM
     ((rc != 0)) || rc=1
     if ((changed)); then
+        cleanup || true
+        tmp_initrd=
+        tmp_module=
         echo '安装未完成，正在恢复安装前的模块与 initramfs……' >&2
         if restore_backup; then
             echo '已自动恢复；当前运行的驱动未被卸载。' >&2
