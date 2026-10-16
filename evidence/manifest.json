@@ -1,0 +1,44 @@
+{
+  "date": "2026-10-16",
+  "timezone": "Asia/Tokyo",
+  "repository": "https://github.com/skywalkeramd-org/E610",
+  "tested_commit": "6d8c6cc3b2b128fcff0c4177ea59d68bef8a39a3",
+  "run_id": 38828112627,
+  "run_url": "https://github.com/SkyWalkerAMD-org/E610/actions/runs/38828112627",
+  "source_sha256": "8d23f2c329e0b93055236e67ffbf1de99d8dce32ccc75beb759774c7c24d7ed4",
+  "patches": [
+    {
+      "file": "0001-centos7-compat.patch",
+      "sha256": "396a83de6116d12b00e25549a207da47f1e78f5a2a159cab857382139dd05d37"
+    },
+    {
+      "file": "0002-e610-ptp-compat.patch",
+      "sha256": "f7e1e6b692677d5415398398608a240217852f193e802eec00e41f0bf7bf7b0b"
+    },
+    {
+      "file": "0003-xarray-lifecycle.patch",
+      "sha256": "7d13c2cee7cfabf0953629007c94c3c78156107a29a1bfd1443ac54484b76d60"
+    }
+  ],
+  "modules": [
+    {
+      "kernel": "3.10.0-1160.el7.x86_64",
+      "architecture": "x86_64",
+      "sha256": "4139a6de9813f4b686e980165e4dfb108f36df015dbe855fbaa014a750aaa341",
+      "build": "passed",
+      "reload_cycles": 3,
+      "cache_cleanup": "passed",
+      "hardware_tested": false
+    },
+    {
+      "kernel": "3.10.0-1160.119.1.el7.x86_64",
+      "architecture": "x86_64",
+      "sha256": "db2df6bce892243e338dfa870dfc5119808a97d4cce5ea7f964828847a1e6a3f",
+      "build": "passed",
+      "reload_cycles": 3,
+      "cache_cleanup": "passed",
+      "hardware_tested": false
+    }
+  ],
+  "adapted_source_archive_sha256": "368d7ca766cdc1c5941c8207f4bd7a6b6f3ba61138729a03d5177d486ea28eaa"
+}

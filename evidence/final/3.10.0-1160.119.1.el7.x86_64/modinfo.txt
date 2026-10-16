@@ -1,0 +1,90 @@
+filename:       /output/ixgbe.ko
+version:        6.4.5
+license:        GPL
+description:    Intel(R) 10GbE PCI Express Linux Network Driver
+author:         Intel Corporation, <linux.nics@intel.com>
+retpoline:      Y
+rhelversion:    7.9
+srcversion:     1380D2EB7E78549904ACD22
+alias:          pci:v00008086d000057B2sv*sd*bc*sc*i*
+alias:          pci:v00008086d000057B1sv*sd*bc*sc*i*
+alias:          pci:v00008086d000057B0sv*sd*bc*sc*i*
+alias:          pci:v00008086d000057AFsv*sd*bc*sc*i*
+alias:          pci:v00008086d000057AEsv*sd*bc*sc*i*
+alias:          pci:v00008086d000015E5sv*sd*bc*sc*i*
+alias:          pci:v00008086d000015E4sv*sd*bc*sc*i*
+alias:          pci:v00008086d000015CEsv*sd*bc*sc*i*
+alias:          pci:v00008086d000015CCsv*sd*bc*sc*i*
+alias:          pci:v00008086d000015CAsv*sd*bc*sc*i*
+alias:          pci:v00008086d000015C8sv*sd*bc*sc*i*
+alias:          pci:v00008086d000015C7sv*sd*bc*sc*i*
+alias:          pci:v00008086d000015C6sv*sd*bc*sc*i*
+alias:          pci:v00008086d000015C4sv*sd*bc*sc*i*
+alias:          pci:v00008086d000015C3sv*sd*bc*sc*i*
+alias:          pci:v00008086d000015C2sv*sd*bc*sc*i*
+alias:          pci:v00008086d000015AEsv*sd*bc*sc*i*
+alias:          pci:v00008086d000015ADsv*sd*bc*sc*i*
+alias:          pci:v00008086d000015ACsv*sd*bc*sc*i*
+alias:          pci:v00008086d000015ABsv*sd*bc*sc*i*
+alias:          pci:v00008086d000015B0sv*sd*bc*sc*i*
+alias:          pci:v00008086d000015AAsv*sd*bc*sc*i*
+alias:          pci:v00008086d000015D1sv*sd*bc*sc*i*
+alias:          pci:v00008086d00001563sv*sd*bc*sc*i*
+alias:          pci:v00008086d00001560sv*sd*bc*sc*i*
+alias:          pci:v00008086d00001558sv*sd*bc*sc*i*
+alias:          pci:v00008086d0000154Asv*sd*bc*sc*i*
+alias:          pci:v00008086d00001557sv*sd*bc*sc*i*
+alias:          pci:v00008086d0000154Dsv*sd*bc*sc*i*
+alias:          pci:v00008086d00001528sv*sd*bc*sc*i*
+alias:          pci:v00008086d000010F8sv*sd*bc*sc*i*
+alias:          pci:v00008086d0000151Csv*sd*bc*sc*i*
+alias:          pci:v00008086d00001529sv*sd*bc*sc*i*
+alias:          pci:v00008086d0000152Asv*sd*bc*sc*i*
+alias:          pci:v00008086d000010F9sv*sd*bc*sc*i*
+alias:          pci:v00008086d00001514sv*sd*bc*sc*i*
+alias:          pci:v00008086d00001507sv*sd*bc*sc*i*
+alias:          pci:v00008086d000010FBsv*sd*bc*sc*i*
+alias:          pci:v00008086d00001517sv*sd*bc*sc*i*
+alias:          pci:v00008086d000010FCsv*sd*bc*sc*i*
+alias:          pci:v00008086d000010F7sv*sd*bc*sc*i*
+alias:          pci:v00008086d00001508sv*sd*bc*sc*i*
+alias:          pci:v00008086d000010DBsv*sd*bc*sc*i*
+alias:          pci:v00008086d000010F4sv*sd*bc*sc*i*
+alias:          pci:v00008086d000010E1sv*sd*bc*sc*i*
+alias:          pci:v00008086d000010F1sv*sd*bc*sc*i*
+alias:          pci:v00008086d000010ECsv*sd*bc*sc*i*
+alias:          pci:v00008086d000010DDsv*sd*bc*sc*i*
+alias:          pci:v00008086d0000150Bsv*sd*bc*sc*i*
+alias:          pci:v00008086d000010C8sv*sd*bc*sc*i*
+alias:          pci:v00008086d000010C7sv*sd*bc*sc*i*
+alias:          pci:v00008086d000010C6sv*sd*bc*sc*i*
+alias:          pci:v00008086d000010B6sv*sd*bc*sc*i*
+depends:        devlink,ptp,dca
+vermagic:       3.10.0-1160.119.1.el7.x86_64 SMP mod_unload modversions 
+parm:           IntMode:Change Interrupt Mode (0=Legacy, 1=MSI, 2=MSI-X), default 2 (array of int)
+parm:           InterruptType:Change Interrupt Mode (0=Legacy, 1=MSI, 2=MSI-X), default IntMode (deprecated) (array of int)
+parm:           MQ:Disable or enable Multiple Queues, default 1 (array of int)
+parm:           DCA:Disable or enable Direct Cache Access, 0=disabled, 1=descriptor only, 2=descriptor and data (array of int)
+parm:           RSS:Number of Receive-Side Scaling Descriptor Queues, default 0=number of cpus (array of int)
+parm:           VMDQ:Number of Virtual Machine Device Queues: 0/1 = disable (1 queue) 2-16 enable (default=8) (array of int)
+parm:           max_vfs:Number of Virtual Functions: 0 = disable (default), 1-63 = enable this many VFs (array of int)
+parm:           VEPA:VEPA Bridge Mode: 0 = VEB (default), 1 = VEPA (array of int)
+parm:           InterruptThrottleRate:Maximum interrupts per second, per vector, (0,1,956-488281), default 1 (array of int)
+parm:           LLIPort:Low Latency Interrupt TCP Port (0-65535) (array of int)
+parm:           LLIPush:Low Latency Interrupt on TCP Push flag (0,1) (array of int)
+parm:           LLISize:Low Latency Interrupt on Packet Size (0-1500) (array of int)
+parm:           LLIEType:Low Latency Interrupt Ethernet Protocol Type (array of int)
+parm:           LLIVLANP:Low Latency Interrupt on VLAN priority threshold (array of int)
+parm:           FdirPballoc:Flow Director packet buffer allocation level:
+			1 = 8k hash filters or 2k perfect filters
+			2 = 16k hash filters or 4k perfect filters
+			3 = 32k hash filters or 8k perfect filters (array of int)
+parm:           AtrSampleRate:Software ATR Tx packet sample rate (array of int)
+parm:           FCoE:Disable or enable FCoE Offload, default 1 (array of int)
+parm:           MDD:Malicious Driver Detection: (0,1), default 1 = on (array of int)
+parm:           LRO:Large Receive Offload (0,1), default 0 = off (array of int)
+parm:           allow_unsupported_sfp:Allow unsupported and untested SFP+ modules on 82599 based adapters, default 0 = Disable (array of int)
+parm:           dmac_watchdog:DMA coalescing watchdog in microseconds (0,41-10000), default 0 = off (array of int)
+parm:           vxlan_rx:VXLAN receive checksum offload (0,1), default 1 = Enable (array of int)
+parm:           fwlog_method:FW event logging method. 0=ARQ event logging, 1=UART event logging
+ (ushort)

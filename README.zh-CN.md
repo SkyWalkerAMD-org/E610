@@ -19,6 +19,7 @@
 
 编译后检查驱动版本、vermagic、E610 PCI 别名；随后在 QEMU 中启动对应的真实
 CentOS 内核，以最小 BusyBox initramfs 加载依赖、加载 ixgbe，再卸载 ixgbe。
+每个内核重复三次加载/卸载，并检查 XArray 兼容层的 slab 缓存已释放。
 此项验证覆盖内核模块兼容性，不代表完整 CentOS 系统验收。
 
 当前没有 E610 实卡，尚未验证 probe、链路、收发、吞吐、PTP、SR-IOV 或固件交互。
@@ -94,3 +95,32 @@ bash ci/smoke.sh output
 
 补丁存放于 `patches/`，按文件名顺序、以 `patch -p1` 应用于官方源码。
 完整测试结果以实际云端任务和最终交付的验证报告为准。
+
+## 源码补丁与本机编译
+
+补丁按顺序应用：
+
+1. `0001-centos7-compat.patch`：修正 RHEL 扩展 TC 接口检测、旧 GFP 标志、
+   GCC 属性回退、eventfd 头文件及重复 Kconfig 定义。
+2. `0002-e610-ptp-compat.patch`：补齐 PTP 延迟工作回退，使用兼容旧版
+   `ktime_t` 的时间操作接口。
+3. `0003-xarray-lifecycle.patch`：初始化失败或卸载时清理 XArray 缓存，
+   清理前等待 RCU 回调完成。
+
+如从官方压缩包构建，在本仓库目录下执行：
+
+```sh
+tar -xzf ixgbe-6.4.5.tar.gz
+for p in patches/*.patch; do
+    patch --batch --fuzz=0 -d ixgbe-6.4.5 -p1 < "$p" || exit 1
+done
+make -C ixgbe-6.4.5/src -j2 BUILD_KERNEL="$(uname -r)" KSRC="/usr/src/kernels/$(uname -r)"
+```
+
+先安装 GCC、make、perl、patch、elfutils-libelf-devel 和与 `uname -r`
+完全匹配的 kernel-devel。仅安装 kernel-headers 不能替代 kernel-devel。
+`ci/CentOS-Vault.repo` 提供固定的 CentOS 7.9 归档源配置。
+
+本地交付的 `ixgbe-6.4.5-centos7-source.tar.gz` 已应用全部补丁，解压后可直接
+运行上述 make 命令，不要再次应用补丁。驱动报告的版本仍为 6.4.5，具体适配
+版本通过验证报告中的提交号、补丁 SHA-256 和模块 SHA-256 区分。
