@@ -1,0 +1,40 @@
+name: E610 offline installer
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'installer/**'
+      - '.github/workflows/installer.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  install-and-rollback:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        kernel:
+          - 3.10.0-1160.el7.x86_64
+          - 3.10.0-1160.119.1.el7.x86_64
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - name: Test install and recovery in CentOS 7.9
+        env:
+          KVER: ${{ matrix.kernel }}
+        run: |
+          mkdir -p output
+          set -o pipefail
+          docker build --build-arg KVER="$KVER" -f installer/test/Dockerfile -t e610-installer-test . 2>&1 | tee output/container-build.log
+          docker run --rm e610-installer-test 2>&1 | tee output/installer-test.log
+      - name: Save test evidence
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: installer-${{ matrix.kernel }}
+          path: output/
+          if-no-files-found: error
+          retention-days: 7
