@@ -1,0 +1,70 @@
+From: E610 CentOS 7 compatibility work
+Subject: [PATCH] Release the backported XArray cache on module exit
+
+Destroy the compatibility slab after draining RCU callbacks, including
+driver initialization failures. Pair normal cleanup with PCI teardown.
+
+diff --git a/src/ixgbe_main.c b/src/ixgbe_main.c
+index 9e2f47c..db92875 100644
+--- a/src/ixgbe_main.c
++++ b/src/ixgbe_main.c
+@@ -16075,6 +16075,9 @@ static void __exit ixgbe_exit_module(void)
+ #ifdef HAVE_IXGBE_DEBUG_FS
+ 	ixgbe_dbg_exit();
+ #endif /* HAVE_IXGBE_DEBUG_FS */
++#ifndef HAVE_XARRAY_API
++	kc_xarray_global_exit();
++#endif
+ }
+ 
+ #if IS_ENABLED(CONFIG_DCA)
+diff --git a/src/kcompat.h b/src/kcompat.h
+index cf9d0ad..82d2f01 100644
+--- a/src/kcompat.h
++++ b/src/kcompat.h
+@@ -95,8 +95,13 @@ static inline int __init kc_module_init_impl(void)
+ #define module_init(driver_init_fn)			\
+ static int __init kc_module_init_fn(void)		\
+ {							\
++	int err;					\
++							\
+ 	kc_module_init_impl();				\
+-	return driver_init_fn();			\
++	err = driver_init_fn();				\
++	if (err)					\
++		kc_xarray_global_exit();			\
++	return err;					\
+ }							\
+ orig_module_init(kc_module_init_fn)
+ 
+diff --git a/src/kcompat_xarray.c b/src/kcompat_xarray.c
+index fee0154..cfcecd1 100644
+--- a/src/kcompat_xarray.c
++++ b/src/kcompat_xarray.c
+@@ -48,6 +48,14 @@ void kc_xarray_global_init(void)
+                         radix_tree_node_ctor);
+ }
+ 
++void kc_xarray_global_exit(void)
++{
++	/* Deferred node frees must finish before the cache or module disappears. */
++	rcu_barrier();
++	kmem_cache_destroy(radix_tree_node_cachep);
++	radix_tree_node_cachep = NULL;
++}
++
+ static void radix_tree_node_rcu_free(struct rcu_head *head)
+ {
+ 	struct radix_tree_node *node =
+diff --git a/src/kcompat_xarray.h b/src/kcompat_xarray.h
+index be85ef0..95776af 100644
+--- a/src/kcompat_xarray.h
++++ b/src/kcompat_xarray.h
+@@ -33,6 +33,7 @@
+ #include <linux/types.h>
+ 
+ void kc_xarray_global_init(void);
++void kc_xarray_global_exit(void);
+ 
+ struct list_lru;
+ 
