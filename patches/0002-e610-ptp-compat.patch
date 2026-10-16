@@ -1,0 +1,42 @@
+From: E610 CentOS 7 compatibility work
+Subject: [PATCH] Preserve E610 PTP support on legacy kernel APIs
+
+Complete the existing delayed-work fallback and use ktime helpers that
+work with both the old union representation and current scalar ktime_t.
+
+diff --git a/src/ixgbe_ptp_e610.c b/src/ixgbe_ptp_e610.c
+index 2e615d4..83c5726 100644
+--- a/src/ixgbe_ptp_e610.c
++++ b/src/ixgbe_ptp_e610.c
+@@ -730,7 +730,7 @@ unsigned int ixgbe_ptp_rx_complete_skb_e610(struct ixgbe_q_vector *q_vector,
+ 			continue;
+ 		}
+ 
+-		if (skb_hwtstamps(rx_skb->skb)->hwtstamp) {
++		if (ktime_to_ns(skb_hwtstamps(rx_skb->skb)->hwtstamp)) {
+ 			napi_gro_receive(&q_vector->napi, rx_skb->skb);
+ 			list_del(&rx_skb->list);
+ 			kfree(rx_skb);
+@@ -789,7 +789,7 @@ void ixgbe_ptp_rx_phytstamp_e610(struct ixgbe_q_vector *q_vector,
+ 	}
+ 
+ 	q_vector->ptp_hold_rx_skb = true;
+-	skb_hwtstamps(skb)->hwtstamp = 0;
++	skb_hwtstamps(skb)->hwtstamp = ktime_set(0, 0);
+ 	seq_id = ntohs(hdr->sequence_id);
+ 
+ 	/* Try to find matching timestamp. If not found, cache the skb. */
+diff --git a/src/kcompat_kthread.h b/src/kcompat_kthread.h
+index a01b665..c2b127c 100644
+--- a/src/kcompat_kthread.h
++++ b/src/kcompat_kthread.h
+@@ -26,6 +26,9 @@
+ #undef kthread_queue_delayed_work
+ #define kthread_queue_delayed_work(worker, dwork, delay) \
+ 	queue_delayed_work(worker, dwork, delay)
++#undef kthread_mod_delayed_work
++#define kthread_mod_delayed_work(worker, dwork, delay) \
++	mod_delayed_work(worker, dwork, delay)
+ #undef kthread_init_work
+ #define kthread_init_work(work, fn) INIT_WORK(work, fn)
+ #undef kthread_init_delayed_work
