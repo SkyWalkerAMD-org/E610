@@ -1,0 +1,104 @@
+From: E610 CentOS 7 compatibility work
+Subject: [PATCH] Fix legacy kernel compatibility detected on CentOS 7.9
+
+Fix the RHEL extended netdev ops probe, old GFP/attribute handling,
+missing eventfd declarations, and redundant Kconfig macro definitions.
+
+diff --git a/src/kcompat-generator.sh b/src/kcompat-generator.sh
+index 0e5d30d..412d7c5 100644
+--- a/src/kcompat-generator.sh
++++ b/src/kcompat-generator.sh
+@@ -352,7 +352,7 @@ function gen-netdevice() {
+ 	gen HAVE_NDO_GET_DEVLINK_PORT if method ndo_get_devlink_port of net_device_ops in "$ndh"
+ 	gen HAVE_NDO_GET_TSTAMP if method ndo_get_tstamp of net_device_ops in "$ndh"
+ 	gen HAVE_NDO_SETUP_TC_CHAIN_INDEX if method ndo_setup_tc of net_device_ops matches 'u32 chain_index' in "$ndh"
+-	gen HAVE_NDO_SETUP_TC_REMOVE_TC_TO_NETDEV if method '(ndo_setup_tc|ndo_setup_tc_rh)' of '(net_device_ops|netdevice_ops_extended)' matches 'void \\*type_data' in "$ndh"
++	gen HAVE_NDO_SETUP_TC_REMOVE_TC_TO_NETDEV if method '(ndo_setup_tc|ndo_setup_tc_rh)' of '(net_device_ops|net_device_ops_extended)' matches 'void \\*type_data' in "$ndh"
+ 	gen HAVE_NDO_UDP_TUNNEL_CALLBACK if method ndo_udp_tunnel_add of net_device_ops in "$ndh"
+ 	gen HAVE_NETDEV_EXTENDED_MIN_MAX_MTU if struct net_device_extended matches min_mtu in "$ndh"
+ 	gen HAVE_NETDEV_FCOE_MTU if struct net_device matches fcoe_mtu in "$ndh"
+diff --git a/src/kcompat.h b/src/kcompat.h
+index 93c36a2..cf9d0ad 100644
+--- a/src/kcompat.h
++++ b/src/kcompat.h
+@@ -55,6 +55,11 @@
+ 
+ #include <linux/module.h>
+ 
++/* Older kernels and GCC versions do not provide the copy attribute. */
++#ifndef __copy
++#define __copy(symbol)
++#endif
++
+ /* any of the features that need to alter module_init */
+ #if !defined(HAVE_XARRAY_API)
+ 
+@@ -418,14 +423,18 @@ struct msix_entry {
+  * otherwise. For boolean options, this is equivalent to
+  * IS_ENABLED(CONFIG_FOO).
+  */
++#ifndef IS_BUILTIN
+ #define IS_BUILTIN(option) __is_defined(option)
++#endif
+ 
+ /*
+  * IS_MODULE(CONFIG_FOO) evaluates to 1 if CONFIG_FOO is set to 'm', 0
+  * otherwise.  CONFIG_FOO=m results in "#define CONFIG_FOO_MODULE 1" in
+  * autoconf.h.
+  */
++#ifndef IS_MODULE
+ #define IS_MODULE(option) __is_defined(option##_MODULE)
++#endif
+ 
+ /*
+  * IS_REACHABLE(CONFIG_FOO) evaluates to 1 if the currently compiled
+@@ -433,15 +442,19 @@ struct msix_entry {
+  * This is similar to IS_ENABLED(), but returns false when invoked from
+  * built-in code when CONFIG_FOO is set to 'm'.
+  */
++#ifndef IS_REACHABLE
+ #define IS_REACHABLE(option) __or(IS_BUILTIN(option), \
+ 				__and(IS_MODULE(option), __is_defined(MODULE)))
++#endif
+ 
+ /*
+  * IS_ENABLED(CONFIG_FOO) evaluates to 1 if CONFIG_FOO is set to 'y' or 'm',
+  * 0 otherwise.  Note that CONFIG_FOO=y results in "#define CONFIG_FOO 1" in
+  * autoconf.h, while CONFIG_FOO=m results in "#define CONFIG_FOO_MODULE 1".
+  */
++#ifndef IS_ENABLED
+ #define IS_ENABLED(option) __or(IS_BUILTIN(option), IS_MODULE(option))
++#endif
+ 
+ #if !defined(NETIF_F_HW_VLAN_TX) && !defined(NETIF_F_HW_VLAN_CTAG_TX)
+ struct _kc_vlan_ethhdr {
+diff --git a/src/kcompat_impl.h b/src/kcompat_impl.h
+index 0e8ed3c..e9cfce5 100644
+--- a/src/kcompat_impl.h
++++ b/src/kcompat_impl.h
+@@ -3631,6 +3631,8 @@ static inline const char *str_yes_no(bool v)
+  * argument was only ever passed as 1.
+  */
+ #ifdef NEED_EVENTFD_SIGNAL_NO_COUNTER
++#include <linux/eventfd.h>
++
+ static inline
+ void _kc_eventfd_signal(struct eventfd_ctx *ctx)
+ {
+diff --git a/src/kcompat_xarray.h b/src/kcompat_xarray.h
+index 5948e6e..be85ef0 100644
+--- a/src/kcompat_xarray.h
++++ b/src/kcompat_xarray.h
+@@ -39,7 +39,12 @@ struct list_lru;
+ /* Add internal might_alloc implementation without lockdep. */
+ static inline void __might_alloc(gfp_t gfp_mask)
+ {
++#ifdef __GFP_DIRECT_RECLAIM
+ 	might_sleep_if(!!(gfp_mask & __GFP_DIRECT_RECLAIM));
++#else
++	/* RHEL 7 uses __GFP_WAIT for allocations that may sleep. */
++	might_sleep_if(!!(gfp_mask & __GFP_WAIT));
++#endif
+ }
+ 
+ /*
