@@ -1,0 +1,96 @@
+# E610 网卡的 CentOS 7.9 适配与验证
+
+本项目使用 Intel 官方 ixgbe 6.4.5，目标架构为 x86_64。原始附件与
+[Intel 官方发布包](https://github.com/intel/ethernet-linux-ixgbe/releases/tag/v6.4.5)
+的 SHA-256 一致：
+
+```text
+8d23f2c329e0b93055236e67ffbf1de99d8dce32ccc75beb759774c7c24d7ed4
+```
+
+云端直接下载公开发布包，不上传本地附件。源码已经包含 E610 的 PCI ID：
+`8086:57ae`、`8086:57af`、`8086:57b0`、`8086:57b1`、`8086:57b2`。
+
+## 验证范围
+
+目标内核为 `3.10.0-1160.el7.x86_64` 和
+`3.10.0-1160.119.1.el7.x86_64`。使用 CentOS 7.9 用户空间、GCC 4.8.5
+以及与目标内核完全匹配的 `kernel-devel` 构建。容器宿主机内核不作为目标内核。
+
+编译后检查驱动版本、vermagic、E610 PCI 别名；随后在 QEMU 中启动对应的真实
+CentOS 内核，以最小 BusyBox initramfs 加载依赖、加载 ixgbe，再卸载 ixgbe。
+此项验证覆盖内核模块兼容性，不代表完整 CentOS 系统验收。
+
+当前没有 E610 实卡，尚未验证 probe、链路、收发、吞吐、PTP、SR-IOV 或固件交互。
+源码中存在这些功能不等于本次已验证这些功能。
+
+## 在目标机器上使用
+
+先检查：
+
+```sh
+uname -r
+uname -m
+lspci -nn | grep -i ethernet
+```
+
+仅使用与 `uname -r` 完全相同的构建产物。其他内核版本需要用其对应的
+`kernel-devel` 重新编译，不应强制加载不匹配的模块。
+
+云端测试完成后，将所需内核的构建目录复制到目标机器，在该目录检查：
+
+```sh
+test "$(uname -m)" = x86_64
+test "$(modinfo -F vermagic ./ixgbe.ko | awk '{print $1}')" = "$(uname -r)"
+modinfo ./ixgbe.ko
+```
+
+安装前备份现有 ixgbe 模块和 initramfs。首次切换驱动请使用本地或带外控制台，
+因为 ixgbe 也管理同机上的其他 Intel 网口，卸载或重启可能中断 SSH。确认内核
+版本匹配且有恢复途径后，手工安装：
+
+```sh
+KVER=$(uname -r)
+sudo install -D -m 0644 ./ixgbe.ko "/lib/modules/$KVER/updates/drivers/net/ethernet/intel/ixgbe/ixgbe.ko"
+sudo depmod -a "$KVER"
+modinfo -n ixgbe
+modinfo -F version ixgbe
+sudo dracut -f --kver "$KVER"
+```
+
+确认 `modinfo -n ixgbe` 解析到新安装的文件，再安排维护窗口重启。以上命令不会
+主动卸载正在使用的驱动。本项目生成的模块未签名；若目标机强制验证模块签名，
+需按目标机已有的信任链完成签名后安装。
+
+重启后检查网口（将 `IFACE` 替换为实际网口）：
+
+```sh
+ethtool -i IFACE
+ethtool IFACE
+ip -s link show dev IFACE
+dmesg | grep -Ei 'ixgbe|firmware|unknown symbol|invalid module'
+```
+
+再进行同网段 ping、双向 iperf3、多队列、VLAN/MTU 和长时间收发测试。
+PTP、SR-IOV 等功能如需使用，应逐项单独验收。
+
+如需回退，应从带外控制台恢复备份的模块和 initramfs，重新生成对应内核的
+depmod 索引，并在维护窗口重启。
+
+## 重现云端测试
+
+在 Linux Docker 主机执行：
+
+```sh
+mkdir -p output
+docker build --build-arg KVER=3.10.0-1160.119.1.el7.x86_64 -f ci/Dockerfile -t e610-c7 .
+docker run --rm -v "$PWD/output:/output" e610-c7
+# 主机需有 qemu-system-x86、busybox-static 和 cpio：
+bash ci/smoke.sh output
+```
+
+日志和模块保存在 `output/`。编译日志有 `E610_BUILD_PASS`、退出码为 0，
+且启动日志有 `E610_CLOUD_MODULE_LOAD_PASS`，才算该内核的测试通过。
+
+补丁存放于 `patches/`，按文件名顺序、以 `patch -p1` 应用于官方源码。
+完整测试结果以实际云端任务和最终交付的验证报告为准。
