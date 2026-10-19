@@ -1,0 +1,42 @@
+{
+  "date": "2026-10-19",
+  "os": "Ubuntu Server 22.04.3 amd64",
+  "kernel": "5.15.0-78-generic",
+  "driver": "ixgbe 6.4.5",
+  "pci_id": "8086:57b0",
+  "storage": "MR9540-8i logical disk, 893.8 GiB, UEFI GPT",
+  "installation": "iVentoy 1.0.45 Pro PXE-Auto; select OS and explicitly confirm target disk",
+  "first_boot_checked_at": "2026-10-19T14:48:54.085965+09:00",
+  "second_boot_checked_at": "2026-10-19T14:53:55.2772+09:00",
+  "distinct_boot_ids": true,
+  "local_uefi_boots": 2,
+  "dhcp4_on_e610": true,
+  "ssh_over_e610": true,
+  "lan_ping_each_boot": "4 sent, 4 received, 0% loss",
+  "module_sha256": "d1f954e9dde92c40d76b5244546ed22922613202b6fd92ea3dc9be9e28944586",
+  "initramfs_module_sha256": "d1f954e9dde92c40d76b5244546ed22922613202b6fd92ea3dc9be9e28944586",
+  "held_packages": [
+    "linux-image-5.15.0-78-generic",
+    "linux-modules-5.15.0-78-generic"
+  ],
+  "automatic_update_units": {
+    "apt-daily.timer": "ActiveState=inactive\nUnitFileState=masked",
+    "apt-daily-upgrade.timer": "ActiveState=inactive\nUnitFileState=masked",
+    "apt-daily.service": "ActiveState=inactive\nUnitFileState=masked",
+    "apt-daily-upgrade.service": "ActiveState=inactive\nUnitFileState=masked",
+    "unattended-upgrades.service": "ActiveState=inactive\nUnitFileState=masked"
+  },
+  "first_boot_service": "Result=success\nExecMainStatus=0\nActiveState=active",
+  "failed_systemd_units": 0,
+  "manager_callback": "installed",
+  "result": "PASS",
+  "not_tested": [
+    "manual end-to-end physical install",
+    "Desktop",
+    "HWE or other kernel ABI",
+    "Secure Boot",
+    "PTP",
+    "SR-IOV",
+    "high-throughput performance"
+  ]
+}

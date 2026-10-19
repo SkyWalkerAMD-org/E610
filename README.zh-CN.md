@@ -1,4 +1,8 @@
-# E610 网卡的 CentOS 7.9 适配与验证
+# E610 网卡的 Linux 适配与验证
+
+Ubuntu Server 22.04.3 GA 的构建、镜像适配和验证说明见 [ubuntu22-e610](ubuntu22-e610/README.zh-CN.md)。各系统的编译与实机结果分别记录，不能互相替代。
+
+以下为已发布的 CentOS 7.9 适配。
 
 **推荐安装方式：**下载 [最新 Release](https://github.com/skywalkeramd-org/E610/releases/latest)
 中的 r2 完整包，解压后运行 `sudo bash install.sh`。安装器自动选模块、校验、备份并

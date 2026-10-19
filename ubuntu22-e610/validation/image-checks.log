@@ -1,0 +1,14 @@
+PASS: all media checksums, unchanged kernel and early microcode
+/lib/modules/5.15.0-78-generic/updates/ixgbe.ko: OK
+E610: driver 6.4.5 and initramfs verified for 5.15.0-78-generic
+$WORK/root/tmp/e610-initramfs-check/main/usr/lib/modules/5.15.0-78-generic/updates/ixgbe.ko: OK
+Kernel packages locked; automatic repository refresh and unattended upgrades disabled.
+linux-generic	5.15.0.78.75
+linux-headers-5.15.0-78	5.15.0-78.85
+linux-headers-5.15.0-78-generic	5.15.0-78.85
+linux-headers-generic	5.15.0.78.75
+linux-image-5.15.0-78-generic	5.15.0-78.85
+linux-image-generic	5.15.0.78.75
+linux-modules-5.15.0-78-generic	5.15.0-78.85
+linux-modules-extra-5.15.0-78-generic	5.15.0-78.85
+E610_UBUNTU_IMAGE_VALIDATION_PASS

@@ -1,4 +1,6 @@
-# E610 / CentOS 7.9 compatibility
+# Intel E610 / Linux compatibility
+
+Ubuntu Server 22.04.3 GA adaptation is developed in [ubuntu22-e610](ubuntu22-e610/README.zh-CN.md). Its build and image checks are separate from CentOS validation; hardware acceptance is recorded there.
 
 [中文说明](README.zh-CN.md) · [Cloud tests](https://github.com/skywalkeramd-org/E610/actions/workflows/centos7.yml)
 
