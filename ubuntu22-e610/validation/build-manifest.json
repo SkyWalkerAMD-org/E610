@@ -1,0 +1,12 @@
+{
+  "source_iso_sha256": "a4acfda10b18da50e2ec50ccaf860d7f20b389df8765611142305c0e911d16fd",
+  "output_iso": "ubuntu-22.04.3-live-server-amd64-E610.iso",
+  "output_iso_sha256": "a8a8ccda7c3fa9f7643ac09418375f479c3cf1eaccafd2603f54968d8f6bcb80",
+  "kernel": "5.15.0-78-generic",
+  "driver": "ixgbe 6.4.5",
+  "module_sha256": "d1f954e9dde92c40d76b5244546ed22922613202b6fd92ea3dc9be9e28944586",
+  "policy_sha256": "f6890440087fb4392f3b2df8d4a9e10b90815b7b3eb98cf73ceb6798bd9d7485",
+  "source_reference": "https://github.com/SkyWalkerAMD-org/E610/releases/tag/v6.4.5-centos7.9-r2",
+  "signature": "unsigned custom module; Secure Boot hardware validation not included",
+  "hardware_validation": "pending"
+}
