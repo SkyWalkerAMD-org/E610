@@ -11,6 +11,11 @@ esp=$work/esp
 mkdir -p "$root"/{bin,dev,proc,sys,modules} "$esp/EFI/BOOT" "$esp/boot/grub"
 cp /usr/bin/busybox "$root/bin/busybox"
 for cmd in sh mount insmod rmmod uname dmesg poweroff cat grep od tr sleep; do ln -sf busybox "$root/bin/$cmd"; done
+cp /usr/bin/mokutil "$root/bin/"
+while read -r library; do install -D -m 755 "$library" "$root$library"; done < <(ldd /usr/bin/mokutil | awk '/=> \// {print $3} /^[[:space:]]*\// {print $1}')
+cp "$out/E610-MOK.der" "$root/"
+openssl req -new -x509 -newkey rsa:2048 -nodes -days 1 -subj '/CN=Untrusted test/' \
+  -keyout /dev/null -outform DER -out "$root/untrusted.der" 2>/dev/null
 cp "$here/smoke-init.sh" "$root/init"
 chmod 755 "$root/init"
 cp "$work/unsigned-ixgbe.ko" "$root/unsigned-ixgbe.ko"
