@@ -7,8 +7,9 @@ mount -t securityfs securityfs /sys/kernel/security
 mount -t efivarfs efivarfs /sys/firmware/efi/efivars
 fail() { echo "E610_SMOKE_FAIL $*"; dmesg; poweroff -f; sleep 60; }
 [ "$(uname -r)" = 6.8.0-31-generic ] || fail kernel
-sb=$(od -An -j4 -N1 -tu1 /sys/firmware/efi/efivars/SecureBoot-* | tr -d ' ')
-[ "$sb" = 1 ] || fail secureboot
+sb=$(od -An -j4 -N1 -tu1 /sys/firmware/efi/efivars/SecureBoot-* | tr -d '[:space:]')
+echo "E610_SECURE_BOOT_BYTE=$sb"
+[ "$sb" -eq 1 ] || fail secureboot
 cat /sys/kernel/security/lockdown
 grep -q '\[integrity\]\|\[confidentiality\]' /sys/kernel/security/lockdown || fail lockdown
 while read module; do
