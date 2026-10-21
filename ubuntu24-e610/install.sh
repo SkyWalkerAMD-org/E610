@@ -129,15 +129,18 @@ if grep -qsE '\[integrity\]|\[confidentiality\]' /sys/kernel/security/lockdown |
    grep -qE '(^| )module.sig_enforce=(1|y|Y|true)( |$)' /proc/cmdline; then secure=1; fi
 if [[ $secure != 0 ]]; then
     command -v mokutil >/dev/null || die '需要 mokutil 注册证书；请保留报错。'
+    . "$package_dir/mok-status.sh"
     result=0
-    trust=$(mokutil --test-key "$package_dir/E610-MOK.der" 2>&1) || result=$?
+    e610_mok_status "$package_dir/E610-MOK.der" || result=$?
     if ((result != 0)); then
-        [[ $result == 1 && $trust == *'is not enrolled'* ]] || die "无法检查证书注册状态，请稍后重试：$trust"
+        [[ $result == 1 || $result == 2 ]] || die '无法确定证书注册状态，请保留上面的输出后重试。'
         echo '首次使用：需要在 MOK 界面注册本包的公钥，驱动尚未安装。'
         echo "证书 SHA-256：$expected_cert"
         [[ $mode != check ]] || exit 3
-        echo '请设置一次性注册密码；重启时 Enroll MOK → Continue → Yes → 输入密码 → Reboot。'
-        mokutil --import "$package_dir/E610-MOK.der"
+        if [[ $result == 1 ]]; then
+            echo '请设置一次性注册密码；重启时 Enroll MOK → Continue → Yes → 输入密码 → Reboot。'
+            mokutil --import "$package_dir/E610-MOK.der"
+        fi
         echo '注册申请已提交。请重启完成注册，再次执行 sudo bash install.sh。'
         echo 'E610_MOK_REBOOT_REQUIRED'
         exit 0

@@ -14,6 +14,7 @@ for cmd in sh mount insmod rmmod uname dmesg poweroff cat grep od tr sleep; do l
 cp /usr/bin/mokutil "$root/bin/"
 while read -r library; do install -D -m 755 "$library" "$root$library"; done < <(ldd /usr/bin/mokutil | awk '/=> \// {print $3} /^[[:space:]]*\// {print $1}')
 cp "$out/E610-MOK.der" "$root/"
+cp "$here/mok-status.sh" "$root/"
 openssl req -new -x509 -newkey rsa:2048 -nodes -days 1 -subj '/CN=Untrusted test/' \
   -keyout /dev/null -outform DER -out "$root/untrusted.der" 2>/dev/null
 cp "$here/smoke-init.sh" "$root/init"

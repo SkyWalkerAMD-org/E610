@@ -9,7 +9,7 @@ bundle=$out/E610-Ubuntu24.04-6.8.0-31
 mkdir -p "$bundle/evidence"
 grep -q '^E610_SECURE_BOOT_LOAD_PASS kernel=6.8.0-31-generic' "$out/secure-boot.log"
 cp "$out/ixgbe.ko" "$out/E610-MOK.der" "$out/certificate.txt" "$out/ixgbe-6.4.5.tar.gz" "$bundle/"
-cp "$here/initramfs-hook" "$here/INSTALL.zh-CN.md" "$bundle/"
+cp "$here/initramfs-hook" "$here/INSTALL.zh-CN.md" "$here/mok-status.sh" "$bundle/"
 module_sha=$(sha256sum "$out/ixgbe.ko" | awk '{print $1}')
 cert_sha=$(sha256sum "$out/E610-MOK.der" | awk '{print $1}')
 sed -e "s/@MODULE_SHA256@/$module_sha/" -e "s/@CERT_SHA256@/$cert_sha/" "$here/install.sh" > "$bundle/install.sh"

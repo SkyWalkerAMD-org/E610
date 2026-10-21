@@ -12,11 +12,11 @@ echo "E610_SECURE_BOOT_BYTE=$sb"
 [ "$sb" -eq 1 ] || fail secureboot
 cat /sys/kernel/security/lockdown
 grep -q '\[integrity\]\|\[confidentiality\]' /sys/kernel/security/lockdown || fail lockdown
-mokutil --test-key /E610-MOK.der || fail enrolled-certificate-check
+. /mok-status.sh
+e610_mok_status /E610-MOK.der || fail enrolled-certificate-check
 result=0
-untrusted=$(mokutil --test-key /untrusted.der 2>&1) || result=$?
+e610_mok_status /untrusted.der || result=$?
 [ "$result" = 1 ] || fail untrusted-certificate-return-code
-case "$untrusted" in *'is not enrolled'*) ;; *) fail untrusted-certificate-message ;; esac
 echo E610_MOK_CERTIFICATE_CHECK_PASS
 while read module; do
   [ "$module" = ixgbe.ko ] && continue
