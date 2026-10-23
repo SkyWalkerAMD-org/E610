@@ -1,0 +1,21 @@
+name: E610 official installation media inventory
+on:
+  push:
+    branches: [codex/expanded-linux]
+    paths: ['expanded/discover.py', '.github/workflows/expanded-discover.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  inventory:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      - run: python3 expanded/discover.py
+      - if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: installation-media-inventory
+          path: output/
+          retention-days: 7
