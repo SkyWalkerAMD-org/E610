@@ -1,0 +1,7 @@
+#!/bin/sh
+# SPDX-License-Identifier: GPL-2.0-only
+set -e
+case "${1:-}" in prereqs) exit 0 ;; esac
+[ "$version" = 5.15.0-78-generic ] || exit 0
+. /usr/share/initramfs-tools/hook-functions
+manual_add_modules ixgbe
