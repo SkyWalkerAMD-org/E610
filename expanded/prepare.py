@@ -161,6 +161,10 @@ def main():
             run('sudo', 'chown', '-R', f'{os.getuid()}:{os.getgid()}', kw)
             kernels[kernel] = source
     if '--fixtures-only' in sys.argv:
+        for kernel in kernels:
+            root = work / kernel / 'root'
+            if not (root / 'lib').exists():
+                (root / 'lib').symlink_to('usr/lib')
         (out / 'prepared.json').write_text(json.dumps(list(kernels)) + '\n')
         return
     for kernel, source in kernels.items():

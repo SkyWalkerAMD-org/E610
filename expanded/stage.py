@@ -11,7 +11,7 @@ HERE = Path(__file__).resolve().parent
 def checksums(directory):
     lines = []
     for p in sorted(directory.rglob('*')):
-        if p.is_file() and p.name != 'SHA256SUMS':
+        if p.is_file() and p != directory / 'SHA256SUMS':
             digest = hashlib.sha256(p.read_bytes()).hexdigest()
             lines.append(f'{digest}  {p.relative_to(directory).as_posix()}\n')
     (directory / 'SHA256SUMS').write_text(''.join(lines))
