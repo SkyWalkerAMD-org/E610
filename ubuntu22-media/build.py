@@ -71,7 +71,7 @@ def main(archive, work, output):
         "compiler_required_on_target": False, "kernel_replaced": False,
         "persistent_package": "/opt/e610-offline/ubuntu22-5.15.0-78-r1",
         "archive_url": "https://github.com/SkyWalkerAMD-org/E610/releases/download/"
-                       "v6.4.5-ubuntu22.04-5.15.0-78-r1/" + NAME + ".tar.gz",
+                       "v6.4.5-ubuntu22.04.3-5.15.0-78-r1/" + NAME + ".tar.gz",
         "archive_sha256": ARCHIVE_SHA, "module_sha256": MODULE_SHA,
         "certificate_sha256": CERT_SHA, "signed_payload_commit": SOURCE_COMMIT,
         "signed_payload_validation": payload["run_url"],
