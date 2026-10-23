@@ -30,11 +30,13 @@ def ubuntu(version):
                 paths = [p for p in listing if p.endswith('.deb') and (
                     re.search(r'/linux-(?:image|modules|modules-extra|headers)-' + re.escape(kernel) + '_', p)
                     or re.search(r'/linux-(?:hwe-[\d.]+-)?headers-' + re.escape(abi) + '_', p))]
-                assert len(paths) == 5, (kernel, paths)
+                if len(paths) != 5:
+                    continue  # Some media also carry older bootstrap-only images.
                 kernels.append({'kernel': kernel, 'paths': paths})
             assert kernels
             return {'id': 'ubuntu-' + version, 'os': 'ubuntu', 'version': version[:5],
                     'release': version, 'iso_url': base + name + '.iso', 'iso_sha256': digest,
+                    'hwe_overlays': [p for p in listing if p.endswith('.generic-hwe.squashfs')],
                     'kernels': kernels}
         except Exception as exc:
             errors.append(str(exc))
@@ -45,20 +47,28 @@ def rocky(version):
     errors = []
     for base in (f'https://dl.rockylinux.org/pub/rocky/{version}/', f'https://dl.rockylinux.org/vault/rocky/{version}/'):
         try:
-            core_dir = base + 'BaseOS/x86_64/kickstart/Packages/k/'
-            listing = get(core_dir)
+            core_dir = base + 'BaseOS/x86_64/kickstart/Packages/'
+            try:
+                listing = get(core_dir + 'k/')
+                core_dir += 'k/'
+            except Exception:
+                listing = get(core_dir)
             kernels = sorted(set(re.findall(r'href="kernel-core-([^"/]+\.x86_64)\.rpm"', listing)))
-            assert len(kernels) == 1, kernels
-            kernel = kernels[0]
-            devel_dir = base + 'AppStream/x86_64/kickstart/Packages/k/'
-            devlisting = get(devel_dir)
-            assert f'kernel-devel-{kernel}.rpm' in devlisting
-            urls = [core_dir + f'{p}-{kernel}.rpm' for p in ('kernel-core', 'kernel-modules')]
-            if f'kernel-modules-core-{kernel}.rpm' in listing:
-                urls.append(core_dir + f'kernel-modules-core-{kernel}.rpm')
-            urls.append(devel_dir + f'kernel-devel-{kernel}.rpm')
+            assert kernels
+            devel_dir, devlisting = core_dir, listing
+            if version.startswith('9.'):
+                devel_dir = base + 'AppStream/x86_64/kickstart/Packages/k/'
+                devlisting = get(devel_dir)
+            entries = []
+            for kernel in kernels:
+                assert f'kernel-devel-{kernel}.rpm' in devlisting, f'missing devel {kernel}'
+                urls = [core_dir + f'{p}-{kernel}.rpm' for p in ('kernel-core', 'kernel-modules')]
+                if f'kernel-modules-core-{kernel}.rpm' in listing:
+                    urls.append(core_dir + f'kernel-modules-core-{kernel}.rpm')
+                urls.append(devel_dir + f'kernel-devel-{kernel}.rpm')
+                entries.append({'kernel': kernel, 'urls': urls})
             return {'id': 'rocky-' + version, 'os': 'rocky', 'version': version.split('.')[0],
-                    'release': version, 'repository': base, 'kernels': [{'kernel': kernel, 'urls': urls}]}
+                    'release': version, 'repository': base, 'kernels': entries}
         except Exception as exc:
             errors.append(str(exc))
     raise RuntimeError(f'Rocky {version}: {errors}')
