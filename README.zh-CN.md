@@ -1,5 +1,13 @@
 # E610 网卡的 Linux 适配与验证
 
+**推荐：[多系统统一离线包](https://github.com/SkyWalkerAMD-org/E610/releases/tag/v6.4.5-multios-r1)**。
+一个包同时包含 CentOS 7.9、Ubuntu 22.04.3 和 Ubuntu 24.04 的已验证驱动，自动匹配
+系统与精确内核。提供 `tar.gz`、`.run` 和 KVM 驱动 ISO；[中文安装说明](multios/INSTALL.zh-CN.md)。
+
+```bash
+sudo bash E610-MultiOS-6.4.5-r1.run
+```
+
 **[已适配系统、下载与验证汇总](SUPPORTED-SYSTEMS.zh-CN.md)**：CentOS 7.9、Ubuntu Server
 22.04.3 GA 和 Ubuntu 24.04 均提供 `tar.gz`、`.run`、KVM 驱动 ISO，以及中文说明和
 SHA-256 校验。先按汇总表核对精确内核，再下载对应系统的包。

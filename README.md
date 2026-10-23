@@ -1,5 +1,11 @@
 # Intel E610 / Linux compatibility
 
+**[Download the multi-system offline package](https://github.com/SkyWalkerAMD-org/E610/releases/tag/v6.4.5-multios-r1)**:
+one `.tar.gz`, `.run`, or KVM driver data ISO contains the validated CentOS 7.9,
+Ubuntu 22.04.3 and Ubuntu 24.04 installers. It selects the matching OS and exact
+kernel automatically and preserves the existing payloads, public signing certificates and backups.
+See the [Chinese installation guide](multios/INSTALL.zh-CN.md).
+
 **[Supported systems and downloads / 已适配系统及三种安装包](SUPPORTED-SYSTEMS.zh-CN.md)**
 
 Offline `.tar.gz`, `.run`, and KVM driver data ISO packages are available for

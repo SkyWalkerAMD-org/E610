@@ -3,7 +3,26 @@
 所有包均为 **x86_64 / amd64、Intel ixgbe 6.4.5**，安装时保留系统内核。
 请先执行 `uname -rm`，选择与内核字符串完全一致的包。系统名称相同但内核不同不能混用。
 
-## 系统与三种安装格式
+## 多系统统一包（推荐）
+
+**一个包包含以下全部系统的驱动，自动识别系统和精确内核。** 三种格式任选其一：
+
+- [统一 tar.gz](https://github.com/SkyWalkerAMD-org/E610/releases/download/v6.4.5-multios-r1/E610-MultiOS-6.4.5-r1.tar.gz)
+- [统一 .run](https://github.com/SkyWalkerAMD-org/E610/releases/download/v6.4.5-multios-r1/E610-MultiOS-6.4.5-r1.run)
+- [统一 KVM 驱动 ISO](https://github.com/SkyWalkerAMD-org/E610/releases/download/v6.4.5-multios-r1/E610-MultiOS-6.4.5-r1.iso)
+- [中文安装说明](multios/INSTALL.zh-CN.md) · [SHA-256 校验值](https://github.com/SkyWalkerAMD-org/E610/releases/download/v6.4.5-multios-r1/SHA256SUMS) · [统一版 Release](https://github.com/SkyWalkerAMD-org/E610/releases/tag/v6.4.5-multios-r1)
+
+复制 `.run` 到服务器后直接执行，无需手动选系统：
+
+```bash
+sudo bash E610-MultiOS-6.4.5-r1.run
+```
+
+统一包调用下方原始单系统安装器，驱动和签名公钥保持不变，沿用已有备份。
+未匹配到表中系统与内核组合时停止。已注册对应 Ubuntu 公钥的机器无需重新注册。
+三种格式都包含全部驱动；这里的 ISO 仍为现有系统使用的驱动数据光盘。
+
+## 系统与单系统安装包
 
 | 系统 | 精确支持内核 | 完整 tar.gz | 单文件 .run | KVM 驱动 ISO |
 | --- | --- | --- | --- | --- |
