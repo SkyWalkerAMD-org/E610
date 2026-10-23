@@ -1,10 +1,14 @@
 # E610 网卡的 Linux 适配与验证
 
+**[已适配系统、下载与验证汇总](SUPPORTED-SYSTEMS.zh-CN.md)**：CentOS 7.9、Ubuntu Server
+22.04.3 GA 和 Ubuntu 24.04 均提供 `tar.gz`、`.run`、KVM 驱动 ISO，以及中文说明和
+SHA-256 校验。先按汇总表核对精确内核，再下载对应系统的包。
+
 Ubuntu Server 22.04.3 GA 的构建、镜像适配和验证说明见 [ubuntu22-e610](ubuntu22-e610/README.zh-CN.md)。各系统的编译与实机结果分别记录，不能互相替代。
 
 以下为已发布的 CentOS 7.9 适配。
 
-**推荐安装方式：**下载 [最新 Release](https://github.com/skywalkeramd-org/E610/releases/latest)
+**CentOS 推荐安装方式：**下载 [CentOS 7.9 Release](https://github.com/skywalkeramd-org/E610/releases/tag/v6.4.5-centos7.9-r2)
 中的 r2 完整包，解压后运行 `sudo bash install.sh`。安装器自动选模块、校验、备份并
 更新 initramfs；回退使用 `sudo bash uninstall.sh`。具体步骤见
 [简化安装说明](INSTALL.zh-CN.md)。下文保留源码构建和手动部署细节。

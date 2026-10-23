@@ -1,10 +1,17 @@
 # Intel E610 / Linux compatibility
 
+**[Supported systems and downloads / 已适配系统及三种安装包](SUPPORTED-SYSTEMS.zh-CN.md)**
+
+Offline `.tar.gz`, `.run`, and KVM driver data ISO packages are available for
+CentOS 7.9 (two exact kernels), Ubuntu Server 22.04.3 GA (`5.15.0-78-generic`),
+and Ubuntu 24.04 (`6.8.0-31-generic`). The table includes Chinese instructions,
+SHA-256 checksums, and separate cloud and physical hardware validation results.
+
 Ubuntu Server 22.04.3 GA adaptation is developed in [ubuntu22-e610](ubuntu22-e610/README.zh-CN.md). Its build and image checks are separate from CentOS validation; hardware acceptance is recorded there.
 
 [中文说明](README.zh-CN.md) · [Cloud tests](https://github.com/skywalkeramd-org/E610/actions/workflows/centos7.yml)
 
-Download the complete r2 bundle from [Releases](https://github.com/skywalkeramd-org/E610/releases/latest).
+For CentOS 7.9, download the complete r2 bundle from its [Release](https://github.com/skywalkeramd-org/E610/releases/tag/v6.4.5-centos7.9-r2).
 Extract it, then run `sudo bash install.sh` inside the extracted directory. The
 offline installer selects the matching kernel module, verifies it, backs up the
 existing files and updates initramfs. It does not reboot. Use `sudo bash uninstall.sh`
