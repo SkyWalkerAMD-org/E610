@@ -1,0 +1,45 @@
+name: E610 CentOS 7.9 KVM media
+on:
+  push:
+    branches: [codex/ubuntu22-offline]
+    paths: ['centos7-media/**', '.github/workflows/centos7-media.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  build-and-test:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      - name: Prepare media tools and download the unchanged r2 release
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends xorriso
+          curl --fail --location --retry 3 -o "$RUNNER_TEMP/driver.tar.gz" https://github.com/SkyWalkerAMD-org/E610/releases/download/v6.4.5-centos7.9-r2/E610-CentOS7.9-adaptation-r2.tar.gz
+      - name: Build the single-file installer and KVM ISO
+        run: python3 centos7-media/build.py --archive "$RUNNER_TEMP/driver.tar.gz" --work "$RUNNER_TEMP/media-build" --output "$PWD/output/centos7-media"
+      - name: Test the read-only ISO on both supported CentOS kernels
+        run: |
+          mkdir -p "$RUNNER_TEMP/e610-mounted"
+          test "$(blkid -p -s LABEL -o value output/centos7-media/*.iso)" = E610_CENTOS7
+          sudo mount -o loop,ro output/centos7-media/*.iso "$RUNNER_TEMP/e610-mounted"
+          test "$(findmnt -n -o FSTYPE --target "$RUNNER_TEMP/e610-mounted")" = iso9660
+          set -o pipefail
+          for kernel in 3.10.0-1160.el7.x86_64 3.10.0-1160.119.1.el7.x86_64; do
+            docker build --build-arg KVER="$kernel" -f centos7-media/Dockerfile -t e610-centos7-media .
+            docker run --rm --network none -v "$RUNNER_TEMP/e610-mounted:/media:ro" -v "$PWD/centos7-media/test.sh:/media-test.sh:ro" e610-centos7-media 2>&1 | tee "output/centos7-media/media-test-$kernel.log"
+          done
+      - name: Finalize validation and checksums
+        run: bash centos7-media/finalize.sh "$PWD/output/centos7-media"
+      - name: Detach test ISO
+        if: always()
+        run: if mountpoint -q "$RUNNER_TEMP/e610-mounted"; then sudo umount "$RUNNER_TEMP/e610-mounted"; fi
+      - name: Save installation media and evidence
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: E610-CentOS7.9-KVM-media
+          path: output/centos7-media/
+          if-no-files-found: error
+          retention-days: 7
