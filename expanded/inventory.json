@@ -1,0 +1,597 @@
+[
+  {
+    "id": "rocky-8.10",
+    "os": "rocky",
+    "version": "8",
+    "release": "8.10",
+    "repository": "https://dl.rockylinux.org/pub/rocky/8.10/",
+    "kernels": [
+      {
+        "kernel": "4.18.0-553.el8_10.x86_64",
+        "urls": [
+          "https://dl.rockylinux.org/pub/rocky/8.10/BaseOS/x86_64/kickstart/Packages/k/kernel-core-4.18.0-553.el8_10.x86_64.rpm",
+          "https://dl.rockylinux.org/pub/rocky/8.10/BaseOS/x86_64/kickstart/Packages/k/kernel-modules-4.18.0-553.el8_10.x86_64.rpm",
+          "https://dl.rockylinux.org/pub/rocky/8.10/BaseOS/x86_64/kickstart/Packages/k/kernel-devel-4.18.0-553.el8_10.x86_64.rpm"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "rocky-8.4",
+    "os": "rocky",
+    "version": "8",
+    "release": "8.4",
+    "repository": "https://dl.rockylinux.org/vault/rocky/8.4/",
+    "kernels": [
+      {
+        "kernel": "4.18.0-305.3.1.el8_4.x86_64",
+        "urls": [
+          "https://dl.rockylinux.org/vault/rocky/8.4/BaseOS/x86_64/kickstart/Packages/kernel-core-4.18.0-305.3.1.el8_4.x86_64.rpm",
+          "https://dl.rockylinux.org/vault/rocky/8.4/BaseOS/x86_64/kickstart/Packages/kernel-modules-4.18.0-305.3.1.el8_4.x86_64.rpm",
+          "https://dl.rockylinux.org/vault/rocky/8.4/BaseOS/x86_64/kickstart/Packages/kernel-devel-4.18.0-305.3.1.el8_4.x86_64.rpm"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "rocky-8.5",
+    "os": "rocky",
+    "version": "8",
+    "release": "8.5",
+    "repository": "https://dl.rockylinux.org/vault/rocky/8.5/",
+    "kernels": [
+      {
+        "kernel": "4.18.0-348.el8.0.2.x86_64",
+        "urls": [
+          "https://dl.rockylinux.org/vault/rocky/8.5/BaseOS/x86_64/kickstart/Packages/k/kernel-core-4.18.0-348.el8.0.2.x86_64.rpm",
+          "https://dl.rockylinux.org/vault/rocky/8.5/BaseOS/x86_64/kickstart/Packages/k/kernel-modules-4.18.0-348.el8.0.2.x86_64.rpm",
+          "https://dl.rockylinux.org/vault/rocky/8.5/BaseOS/x86_64/kickstart/Packages/k/kernel-devel-4.18.0-348.el8.0.2.x86_64.rpm"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "rocky-8.6",
+    "os": "rocky",
+    "version": "8",
+    "release": "8.6",
+    "repository": "https://dl.rockylinux.org/vault/rocky/8.6/",
+    "kernels": [
+      {
+        "kernel": "4.18.0-372.9.1.el8.x86_64",
+        "urls": [
+          "https://dl.rockylinux.org/vault/rocky/8.6/BaseOS/x86_64/kickstart/Packages/k/kernel-core-4.18.0-372.9.1.el8.x86_64.rpm",
+          "https://dl.rockylinux.org/vault/rocky/8.6/BaseOS/x86_64/kickstart/Packages/k/kernel-modules-4.18.0-372.9.1.el8.x86_64.rpm",
+          "https://dl.rockylinux.org/vault/rocky/8.6/BaseOS/x86_64/kickstart/Packages/k/kernel-devel-4.18.0-372.9.1.el8.x86_64.rpm"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "rocky-8.7",
+    "os": "rocky",
+    "version": "8",
+    "release": "8.7",
+    "repository": "https://dl.rockylinux.org/vault/rocky/8.7/",
+    "kernels": [
+      {
+        "kernel": "4.18.0-425.3.1.el8.x86_64",
+        "urls": [
+          "https://dl.rockylinux.org/vault/rocky/8.7/BaseOS/x86_64/kickstart/Packages/k/kernel-core-4.18.0-425.3.1.el8.x86_64.rpm",
+          "https://dl.rockylinux.org/vault/rocky/8.7/BaseOS/x86_64/kickstart/Packages/k/kernel-modules-4.18.0-425.3.1.el8.x86_64.rpm",
+          "https://dl.rockylinux.org/vault/rocky/8.7/BaseOS/x86_64/kickstart/Packages/k/kernel-devel-4.18.0-425.3.1.el8.x86_64.rpm"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "rocky-8.8",
+    "os": "rocky",
+    "version": "8",
+    "release": "8.8",
+    "repository": "https://dl.rockylinux.org/vault/rocky/8.8/",
+    "kernels": [
+      {
+        "kernel": "4.18.0-477.10.1.el8_8.x86_64",
+        "urls": [
+          "https://dl.rockylinux.org/vault/rocky/8.8/BaseOS/x86_64/kickstart/Packages/k/kernel-core-4.18.0-477.10.1.el8_8.x86_64.rpm",
+          "https://dl.rockylinux.org/vault/rocky/8.8/BaseOS/x86_64/kickstart/Packages/k/kernel-modules-4.18.0-477.10.1.el8_8.x86_64.rpm",
+          "https://dl.rockylinux.org/vault/rocky/8.8/BaseOS/x86_64/kickstart/Packages/k/kernel-devel-4.18.0-477.10.1.el8_8.x86_64.rpm"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "rocky-8.9",
+    "os": "rocky",
+    "version": "8",
+    "release": "8.9",
+    "repository": "https://dl.rockylinux.org/vault/rocky/8.9/",
+    "kernels": [
+      {
+        "kernel": "4.18.0-513.5.1.el8_9.x86_64",
+        "urls": [
+          "https://dl.rockylinux.org/vault/rocky/8.9/BaseOS/x86_64/kickstart/Packages/k/kernel-core-4.18.0-513.5.1.el8_9.x86_64.rpm",
+          "https://dl.rockylinux.org/vault/rocky/8.9/BaseOS/x86_64/kickstart/Packages/k/kernel-modules-4.18.0-513.5.1.el8_9.x86_64.rpm",
+          "https://dl.rockylinux.org/vault/rocky/8.9/BaseOS/x86_64/kickstart/Packages/k/kernel-devel-4.18.0-513.5.1.el8_9.x86_64.rpm"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "rocky-9.0",
+    "os": "rocky",
+    "version": "9",
+    "release": "9.0",
+    "repository": "https://dl.rockylinux.org/vault/rocky/9.0/",
+    "kernels": [
+      {
+        "kernel": "5.14.0-70.13.1.el9_0.x86_64",
+        "urls": [
+          "https://dl.rockylinux.org/vault/rocky/9.0/BaseOS/x86_64/kickstart/Packages/k/kernel-core-5.14.0-70.13.1.el9_0.x86_64.rpm",
+          "https://dl.rockylinux.org/vault/rocky/9.0/BaseOS/x86_64/kickstart/Packages/k/kernel-modules-5.14.0-70.13.1.el9_0.x86_64.rpm",
+          "https://dl.rockylinux.org/vault/rocky/9.0/AppStream/x86_64/kickstart/Packages/k/kernel-devel-5.14.0-70.13.1.el9_0.x86_64.rpm"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "rocky-9.1",
+    "os": "rocky",
+    "version": "9",
+    "release": "9.1",
+    "repository": "https://dl.rockylinux.org/vault/rocky/9.1/",
+    "kernels": [
+      {
+        "kernel": "5.14.0-162.6.1.el9_1.0.1.x86_64",
+        "urls": [
+          "https://dl.rockylinux.org/vault/rocky/9.1/BaseOS/x86_64/kickstart/Packages/k/kernel-core-5.14.0-162.6.1.el9_1.0.1.x86_64.rpm",
+          "https://dl.rockylinux.org/vault/rocky/9.1/BaseOS/x86_64/kickstart/Packages/k/kernel-modules-5.14.0-162.6.1.el9_1.0.1.x86_64.rpm",
+          "https://dl.rockylinux.org/vault/rocky/9.1/AppStream/x86_64/kickstart/Packages/k/kernel-devel-5.14.0-162.6.1.el9_1.0.1.x86_64.rpm"
+        ]
+      },
+      {
+        "kernel": "5.14.0-162.6.1.el9_1.x86_64",
+        "urls": [
+          "https://dl.rockylinux.org/vault/rocky/9.1/BaseOS/x86_64/kickstart/Packages/k/kernel-core-5.14.0-162.6.1.el9_1.x86_64.rpm",
+          "https://dl.rockylinux.org/vault/rocky/9.1/BaseOS/x86_64/kickstart/Packages/k/kernel-modules-5.14.0-162.6.1.el9_1.x86_64.rpm",
+          "https://dl.rockylinux.org/vault/rocky/9.1/AppStream/x86_64/kickstart/Packages/k/kernel-devel-5.14.0-162.6.1.el9_1.x86_64.rpm"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "rocky-9.2",
+    "os": "rocky",
+    "version": "9",
+    "release": "9.2",
+    "repository": "https://dl.rockylinux.org/vault/rocky/9.2/",
+    "kernels": [
+      {
+        "kernel": "5.14.0-284.11.1.el9_2.x86_64",
+        "urls": [
+          "https://dl.rockylinux.org/vault/rocky/9.2/BaseOS/x86_64/kickstart/Packages/k/kernel-core-5.14.0-284.11.1.el9_2.x86_64.rpm",
+          "https://dl.rockylinux.org/vault/rocky/9.2/BaseOS/x86_64/kickstart/Packages/k/kernel-modules-5.14.0-284.11.1.el9_2.x86_64.rpm",
+          "https://dl.rockylinux.org/vault/rocky/9.2/BaseOS/x86_64/kickstart/Packages/k/kernel-modules-core-5.14.0-284.11.1.el9_2.x86_64.rpm",
+          "https://dl.rockylinux.org/vault/rocky/9.2/AppStream/x86_64/kickstart/Packages/k/kernel-devel-5.14.0-284.11.1.el9_2.x86_64.rpm"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "rocky-9.3",
+    "os": "rocky",
+    "version": "9",
+    "release": "9.3",
+    "repository": "https://dl.rockylinux.org/vault/rocky/9.3/",
+    "kernels": [
+      {
+        "kernel": "5.14.0-362.8.1.el9_3.x86_64",
+        "urls": [
+          "https://dl.rockylinux.org/vault/rocky/9.3/BaseOS/x86_64/kickstart/Packages/k/kernel-core-5.14.0-362.8.1.el9_3.x86_64.rpm",
+          "https://dl.rockylinux.org/vault/rocky/9.3/BaseOS/x86_64/kickstart/Packages/k/kernel-modules-5.14.0-362.8.1.el9_3.x86_64.rpm",
+          "https://dl.rockylinux.org/vault/rocky/9.3/BaseOS/x86_64/kickstart/Packages/k/kernel-modules-core-5.14.0-362.8.1.el9_3.x86_64.rpm",
+          "https://dl.rockylinux.org/vault/rocky/9.3/AppStream/x86_64/kickstart/Packages/k/kernel-devel-5.14.0-362.8.1.el9_3.x86_64.rpm"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "rocky-9.4",
+    "os": "rocky",
+    "version": "9",
+    "release": "9.4",
+    "repository": "https://dl.rockylinux.org/vault/rocky/9.4/",
+    "kernels": [
+      {
+        "kernel": "5.14.0-427.13.1.el9_4.x86_64",
+        "urls": [
+          "https://dl.rockylinux.org/vault/rocky/9.4/BaseOS/x86_64/kickstart/Packages/k/kernel-core-5.14.0-427.13.1.el9_4.x86_64.rpm",
+          "https://dl.rockylinux.org/vault/rocky/9.4/BaseOS/x86_64/kickstart/Packages/k/kernel-modules-5.14.0-427.13.1.el9_4.x86_64.rpm",
+          "https://dl.rockylinux.org/vault/rocky/9.4/BaseOS/x86_64/kickstart/Packages/k/kernel-modules-core-5.14.0-427.13.1.el9_4.x86_64.rpm",
+          "https://dl.rockylinux.org/vault/rocky/9.4/AppStream/x86_64/kickstart/Packages/k/kernel-devel-5.14.0-427.13.1.el9_4.x86_64.rpm"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "rocky-9.5",
+    "os": "rocky",
+    "version": "9",
+    "release": "9.5",
+    "repository": "https://dl.rockylinux.org/vault/rocky/9.5/",
+    "kernels": [
+      {
+        "kernel": "5.14.0-503.14.1.el9_5.x86_64",
+        "urls": [
+          "https://dl.rockylinux.org/vault/rocky/9.5/BaseOS/x86_64/kickstart/Packages/k/kernel-core-5.14.0-503.14.1.el9_5.x86_64.rpm",
+          "https://dl.rockylinux.org/vault/rocky/9.5/BaseOS/x86_64/kickstart/Packages/k/kernel-modules-5.14.0-503.14.1.el9_5.x86_64.rpm",
+          "https://dl.rockylinux.org/vault/rocky/9.5/BaseOS/x86_64/kickstart/Packages/k/kernel-modules-core-5.14.0-503.14.1.el9_5.x86_64.rpm",
+          "https://dl.rockylinux.org/vault/rocky/9.5/AppStream/x86_64/kickstart/Packages/k/kernel-devel-5.14.0-503.14.1.el9_5.x86_64.rpm"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "rocky-9.6",
+    "os": "rocky",
+    "version": "9",
+    "release": "9.6",
+    "repository": "https://dl.rockylinux.org/vault/rocky/9.6/",
+    "kernels": [
+      {
+        "kernel": "5.14.0-570.17.1.el9_6.x86_64",
+        "urls": [
+          "https://dl.rockylinux.org/vault/rocky/9.6/BaseOS/x86_64/kickstart/Packages/k/kernel-core-5.14.0-570.17.1.el9_6.x86_64.rpm",
+          "https://dl.rockylinux.org/vault/rocky/9.6/BaseOS/x86_64/kickstart/Packages/k/kernel-modules-5.14.0-570.17.1.el9_6.x86_64.rpm",
+          "https://dl.rockylinux.org/vault/rocky/9.6/BaseOS/x86_64/kickstart/Packages/k/kernel-modules-core-5.14.0-570.17.1.el9_6.x86_64.rpm",
+          "https://dl.rockylinux.org/vault/rocky/9.6/AppStream/x86_64/kickstart/Packages/k/kernel-devel-5.14.0-570.17.1.el9_6.x86_64.rpm"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "rocky-9.7",
+    "os": "rocky",
+    "version": "9",
+    "release": "9.7",
+    "repository": "https://dl.rockylinux.org/vault/rocky/9.7/",
+    "kernels": [
+      {
+        "kernel": "5.14.0-611.5.1.el9_7.x86_64",
+        "urls": [
+          "https://dl.rockylinux.org/vault/rocky/9.7/BaseOS/x86_64/kickstart/Packages/k/kernel-core-5.14.0-611.5.1.el9_7.x86_64.rpm",
+          "https://dl.rockylinux.org/vault/rocky/9.7/BaseOS/x86_64/kickstart/Packages/k/kernel-modules-5.14.0-611.5.1.el9_7.x86_64.rpm",
+          "https://dl.rockylinux.org/vault/rocky/9.7/BaseOS/x86_64/kickstart/Packages/k/kernel-modules-core-5.14.0-611.5.1.el9_7.x86_64.rpm",
+          "https://dl.rockylinux.org/vault/rocky/9.7/AppStream/x86_64/kickstart/Packages/k/kernel-devel-5.14.0-611.5.1.el9_7.x86_64.rpm"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "rocky-9.8",
+    "os": "rocky",
+    "version": "9",
+    "release": "9.8",
+    "repository": "https://dl.rockylinux.org/pub/rocky/9.8/",
+    "kernels": [
+      {
+        "kernel": "5.14.0-687.10.1.el9_8.0.1.x86_64",
+        "urls": [
+          "https://dl.rockylinux.org/pub/rocky/9.8/BaseOS/x86_64/kickstart/Packages/k/kernel-core-5.14.0-687.10.1.el9_8.0.1.x86_64.rpm",
+          "https://dl.rockylinux.org/pub/rocky/9.8/BaseOS/x86_64/kickstart/Packages/k/kernel-modules-5.14.0-687.10.1.el9_8.0.1.x86_64.rpm",
+          "https://dl.rockylinux.org/pub/rocky/9.8/BaseOS/x86_64/kickstart/Packages/k/kernel-modules-core-5.14.0-687.10.1.el9_8.0.1.x86_64.rpm",
+          "https://dl.rockylinux.org/pub/rocky/9.8/AppStream/x86_64/kickstart/Packages/k/kernel-devel-5.14.0-687.10.1.el9_8.0.1.x86_64.rpm"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ubuntu-22.04",
+    "os": "ubuntu",
+    "version": "22.04",
+    "release": "22.04",
+    "iso_url": "https://old-releases.ubuntu.com/releases/22.04/ubuntu-22.04-live-server-amd64.iso",
+    "iso_sha256": "84aeaf7823c8c61baa0ae862d0a06b03409394800000b3235854a6b38eb4856f",
+    "hwe_overlays": [],
+    "kernels": [
+      {
+        "kernel": "5.15.0-25-generic",
+        "paths": [
+          "/pool/main/l/linux/linux-headers-5.15.0-25_5.15.0-25.25_all.deb",
+          "/pool/main/l/linux/linux-headers-5.15.0-25-generic_5.15.0-25.25_amd64.deb",
+          "/pool/main/l/linux/linux-modules-5.15.0-25-generic_5.15.0-25.25_amd64.deb",
+          "/pool/main/l/linux/linux-modules-extra-5.15.0-25-generic_5.15.0-25.25_amd64.deb",
+          "/pool/main/l/linux-signed/linux-image-5.15.0-25-generic_5.15.0-25.25_amd64.deb"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ubuntu-22.04.1",
+    "os": "ubuntu",
+    "version": "22.04",
+    "release": "22.04.1",
+    "iso_url": "https://old-releases.ubuntu.com/releases/22.04.1/ubuntu-22.04.1-live-server-amd64.iso",
+    "iso_sha256": "10f19c5b2b8d6db711582e0e27f5116296c34fe4b313ba45f9b201a5007056cb",
+    "hwe_overlays": [],
+    "kernels": [
+      {
+        "kernel": "5.15.0-43-generic",
+        "paths": [
+          "/pool/main/l/linux/linux-headers-5.15.0-43_5.15.0-43.46_all.deb",
+          "/pool/main/l/linux/linux-headers-5.15.0-43-generic_5.15.0-43.46_amd64.deb",
+          "/pool/main/l/linux/linux-modules-5.15.0-43-generic_5.15.0-43.46_amd64.deb",
+          "/pool/main/l/linux/linux-modules-extra-5.15.0-43-generic_5.15.0-43.46_amd64.deb",
+          "/pool/main/l/linux-signed/linux-image-5.15.0-43-generic_5.15.0-43.46_amd64.deb"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ubuntu-22.04.2",
+    "os": "ubuntu",
+    "version": "22.04",
+    "release": "22.04.2",
+    "iso_url": "https://old-releases.ubuntu.com/releases/22.04.2/ubuntu-22.04.2-live-server-amd64.iso",
+    "iso_sha256": "5e38b55d57d94ff029719342357325ed3bda38fa80054f9330dc789cd2d43931",
+    "hwe_overlays": [
+      "/casper/ubuntu-server-minimal.ubuntu-server.installer.generic-hwe.squashfs"
+    ],
+    "kernels": [
+      {
+        "kernel": "5.15.0-60-generic",
+        "paths": [
+          "/pool/main/l/linux/linux-headers-5.15.0-60_5.15.0-60.66_all.deb",
+          "/pool/main/l/linux/linux-headers-5.15.0-60-generic_5.15.0-60.66_amd64.deb",
+          "/pool/main/l/linux/linux-modules-5.15.0-60-generic_5.15.0-60.66_amd64.deb",
+          "/pool/main/l/linux/linux-modules-extra-5.15.0-60-generic_5.15.0-60.66_amd64.deb",
+          "/pool/main/l/linux-signed/linux-image-5.15.0-60-generic_5.15.0-60.66_amd64.deb"
+        ]
+      },
+      {
+        "kernel": "5.19.0-32-generic",
+        "paths": [
+          "/pool/main/l/linux-hwe-5.19/linux-headers-5.19.0-32-generic_5.19.0-32.33~22.04.1_amd64.deb",
+          "/pool/main/l/linux-hwe-5.19/linux-hwe-5.19-headers-5.19.0-32_5.19.0-32.33~22.04.1_all.deb",
+          "/pool/main/l/linux-hwe-5.19/linux-modules-5.19.0-32-generic_5.19.0-32.33~22.04.1_amd64.deb",
+          "/pool/main/l/linux-hwe-5.19/linux-modules-extra-5.19.0-32-generic_5.19.0-32.33~22.04.1_amd64.deb",
+          "/pool/main/l/linux-signed-hwe-5.19/linux-image-5.19.0-32-generic_5.19.0-32.33~22.04.1_amd64.deb"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ubuntu-22.04.3",
+    "os": "ubuntu",
+    "version": "22.04",
+    "release": "22.04.3",
+    "iso_url": "https://old-releases.ubuntu.com/releases/22.04.3/ubuntu-22.04.3-live-server-amd64.iso",
+    "iso_sha256": "a4acfda10b18da50e2ec50ccaf860d7f20b389df8765611142305c0e911d16fd",
+    "hwe_overlays": [
+      "/casper/ubuntu-server-minimal.ubuntu-server.installer.generic-hwe.squashfs"
+    ],
+    "kernels": [
+      {
+        "kernel": "5.15.0-78-generic",
+        "paths": [
+          "/pool/main/l/linux/linux-headers-5.15.0-78_5.15.0-78.85_all.deb",
+          "/pool/main/l/linux/linux-headers-5.15.0-78-generic_5.15.0-78.85_amd64.deb",
+          "/pool/main/l/linux/linux-modules-5.15.0-78-generic_5.15.0-78.85_amd64.deb",
+          "/pool/main/l/linux/linux-modules-extra-5.15.0-78-generic_5.15.0-78.85_amd64.deb",
+          "/pool/main/l/linux-signed/linux-image-5.15.0-78-generic_5.15.0-78.85_amd64.deb"
+        ]
+      },
+      {
+        "kernel": "6.2.0-26-generic",
+        "paths": [
+          "/pool/main/l/linux-hwe-6.2/linux-headers-6.2.0-26-generic_6.2.0-26.26~22.04.1_amd64.deb",
+          "/pool/main/l/linux-hwe-6.2/linux-hwe-6.2-headers-6.2.0-26_6.2.0-26.26~22.04.1_all.deb",
+          "/pool/main/l/linux-hwe-6.2/linux-modules-6.2.0-26-generic_6.2.0-26.26~22.04.1_amd64.deb",
+          "/pool/main/l/linux-hwe-6.2/linux-modules-extra-6.2.0-26-generic_6.2.0-26.26~22.04.1_amd64.deb",
+          "/pool/main/l/linux-signed-hwe-6.2/linux-image-6.2.0-26-generic_6.2.0-26.26~22.04.1_amd64.deb"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ubuntu-22.04.4",
+    "os": "ubuntu",
+    "version": "22.04",
+    "release": "22.04.4",
+    "iso_url": "https://old-releases.ubuntu.com/releases/22.04.4/ubuntu-22.04.4-live-server-amd64.iso",
+    "iso_sha256": "45f873de9f8cb637345d6e66a583762730bbea30277ef7b32c9c3bd6700a32b2",
+    "hwe_overlays": [
+      "/casper/ubuntu-server-minimal.ubuntu-server.installer.generic-hwe.squashfs"
+    ],
+    "kernels": [
+      {
+        "kernel": "5.15.0-94-generic",
+        "paths": [
+          "/pool/main/l/linux/linux-headers-5.15.0-94_5.15.0-94.104_all.deb",
+          "/pool/main/l/linux/linux-headers-5.15.0-94-generic_5.15.0-94.104_amd64.deb",
+          "/pool/main/l/linux/linux-modules-5.15.0-94-generic_5.15.0-94.104_amd64.deb",
+          "/pool/main/l/linux/linux-modules-extra-5.15.0-94-generic_5.15.0-94.104_amd64.deb",
+          "/pool/main/l/linux-signed/linux-image-5.15.0-94-generic_5.15.0-94.104_amd64.deb"
+        ]
+      },
+      {
+        "kernel": "6.5.0-18-generic",
+        "paths": [
+          "/pool/main/l/linux-hwe-6.5/linux-headers-6.5.0-18-generic_6.5.0-18.18~22.04.1_amd64.deb",
+          "/pool/main/l/linux-hwe-6.5/linux-hwe-6.5-headers-6.5.0-18_6.5.0-18.18~22.04.1_all.deb",
+          "/pool/main/l/linux-hwe-6.5/linux-modules-6.5.0-18-generic_6.5.0-18.18~22.04.1_amd64.deb",
+          "/pool/main/l/linux-hwe-6.5/linux-modules-extra-6.5.0-18-generic_6.5.0-18.18~22.04.1_amd64.deb",
+          "/pool/main/l/linux-signed-hwe-6.5/linux-image-6.5.0-18-generic_6.5.0-18.18~22.04.1_amd64.deb"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ubuntu-22.04.5",
+    "os": "ubuntu",
+    "version": "22.04",
+    "release": "22.04.5",
+    "iso_url": "https://releases.ubuntu.com/22.04.5/ubuntu-22.04.5-live-server-amd64.iso",
+    "iso_sha256": "9bc6028870aef3f74f4e16b900008179e78b130e6b0b9a140635434a46aa98b0",
+    "hwe_overlays": [
+      "/casper/ubuntu-server-minimal.ubuntu-server.installer.generic-hwe.squashfs"
+    ],
+    "kernels": [
+      {
+        "kernel": "5.15.0-119-generic",
+        "paths": [
+          "/pool/main/l/linux/linux-headers-5.15.0-119_5.15.0-119.129_all.deb",
+          "/pool/main/l/linux/linux-headers-5.15.0-119-generic_5.15.0-119.129_amd64.deb",
+          "/pool/main/l/linux/linux-modules-5.15.0-119-generic_5.15.0-119.129_amd64.deb",
+          "/pool/main/l/linux/linux-modules-extra-5.15.0-119-generic_5.15.0-119.129_amd64.deb",
+          "/pool/main/l/linux-signed/linux-image-5.15.0-119-generic_5.15.0-119.129_amd64.deb"
+        ]
+      },
+      {
+        "kernel": "6.8.0-40-generic",
+        "paths": [
+          "/pool/main/l/linux-hwe-6.8/linux-headers-6.8.0-40-generic_6.8.0-40.40~22.04.3_amd64.deb",
+          "/pool/main/l/linux-hwe-6.8/linux-hwe-6.8-headers-6.8.0-40_6.8.0-40.40~22.04.3_all.deb",
+          "/pool/main/l/linux-hwe-6.8/linux-modules-6.8.0-40-generic_6.8.0-40.40~22.04.3_amd64.deb",
+          "/pool/main/l/linux-hwe-6.8/linux-modules-extra-6.8.0-40-generic_6.8.0-40.40~22.04.3_amd64.deb",
+          "/pool/main/l/linux-signed-hwe-6.8/linux-image-6.8.0-40-generic_6.8.0-40.40~22.04.3_amd64.deb"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ubuntu-24.04",
+    "os": "ubuntu",
+    "version": "24.04",
+    "release": "24.04",
+    "iso_url": "https://old-releases.ubuntu.com/releases/24.04/ubuntu-24.04-live-server-amd64.iso",
+    "iso_sha256": "8762f7e74e4d64d72fceb5f70682e6b069932deedb4949c6975d0f0fe0a91be3",
+    "hwe_overlays": [],
+    "kernels": [
+      {
+        "kernel": "6.8.0-31-generic",
+        "paths": [
+          "/pool/main/l/linux/linux-headers-6.8.0-31_6.8.0-31.31_all.deb",
+          "/pool/main/l/linux/linux-headers-6.8.0-31-generic_6.8.0-31.31_amd64.deb",
+          "/pool/main/l/linux/linux-modules-6.8.0-31-generic_6.8.0-31.31_amd64.deb",
+          "/pool/main/l/linux/linux-modules-extra-6.8.0-31-generic_6.8.0-31.31_amd64.deb",
+          "/pool/main/l/linux-signed/linux-image-6.8.0-31-generic_6.8.0-31.31_amd64.deb"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ubuntu-24.04.1",
+    "os": "ubuntu",
+    "version": "24.04",
+    "release": "24.04.1",
+    "iso_url": "https://old-releases.ubuntu.com/releases/24.04.1/ubuntu-24.04.1-live-server-amd64.iso",
+    "iso_sha256": "e240e4b801f7bb68c20d1356b60968ad0c33a41d00d828e74ceb3364a0317be9",
+    "hwe_overlays": [],
+    "kernels": [
+      {
+        "kernel": "6.8.0-41-generic",
+        "paths": [
+          "/pool/main/l/linux/linux-headers-6.8.0-41_6.8.0-41.41_all.deb",
+          "/pool/main/l/linux/linux-headers-6.8.0-41-generic_6.8.0-41.41_amd64.deb",
+          "/pool/main/l/linux/linux-modules-6.8.0-41-generic_6.8.0-41.41_amd64.deb",
+          "/pool/main/l/linux/linux-modules-extra-6.8.0-41-generic_6.8.0-41.41_amd64.deb",
+          "/pool/main/l/linux-signed/linux-image-6.8.0-41-generic_6.8.0-41.41_amd64.deb"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ubuntu-24.04.2",
+    "os": "ubuntu",
+    "version": "24.04",
+    "release": "24.04.2",
+    "iso_url": "https://old-releases.ubuntu.com/releases/24.04.2/ubuntu-24.04.2-live-server-amd64.iso",
+    "iso_sha256": "d6dab0c3a657988501b4bd76f1297c053df710e06e0c3aece60dead24f270b4d",
+    "hwe_overlays": [
+      "/casper/ubuntu-server-minimal.ubuntu-server.installer.generic-hwe.squashfs"
+    ],
+    "kernels": [
+      {
+        "kernel": "6.8.0-53-generic",
+        "paths": [
+          "/pool/main/l/linux/linux-headers-6.8.0-53_6.8.0-53.55_all.deb",
+          "/pool/main/l/linux/linux-headers-6.8.0-53-generic_6.8.0-53.55_amd64.deb",
+          "/pool/main/l/linux/linux-modules-6.8.0-53-generic_6.8.0-53.55_amd64.deb",
+          "/pool/main/l/linux/linux-modules-extra-6.8.0-53-generic_6.8.0-53.55_amd64.deb",
+          "/pool/main/l/linux-signed/linux-image-6.8.0-53-generic_6.8.0-53.55_amd64.deb"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ubuntu-24.04.3",
+    "os": "ubuntu",
+    "version": "24.04",
+    "release": "24.04.3",
+    "iso_url": "https://releases.ubuntu.com/24.04.3/ubuntu-24.04.3-live-server-amd64.iso",
+    "iso_sha256": "c3514bf0056180d09376462a7a1b4f213c1d6e8ea67fae5c25099c6fd3d8274b",
+    "hwe_overlays": [
+      "/casper/ubuntu-server-minimal.ubuntu-server.installer.generic-hwe.squashfs"
+    ],
+    "kernels": [
+      {
+        "kernel": "6.8.0-71-generic",
+        "paths": [
+          "/pool/main/l/linux/linux-headers-6.8.0-71_6.8.0-71.71_all.deb",
+          "/pool/main/l/linux/linux-headers-6.8.0-71-generic_6.8.0-71.71_amd64.deb",
+          "/pool/main/l/linux/linux-modules-6.8.0-71-generic_6.8.0-71.71_amd64.deb",
+          "/pool/main/l/linux/linux-modules-extra-6.8.0-71-generic_6.8.0-71.71_amd64.deb",
+          "/pool/main/l/linux-signed/linux-image-6.8.0-71-generic_6.8.0-71.71_amd64.deb"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ubuntu-24.04.4",
+    "os": "ubuntu",
+    "version": "24.04",
+    "release": "24.04.4",
+    "iso_url": "https://releases.ubuntu.com/24.04.4/ubuntu-24.04.4-live-server-amd64.iso",
+    "iso_sha256": "e907d92eeec9df64163a7e454cbc8d7755e8ddc7ed42f99dbc80c40f1a138433",
+    "hwe_overlays": [
+      "/casper/ubuntu-server-minimal.ubuntu-server.installer.generic-hwe.squashfs"
+    ],
+    "kernels": [
+      {
+        "kernel": "6.8.0-100-generic",
+        "paths": [
+          "/pool/main/l/linux/linux-headers-6.8.0-100_6.8.0-100.100_all.deb",
+          "/pool/main/l/linux/linux-headers-6.8.0-100-generic_6.8.0-100.100_amd64.deb",
+          "/pool/main/l/linux/linux-modules-6.8.0-100-generic_6.8.0-100.100_amd64.deb",
+          "/pool/main/l/linux/linux-modules-extra-6.8.0-100-generic_6.8.0-100.100_amd64.deb",
+          "/pool/main/l/linux-signed/linux-image-6.8.0-100-generic_6.8.0-100.100_amd64.deb"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ubuntu-24.04.5",
+    "os": "ubuntu",
+    "version": "24.04",
+    "release": "24.04.5",
+    "iso_url": "https://releases.ubuntu.com/24.04.5/ubuntu-24.04.5-live-server-amd64.iso",
+    "iso_sha256": "97f3d7ffb032c3eb3b23d2c8be9cc76e60c2c1f2c0146ba5ba9fe01cafae0fd8",
+    "hwe_overlays": [
+      "/casper/ubuntu-server-minimal.ubuntu-server.installer.generic-hwe.squashfs"
+    ],
+    "kernels": [
+      {
+        "kernel": "6.8.0-139-generic",
+        "paths": [
+          "/pool/main/l/linux/linux-headers-6.8.0-139_6.8.0-139.139_all.deb",
+          "/pool/main/l/linux/linux-headers-6.8.0-139-generic_6.8.0-139.139_amd64.deb",
+          "/pool/main/l/linux/linux-modules-6.8.0-139-generic_6.8.0-139.139_amd64.deb",
+          "/pool/main/l/linux/linux-modules-extra-6.8.0-139-generic_6.8.0-139.139_amd64.deb",
+          "/pool/main/l/linux-signed/linux-image-6.8.0-139-generic_6.8.0-139.139_amd64.deb"
+        ]
+      }
+    ]
+  }
+]

@@ -1,17 +1,19 @@
 # Intel E610 / Linux compatibility
 
-**[Download the multi-system offline package](https://github.com/SkyWalkerAMD-org/E610/releases/tag/v6.4.5-multios-r1)**:
-one `.tar.gz`, `.run`, or KVM driver data ISO contains the validated CentOS 7.9,
-Ubuntu 22.04.3 and Ubuntu 24.04 installers. It selects the matching OS and exact
-kernel automatically and preserves the existing payloads, public signing certificates and backups.
-See the [Chinese installation guide](multios/INSTALL.zh-CN.md).
+**[Download the multi-system offline package r2](https://github.com/SkyWalkerAMD-org/E610/releases/tag/v6.4.5-multios-r2)**:
+one `.tar.gz`, `.run`, or KVM driver data ISO covers installation-media kernels
+from Ubuntu 22.04 / 24.04 and Rocky Linux 8 / 9, retaining CentOS 7.9 support.
+It selects the exact OS/kernel, installs a prebuilt driver where needed, and
+detects kernels that already support E610. It never upgrades the target kernel.
+Existing releases retain their original payloads, certificates and backups.
+See the [Chinese installation guide](expanded/INSTALL.zh-CN.md).
 
 **[Supported systems and downloads / 已适配系统及三种安装包](SUPPORTED-SYSTEMS.zh-CN.md)**
 
-Offline `.tar.gz`, `.run`, and KVM driver data ISO packages are available for
-CentOS 7.9 (two exact kernels), Ubuntu Server 22.04.3 GA (`5.15.0-78-generic`),
-and Ubuntu 24.04 (`6.8.0-31-generic`). The table includes Chinese instructions,
-SHA-256 checksums, and separate cloud and physical hardware validation results.
+The support table lists exact kernels, native-support findings, Chinese
+instructions, SHA-256 checksums, and separate cloud and physical hardware
+validation results. A release family name does not imply support for every
+subsequent security-update kernel ABI.
 
 Ubuntu Server 22.04.3 GA adaptation is developed in [ubuntu22-e610](ubuntu22-e610/README.zh-CN.md). Its build and image checks are separate from CentOS validation; hardware acceptance is recorded there.
 
