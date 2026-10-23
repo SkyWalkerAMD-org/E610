@@ -1,0 +1,56 @@
+#!/bin/bash
+# SPDX-License-Identifier: GPL-2.0-only
+# Self-extracting wrapper. The signed driver archive is preserved byte-for-byte.
+set -Eeuo pipefail
+export PATH=/usr/sbin:/usr/bin:/sbin:/bin LC_ALL=C
+umask 077
+die() { echo "错误：$*" >&2; exit 1; }
+if [[ ${1:-} == --help || ${1:-} == -h ]]; then
+    echo '用法：sudo bash E610-Ubuntu24.04-6.8.0-31-r1.run [--check | --rollback]'
+    echo '适用：Ubuntu 24.04 / x86_64 / 6.8.0-31-generic。无需联网或编译。'
+    echo '安装文件保留在 /opt/e610-offline/ubuntu24-6.8.0-31-r1。'
+    echo 'Secure Boot 首次使用需要重启确认 MOK，之后再次运行本机安装入口。'
+    exit 0
+fi
+[[ $EUID == 0 ]] || die '请使用 sudo bash 运行此文件。'
+for command in sha256sum tail tar mktemp install flock stat cmp; do
+    command -v "$command" >/dev/null || die "缺少系统命令：$command"
+done
+cache_root=/opt/e610-offline
+destination=$cache_root/ubuntu24-6.8.0-31-r1
+[[ ! -L $cache_root ]] || die "安装文件目录不能是符号链接：$cache_root"
+if [[ ! -e $cache_root ]]; then install -d -m 755 "$cache_root"; fi
+[[ -d $cache_root && $(stat -c %u "$cache_root") == 0 ]] || die '安装文件目录必须由 root 所有。'
+permissions=$(stat -c %a "$cache_root")
+(( (8#$permissions & 0022) == 0 )) || die '安装文件目录不能允许非 root 用户写入。'
+exec 8>/var/lock/e610-offline-media.lock
+flock -n 8 || die '另一个离线安装包正在解压。'
+work=$(mktemp -d "$cache_root/.stage.XXXXXXXX")
+cleanup() { [[ -z ${work:-} ]] || rm -rf -- "$work"; }
+trap cleanup EXIT
+trap 'exit 130' INT
+trap 'exit 143' TERM
+tail -n +@PAYLOAD_LINE@ -- "${BASH_SOURCE[0]}" > "$work/archive.tar.gz"
+echo '@ARCHIVE_SHA256@  '"$work/archive.tar.gz" | sha256sum --status -c - || die '离线包损坏，请重新下载。'
+tar -xzf "$work/archive.tar.gz" --no-same-owner -C "$work"
+bundle=$work/E610-Ubuntu24.04-6.8.0-31
+(cd "$bundle" && sha256sum --status -c SHA256SUMS) || die '离线包内容校验失败。'
+[[ ! -L $destination ]] || die "本机安装副本不能是符号链接：$destination"
+if [[ -e $destination ]]; then
+    [[ -d $destination ]] || die "本机安装副本路径被占用：$destination"
+    cmp -s "$bundle/SHA256SUMS" "$destination/SHA256SUMS" || die '已有本机安装副本的校验清单已变化，停止。'
+    (cd "$destination" && sha256sum --status -c SHA256SUMS) || die '已有本机安装副本校验失败，停止。'
+else
+    mv -T -- "$bundle" "$destination"
+fi
+cleanup
+work=
+flock -u 8
+exec 8>&-
+echo "安装文件已保存在：$destination"
+echo "MOK 注册重启后，无需挂载光盘，执行：sudo bash $destination/install.sh"
+rc=0
+(cd "$destination" && bash ./install.sh "$@") || rc=$?
+echo "本机安装入口：sudo bash $destination/install.sh"
+exit "$rc"
+__E610_PAYLOAD_BELOW__

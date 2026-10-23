@@ -1,0 +1,58 @@
+name: E610 Ubuntu 22.04.3 offline driver and KVM media
+on:
+  push:
+    branches: [codex/ubuntu22-offline]
+    paths: ['ubuntu22-offline/**', 'ubuntu22-media/**', '.github/workflows/ubuntu22-offline.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  build-and-test:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      - name: Prepare build and virtual machine tools
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends build-essential gcc-11 libelf-dev libssl-dev kmod curl ca-certificates openssl qemu-system-x86 busybox-static cpio zstd ovmf python3-virt-firmware shim-signed grub-efi-amd64-signed mokutil xorriso
+          docker build -f ubuntu22-offline/test/Dockerfile -t e610-ubuntu22-test .
+      - name: Build and sign using headers from the original Ubuntu 22.04.3 ISO
+        run: bash ubuntu22-offline/build.sh "$RUNNER_TEMP/e610-build" "$PWD/output/ubuntu22"
+      - name: Prepare Ubuntu 22.04 MOK tools
+        run: |
+          mkdir -p "$RUNNER_TEMP/e610-build/jammy-tools"
+          docker run --rm --network none --entrypoint bash -v "$RUNNER_TEMP/e610-build/jammy-tools:/export" -v "$RUNNER_TEMP/e610-build/mok-debs:/mok-debs:ro" -v "$PWD/ubuntu22-offline/test/export-mok.sh:/export-mok.sh:ro" e610-ubuntu22-test /export-mok.sh | tee output/ubuntu22/mokutil-version.txt
+      - name: Boot the actual 5.15.0-78 kernel with Secure Boot and test module loading
+        run: sudo bash ubuntu22-offline/secure-smoke.sh "$RUNNER_TEMP/e610-build" "$PWD/output/ubuntu22"
+      - name: Stage the offline installer
+        run: bash ubuntu22-offline/package.sh "$PWD/output/ubuntu22" stage
+      - name: Test installation and recovery on Ubuntu 22.04 without networking
+        run: |
+          set -o pipefail
+          docker run --rm --network none -v "$PWD/output/ubuntu22/E610-Ubuntu22.04.3-5.15.0-78:/package:ro" -v "$RUNNER_TEMP/e610-build/debs:/kernel-debs:ro" e610-ubuntu22-test 2>&1 | tee output/ubuntu22/installer-test.log
+      - name: Package the tested driver and build the single-file installer and KVM ISO
+        run: |
+          bash ubuntu22-offline/package.sh "$PWD/output/ubuntu22" release
+          python3 ubuntu22-media/build.py --archive "$PWD/output/ubuntu22/E610-Ubuntu22.04.3-5.15.0-78-r1.tar.gz" --work "$RUNNER_TEMP/e610-media" --output "$PWD/output/ubuntu22-media"
+      - name: Test the actual read-only ISO and offline installation
+        run: |
+          mkdir -p "$RUNNER_TEMP/e610-mounted"
+          test "$(blkid -p -s LABEL -o value output/ubuntu22-media/*.iso)" = E610_UBU2204
+          sudo mount -o loop,ro output/ubuntu22-media/*.iso "$RUNNER_TEMP/e610-mounted"
+          test "$(findmnt -n -o FSTYPE --target "$RUNNER_TEMP/e610-mounted")" = iso9660
+          set -o pipefail
+          docker run --rm --network none --entrypoint bash -v "$RUNNER_TEMP/e610-mounted:/media:ro" -v "$RUNNER_TEMP/e610-build/debs:/kernel-debs:ro" -v "$PWD/ubuntu22-media/test.sh:/media-test.sh:ro" e610-ubuntu22-test /media-test.sh 2>&1 | tee output/ubuntu22-media/media-test.log
+      - name: Finalize validation and checksums
+        run: bash ubuntu22-media/finalize.sh "$PWD/output/ubuntu22-media"
+      - name: Detach test ISO
+        if: always()
+        run: if mountpoint -q "$RUNNER_TEMP/e610-mounted"; then sudo umount "$RUNNER_TEMP/e610-mounted"; fi
+      - name: Save public artifacts and test evidence
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: E610-Ubuntu22.04.3-offline
+          path: output/
+          if-no-files-found: error
+          retention-days: 7

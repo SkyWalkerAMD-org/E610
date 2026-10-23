@@ -1,0 +1,39 @@
+name: E610 Ubuntu 24.04 offline driver
+on:
+  push:
+    branches: [codex/ubuntu24-offline]
+    paths: ['ubuntu24-e610/**', '.github/workflows/ubuntu24.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  build-and-test:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      - name: Prepare build and virtual machine tools
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends build-essential gcc-13 libelf-dev libssl-dev linux-headers-6.8.0-31-generic kmod curl ca-certificates openssl qemu-system-x86 busybox-static cpio zstd ovmf python3-virt-firmware shim-signed grub-efi-amd64-signed mokutil
+      - name: Build and sign the exact kernel module
+        run: bash ubuntu24-e610/build.sh "$RUNNER_TEMP/e610-build" "$PWD/output/ubuntu24"
+      - name: Test with Secure Boot and the actual Ubuntu kernel
+        run: sudo bash ubuntu24-e610/secure-smoke.sh "$RUNNER_TEMP/e610-build" "$PWD/output/ubuntu24"
+      - name: Stage the offline installer
+        run: bash ubuntu24-e610/package.sh "$PWD/output/ubuntu24" stage
+      - name: Test installation and recovery on Ubuntu 24.04
+        run: |
+          docker build -f ubuntu24-e610/test/Dockerfile -t e610-ubuntu24-test .
+          set -o pipefail
+          docker run --rm --network none -v "$PWD/output/ubuntu24/E610-Ubuntu24.04-6.8.0-31:/package:ro" -v "$RUNNER_TEMP/e610-build/debs:/kernel-debs:ro" e610-ubuntu24-test 2>&1 | tee output/ubuntu24/installer-test.log
+      - name: Package the tested offline driver
+        run: bash ubuntu24-e610/package.sh "$PWD/output/ubuntu24" release
+      - name: Save signed module and public evidence
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: E610-Ubuntu24.04-6.8.0-31-generic
+          path: output/ubuntu24/
+          if-no-files-found: error
+          retention-days: 7
