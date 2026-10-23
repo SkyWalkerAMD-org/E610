@@ -40,7 +40,7 @@ jobs:
       - name: Prepare build and actual-kernel boot tools
         run: |
           sudo apt-get update -qq
-          sudo apt-get install -y --no-install-recommends gcc-11 gcc-12 gcc-13 build-essential libelf-dev libssl-dev kmod curl openssl xorriso squashfs-tools qemu-system-x86 busybox-static cpio zstd
+          sudo apt-get install -y --no-install-recommends gcc-11 gcc-12 gcc-13 build-essential libelf-dev libssl-dev kmod curl openssl xorriso squashfs-tools qemu-system-x86 busybox-static cpio zstd ovmf python3-virt-firmware shim-signed grub-efi-amd64-signed mokutil sbsigntool
       - name: Inspect native support, compile missing drivers, boot each exact kernel
         run: python3 expanded/prepare.py inventory/inventory.json '${{ matrix.id }}' "$RUNNER_TEMP/e610" "$PWD/output/${{ matrix.id }}"
       - if: always()

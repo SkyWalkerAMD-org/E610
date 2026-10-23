@@ -8,6 +8,7 @@ import re
 import shutil
 import subprocess as sp
 import sys
+from stage import stage
 
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parent
@@ -66,7 +67,6 @@ def inspect_and_build(target, work, out, kernel, package_sources):
                 'set -e; rpm -ivh --nodeps "$1"; bash /repo/expanded/build-driver.sh "$2" "$3" "$4" "/usr/src/kernels/$4"',
                 'bash', next((kwork / 'rpms').glob('kernel-devel-*.rpm')), kwork, kout, kernel)
             run('sudo', 'chown', '-R', f'{os.getuid()}:{os.getgid()}', kwork, kout)
-        dest = modules[0].parents[6] / 'updates/e610/ixgbe.ko'
         # Locate the actual version directory independently of usr-merge.
         version_dir = next(p for p in stock.parents if p.name == kernel)
         dest = version_dir / 'updates/e610/ixgbe.ko'
@@ -83,6 +83,16 @@ def inspect_and_build(target, work, out, kernel, package_sources):
     (kout / 'target.json').write_text(json.dumps(record, indent=2) + '\n')
     print('E610_INVENTORY_RESULT ' + json.dumps(record), flush=True)
     run('sudo', 'bash', HERE / 'smoke.sh', kwork, kout, kernel, 'native' if native else 'external')
+    if not native:
+        run('sudo', 'bash', HERE / 'secure-smoke.sh', kwork, kout, kernel, target['os'])
+        stage(kout)
+        with (kout / 'installer-test.log').open('w') as log:
+            result = sp.run(['docker', 'run', '--rm', '--network', 'none',
+                '-v', f'{kout}/payload:/package:ro', '-v', f'{root}:/fixture:ro',
+                '-v', f'{HERE}:/tests:ro', 'e610-offline-test', '/tests/test-install.sh', kernel],
+                stdout=log, stderr=sp.STDOUT)
+        print((kout / 'installer-test.log').read_text(), flush=True)
+        result.check_returncode()
 
 
 def main():
@@ -91,6 +101,8 @@ def main():
     work.mkdir(parents=True, exist_ok=True)
     out.mkdir(parents=True, exist_ok=True)
     download('https://github.com/intel/ethernet-linux-ixgbe/releases/download/v6.4.5/ixgbe-6.4.5.tar.gz', work / 'ixgbe-6.4.5.tar.gz', SOURCE_SHA)
+    test_image = ('ubuntu:' if target['os'] == 'ubuntu' else 'rockylinux/rockylinux:') + target['version']
+    run('docker', 'build', '--build-arg', 'IMAGE=' + test_image, '-f', HERE / 'test.Dockerfile', '-t', 'e610-offline-test', ROOT)
     kernels = {}
     if target['os'] == 'ubuntu':
         iso = work / 'original.iso'
