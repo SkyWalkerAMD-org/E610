@@ -1,0 +1,40 @@
+{
+  "centos7": {
+    "file": "E610-CentOS7.9-adaptation-r2.run",
+    "sha256": "5ca59f4f953536d55be6fd541c3969e6eab027c0a708dbf7c82d8f0b3ae71df2",
+    "release": "v6.4.5-centos7.9-r2",
+    "os": "CentOS Linux 7.9.2009",
+    "kernels": ["3.10.0-1160.el7.x86_64", "3.10.0-1160.119.1.el7.x86_64"],
+    "cache": "/opt/e610-offline/centos7.9-r2",
+    "modules": {
+      "3.10.0-1160.el7.x86_64": "4139a6de9813f4b686e980165e4dfb108f36df015dbe855fbaa014a750aaa341",
+      "3.10.0-1160.119.1.el7.x86_64": "db2df6bce892243e338dfa870dfc5119808a97d4cce5ea7f964828847a1e6a3f"
+    },
+    "signing": "unsigned",
+    "validation": "https://github.com/SkyWalkerAMD-org/E610/actions/runs/39888242636"
+  },
+  "ubuntu22": {
+    "file": "E610-Ubuntu22.04.3-5.15.0-78-r1.run",
+    "sha256": "285c3952e1374159701909cb92bf665478ee09ef8092d5405e6724fa412353f7",
+    "release": "v6.4.5-ubuntu22.04.3-5.15.0-78-r1",
+    "os": "Ubuntu Server 22.04.3 GA",
+    "kernels": ["5.15.0-78-generic"],
+    "cache": "/opt/e610-offline/ubuntu22-5.15.0-78-r1",
+    "modules": {"5.15.0-78-generic": "43afae311f0a21975f327e809c6136deb56eda51d73ca972c0f4d88a292ab78f"},
+    "certificate_sha256": "7451b0b999aca0397b39bdd5ee6eac9d0837b3a7e69625033bc59a50e7e76b8d",
+    "signing": "existing release MOK",
+    "validation": "https://github.com/SkyWalkerAMD-org/E610/actions/runs/39889018696"
+  },
+  "ubuntu24": {
+    "file": "E610-Ubuntu24.04-6.8.0-31-r1.run",
+    "sha256": "40a46b67e329c36426eb1b679d7cd31a35cfb7341647857765ea8c4b01b6d2af",
+    "release": "v6.4.5-ubuntu24.04-6.8.0-31-r1",
+    "os": "Ubuntu 24.04",
+    "kernels": ["6.8.0-31-generic"],
+    "cache": "/opt/e610-offline/ubuntu24-6.8.0-31-r1",
+    "modules": {"6.8.0-31-generic": "846e8c45328507d3474019611e5ce4f1c40a7f20875b2b05c4645a15358ca9e1"},
+    "certificate_sha256": "895376179044eb32c24da6c6df6c3f0b94c0650c030dc54797012bf0a6adde57",
+    "signing": "existing release MOK",
+    "validation": "https://github.com/SkyWalkerAMD-org/E610/actions/runs/39576821698"
+  }
+}

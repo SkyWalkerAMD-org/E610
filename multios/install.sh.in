@@ -1,0 +1,64 @@
+#!/bin/bash
+# SPDX-License-Identifier: GPL-2.0-only
+set -Eeuo pipefail
+export PATH=/usr/sbin:/usr/bin:/sbin:/bin LC_ALL=C
+umask 077
+package_dir=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd -P)
+kver=$(uname -r)
+mode=install
+selection=
+die() { echo "错误：$*" >&2; exit 1; }
+supported() {
+    echo '支持 x86_64 / amd64：'
+    echo '  CentOS Linux 7.9.2009: 3.10.0-1160.el7.x86_64、3.10.0-1160.119.1.el7.x86_64'
+    echo '  Ubuntu Server 22.04.3 GA: 5.15.0-78-generic'
+    echo '  Ubuntu 24.04: 6.8.0-31-generic'
+}
+while (($#)); do
+    case "$1" in
+        --list) supported; exit 0 ;;
+        -h|--help)
+            echo '用法：sudo bash install.sh [--check | --rollback] [--kernel 已安装的内核版本]'
+            echo '自动识别系统和内核，选择对应的离线安装器；不更新内核、不自动重启。'
+            supported
+            exit 0 ;;
+        --check|--rollback)
+            [[ $mode == install ]] || die '预检查与回退只能选择一项。'
+            mode=${1#--} ;;
+        --kernel)
+            (($# >= 2)) || die '--kernel 需要一个内核版本。'
+            kver=$2; shift ;;
+        *) die "未知参数：$1" ;;
+    esac
+    shift
+done
+[[ $(uname -m) == x86_64 ]] || die '仅支持 x86_64 / amd64。'
+[[ -r /etc/os-release ]] || die '无法读取系统版本。'
+ID= VERSION_ID=
+. /etc/os-release
+case "$ID:$VERSION_ID:$kver" in
+    centos:7:3.10.0-1160.el7.x86_64|centos:7:3.10.0-1160.119.1.el7.x86_64)
+        grep -q 'CentOS Linux release 7\.9\.2009' /etc/centos-release 2>/dev/null || die '仅支持 CentOS Linux 7.9.2009。'
+        selection=centos7
+        payload=E610-CentOS7.9-adaptation-r2.run
+        expected=@CENTOS7_SHA256@ ;;
+    ubuntu:22.04:5.15.0-78-generic)
+        selection=ubuntu22
+        payload=E610-Ubuntu22.04.3-5.15.0-78-r1.run
+        expected=@UBUNTU22_SHA256@ ;;
+    ubuntu:24.04:6.8.0-31-generic)
+        selection=ubuntu24
+        payload=E610-Ubuntu24.04-6.8.0-31-r1.run
+        expected=@UBUNTU24_SHA256@ ;;
+    *) supported; die "没有适用于 $ID $VERSION_ID / $kver 的驱动包。" ;;
+esac
+[[ $EUID == 0 ]] || die '请使用 sudo bash install.sh。'
+[[ -d /lib/modules/$kver ]] || die "系统没有安装目标内核 $kver。"
+(cd "$package_dir" && sha256sum --status -c SHA256SUMS) || die '统一包校验失败，请重新下载。'
+echo "$expected  $package_dir/payloads/$payload" | sha256sum --status -c - || die '所选系统安装包校验失败。'
+echo "识别结果：$ID $VERSION_ID / $kver；选择 $selection。"
+printf 'E610_MULTIOS_SELECTED=%s kernel=%s\n' "$selection" "$kver"
+args=(--kernel "$kver")
+[[ $mode == install ]] || args+=("--$mode")
+# Preserve the already tested OS installer's backups, MOK handling and exit code.
+exec bash "$package_dir/payloads/$payload" "${args[@]}"
