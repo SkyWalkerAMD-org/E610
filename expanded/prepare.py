@@ -110,6 +110,8 @@ def main():
     if target['os'] == 'ubuntu':
         iso = work / 'original.iso'
         download(target['iso_url'], iso, target['iso_sha256'])
+        if target['release'] in ('22.04', '22.04.1'):
+            extract_iso(iso, '/EFI/boot', work / 'original-efi')
         for entry in target['kernels']:
             kernel = entry['kernel']
             kw = work / kernel

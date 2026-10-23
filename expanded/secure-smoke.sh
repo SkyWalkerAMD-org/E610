@@ -25,6 +25,14 @@ cp "$vmlinuz" "$esp/vmlinuz"
 cp /usr/lib/shim/shimx64.efi.signed.latest "$esp/EFI/BOOT/BOOTX64.EFI"
 cp /usr/lib/grub/x86_64-efi-signed/grubx64.efi.signed "$esp/EFI/BOOT/grubx64.efi"
 cp /usr/lib/shim/mmx64.efi "$esp/EFI/BOOT/mmx64.efi"
+if [[ $kernel == 5.15.0-25-generic || $kernel == 5.15.0-43-generic ]]; then
+    # Test these historical kernels with their original signed installation
+    # boot chain. New shim releases reject their old kernel signatures.
+    cp "$work/../original-efi/bootx64.efi" "$esp/EFI/BOOT/BOOTX64.EFI"
+    cp "$work/../original-efi/grubx64.efi" "$esp/EFI/BOOT/grubx64.efi"
+    mkdir -p "$esp/.disk"
+    echo 'E610 original Ubuntu installation-media boot chain test' > "$esp/.disk/info"
+fi
 cat > "$esp/EFI/BOOT/grub.cfg" <<'EOF'
 serial --unit=0 --speed=115200
 terminal_input serial
@@ -38,7 +46,7 @@ EOF
 cp "$esp/EFI/BOOT/grub.cfg" "$esp/EFI/ubuntu/grub.cfg"
 cp "$esp/EFI/BOOT/grub.cfg" "$esp/boot/grub/grub.cfg"
 extra=()
-if [[ $system == rocky || $kernel == 5.15.0-25-generic || $kernel == 5.15.0-43-generic ]]; then
+if [[ $system == rocky ]]; then
     # Ubuntu's shim is used only by this test harness. Add the Rocky kernel's
     # existing vendor certificate; no kernel is changed or re-signed.
     sbattach --detach "$work/kernel-signature.p7" "$esp/vmlinuz"
