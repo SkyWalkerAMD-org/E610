@@ -1,0 +1,15 @@
+name: manual-linux-driver
+on:
+  pull_request:
+    paths: ['manual/**', '.github/workflows/manual.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      - run: |
+          for script in manual/*.sh; do bash -n "$script"; done
+          python3 manual/test_extract.py
