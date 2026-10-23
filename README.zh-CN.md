@@ -1,16 +1,17 @@
 # E610 网卡的 Linux 适配与验证
 
-**推荐：[多系统统一离线包](https://github.com/SkyWalkerAMD-org/E610/releases/tag/v6.4.5-multios-r1)**。
-一个包同时包含 CentOS 7.9、Ubuntu 22.04.3 和 Ubuntu 24.04 的已验证驱动，自动匹配
-系统与精确内核。提供 `tar.gz`、`.run` 和 KVM 驱动 ISO；[中文安装说明](multios/INSTALL.zh-CN.md)。
+**推荐：[多系统统一离线包 r2](https://github.com/SkyWalkerAMD-org/E610/releases/tag/v6.4.5-multios-r2)**。
+一个包覆盖 Ubuntu 22.04 / 24.04、Rocky Linux 8 / 9 的安装介质内核，并保留 CentOS 7.9。
+自动匹配系统与精确内核，需要时安装预编译驱动，已经原生支持时提示无需安装，不升级目标内核。
+提供 `tar.gz`、`.run` 和 KVM 驱动 ISO；[中文安装说明](expanded/INSTALL.zh-CN.md)。
 
 ```bash
-sudo bash E610-MultiOS-6.4.5-r1.run
+sudo bash E610-MultiOS-6.4.5-r2.run
 ```
 
-**[已适配系统、下载与验证汇总](SUPPORTED-SYSTEMS.zh-CN.md)**：CentOS 7.9、Ubuntu Server
-22.04.3 GA 和 Ubuntu 24.04 均提供 `tar.gz`、`.run`、KVM 驱动 ISO，以及中文说明和
-SHA-256 校验。先按汇总表核对精确内核，再下载对应系统的包。
+**[已适配系统、下载与验证汇总](SUPPORTED-SYSTEMS.zh-CN.md)**：包含精确内核清单、原生支持检测、
+中文说明、SHA-256 校验和验证边界。系统大版本相同不代表后续全部安全更新内核均可混用。
+原有三系统包及其证书、备份继续沿用。
 
 Ubuntu Server 22.04.3 GA 的构建、镜像适配和验证说明见 [ubuntu22-e610](ubuntu22-e610/README.zh-CN.md)。各系统的编译与实机结果分别记录，不能互相替代。
 
