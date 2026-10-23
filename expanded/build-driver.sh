@@ -23,6 +23,7 @@ openssl req -new -x509 -newkey rsa:3072 -nodes -sha256 -days 3650 \
   -subj "/CN=E610 MultiOS r2 $kver/" \
   -addext 'basicConstraints=critical,CA:FALSE' \
   -addext 'keyUsage=critical,digitalSignature' \
+  -addext 'subjectKeyIdentifier=hash' \
   -addext 'extendedKeyUsage=codeSigning,1.3.6.1.4.1.2312.16.1.2' \
   -keyout "$work/release-signing.key" -out "$work/release-signing.pem"
 openssl x509 -in "$work/release-signing.pem" -outform DER -out "$out/E610-MOK.der"

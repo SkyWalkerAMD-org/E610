@@ -10,8 +10,8 @@ esp=$work/esp
 cp -a "$work/smoke-root" "$root"
 mkdir -p "$esp/EFI/BOOT" "$esp/EFI/ubuntu" "$esp/boot/grub"
 for c in od tr; do ln -sf busybox "$root/bin/$c"; done
-cp /usr/bin/mokutil "$root/bin/"
-while read -r library; do install -D -m 755 "$library" "$root$library"; done < <(ldd /usr/bin/mokutil | awk '/=> \// {print $3} /^[[:space:]]*\// {print $1}')
+cp -a "$work/mok-tools/." "$root/"
+ln -sf /usr/bin/mokutil "$root/bin/mokutil"
 cp "$out/E610-MOK.der" "$root/"
 cp "$(dirname "$0")/mok-status.sh" "$root/"
 openssl req -new -x509 -newkey rsa:2048 -nodes -days 1 -subj '/CN=Untrusted test/' -keyout /dev/null -outform DER -out "$root/untrusted.der" 2>/dev/null

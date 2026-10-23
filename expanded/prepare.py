@@ -26,7 +26,7 @@ def sha(path):
 
 
 def download(url, path, digest=None):
-    run('curl', '--fail', '--location', '--retry', '4', '--connect-timeout', '30', '-o', path, url)
+    run('curl', '--http1.1', '--fail', '--location', '--retry', '4', '--retry-all-errors', '--connect-timeout', '30', '-o', path, url)
     if digest and sha(path) != digest:
         raise ValueError(f'Checksum mismatch: {url}')
 
@@ -84,6 +84,9 @@ def inspect_and_build(target, work, out, kernel, package_sources):
     print('E610_INVENTORY_RESULT ' + json.dumps(record), flush=True)
     run('sudo', 'bash', HERE / 'smoke.sh', kwork, kout, kernel, 'native' if native else 'external')
     if not native:
+        (kwork / 'mok-tools').mkdir()
+        run('docker', 'run', '--rm', '--network', 'none', '-v', f'{kwork}/mok-tools:/export',
+            '-v', f'{HERE}:/tests:ro', 'e610-offline-test', '/tests/export-mok.sh')
         run('sudo', 'bash', HERE / 'secure-smoke.sh', kwork, kout, kernel, target['os'])
         stage(kout)
         with (kout / 'installer-test.log').open('w') as log:
@@ -124,14 +127,22 @@ def main():
             sq = work / 'hwe.squashfs'
             tree = work / 'hwe-root'
             extract_iso(iso, overlay, sq)
-            run('unsquashfs', '-no-xattrs', '-no-progress', '-d', tree, sq)
+            run('sudo', 'unsquashfs', '-no-xattrs', '-no-progress', '-d', tree, sq)
+            run('sudo', 'chown', '-R', f'{os.getuid()}:{os.getgid()}', tree)
             candidates = sorted({p.parent.name for p in tree.glob('**/modules/*/kernel')})
             for kernel in candidates:
                 if kernel in kernels:
                     continue
                 kw = work / kernel
                 kw.mkdir(exist_ok=True)
-                shutil.copytree(tree, kw / 'root', symlinks=True)
+                (kw / 'root').mkdir(exist_ok=True)
+                areas = ['usr/src', 'boot']
+                areas.append('usr/lib/modules' if (tree / 'usr/lib/modules').is_dir() else 'lib/modules')
+                for area in areas:
+                    if (tree / area).is_dir():
+                        shutil.copytree(tree / area, kw / 'root' / area, symlinks=True, dirs_exist_ok=True)
+                (kw / 'root/boot').mkdir(exist_ok=True)
+                extract_iso(iso, '/casper/hwe-vmlinuz', kw / 'root/boot' / ('vmlinuz-' + kernel))
                 kernels[kernel] = {'iso_url': target['iso_url'], 'iso_sha256': target['iso_sha256'], 'overlay': overlay, 'overlay_sha256': sha(sq)}
     else:
         run('docker', 'build', '--build-arg', 'MAJOR=' + target['version'], '-f', HERE / 'rocky-build.Dockerfile', '-t', 'e610-rocky-build', ROOT)
