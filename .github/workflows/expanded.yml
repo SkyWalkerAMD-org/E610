@@ -6,6 +6,9 @@ on:
   workflow_dispatch:
 permissions:
   contents: read
+concurrency:
+  group: e610-expanded-linux
+  cancel-in-progress: true
 jobs:
   inventory:
     runs-on: ubuntu-24.04
@@ -39,8 +42,8 @@ jobs:
           path: inventory/
       - name: Prepare build and actual-kernel boot tools
         run: |
-          sudo apt-get update -qq
-          sudo apt-get install -y --no-install-recommends gcc-11 gcc-12 gcc-13 build-essential libelf-dev libssl-dev kmod curl openssl xorriso squashfs-tools qemu-system-x86 busybox-static cpio zstd ovmf python3-virt-firmware shim-signed grub-efi-amd64-signed mokutil sbsigntool
+          sudo apt-get -o Acquire::Retries=3 -o Acquire::http::Timeout=30 -o Acquire::https::Timeout=30 update -qq
+          sudo apt-get -o Acquire::Retries=3 -o Acquire::http::Timeout=30 -o Acquire::https::Timeout=30 install -y --no-install-recommends gcc-11 gcc-12 gcc-13 build-essential libelf-dev libssl-dev kmod curl openssl xorriso squashfs-tools qemu-system-x86 busybox-static cpio zstd ovmf python3-virt-firmware shim-signed grub-efi-amd64-signed mokutil sbsigntool
       - name: Inspect native support, compile missing drivers, boot each exact kernel
         run: python3 expanded/prepare.py inventory/inventory.json '${{ matrix.id }}' "$RUNNER_TEMP/e610" "$PWD/output/${{ matrix.id }}"
       - if: always()
@@ -48,4 +51,101 @@ jobs:
         with:
           name: kernel-${{ matrix.id }}
           path: output/
+          retention-days: 7
+  bundle:
+    needs: kernels
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+        with:
+          pattern: kernel-*
+          merge-multiple: true
+          path: inputs/
+      - run: sudo apt-get -o Acquire::Retries=3 -o Acquire::http::Timeout=30 update -qq && sudo apt-get -y install xorriso
+      - run: python3 expanded/bundle.py --inputs inputs --work "$RUNNER_TEMP/bundle" --output release
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: E610-MultiOS-r2-candidate
+          path: release/
+          retention-days: 7
+  media:
+    needs: bundle
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      max-parallel: 8
+      matrix:
+        include:
+          - {id: ubuntu-22.04.3, kernel: 5.15.0-78-generic}
+          - {id: ubuntu-22.04.5, kernel: 5.15.0-119-generic}
+          - {id: ubuntu-22.04.5, kernel: 6.8.0-40-generic}
+          - {id: ubuntu-24.04, kernel: 6.8.0-31-generic}
+          - {id: ubuntu-24.04.2, kernel: 6.8.0-53-generic}
+          - {id: ubuntu-24.04.2, kernel: 6.11.0-17-generic}
+          - {id: ubuntu-24.04.4, kernel: 6.8.0-100-generic}
+          - {id: rocky-8.10, kernel: 4.18.0-553.el8_10.x86_64}
+          - {id: rocky-9.4, kernel: 5.14.0-427.13.1.el9_4.x86_64}
+          - {id: rocky-9.8, kernel: 5.14.0-687.10.1.el9_8.0.1.x86_64}
+          - {id: centos7, kernel: 3.10.0-1160.el7.x86_64}
+          - {id: centos7, kernel: 3.10.0-1160.119.1.el7.x86_64}
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+        with:
+          name: E610-MultiOS-r2-candidate
+          path: release/
+      - run: |
+          sudo apt-get -o Acquire::Retries=3 -o Acquire::http::Timeout=30 update -qq
+          sudo apt-get -o Acquire::Retries=3 -o Acquire::http::Timeout=30 install -y xorriso squashfs-tools
+      - name: Prepare exact installation kernel fixtures
+        env:
+          TARGET: ${{ matrix.id }}
+          KVER: ${{ matrix.kernel }}
+        run: |
+          if [[ $TARGET == centos7 ]]; then
+            docker build --build-arg KVER="$KVER" -f centos7-media/Dockerfile -t e610-offline-test .
+            mkdir -p "$RUNNER_TEMP/fixture/$KVER/root"
+          else
+            python3 expanded/prepare.py expanded/inventory.json "$TARGET" "$RUNNER_TEMP/fixture" "$RUNNER_TEMP/fixture-record" --fixtures-only
+          fi
+      - name: Test actual read-only ISO, archive, launcher, selection and rollback
+        env:
+          KVER: ${{ matrix.kernel }}
+        run: |
+          set -o pipefail
+          expected=$(python3 -c 'import json,os; t=next(x for x in json.load(open("release/manifest.json"))["targets"] if x["kernel"]==os.environ["KVER"]); print("native" if t["kind"]=="native" else t["original_release"]["modules"][t["kernel"]] if t["kind"]=="legacy" else t["module_sha256"])')
+          mkdir -p "$RUNNER_TEMP/mounted" logs
+          sudo mount -o loop,ro release/E610-MultiOS-6.4.5-r2.iso "$RUNNER_TEMP/mounted"
+          test "$(findmnt -n -o FSTYPE --target "$RUNNER_TEMP/mounted")" = iso9660
+          docker run --rm --network none --entrypoint bash -v "$RUNNER_TEMP/mounted:/media:ro" -v "$PWD/release:/release:ro" -v "$RUNNER_TEMP/fixture/$KVER/root:/fixture:ro" -v "$PWD/expanded:/tests:ro" e610-offline-test /tests/test-media.sh "$KVER" "$expected" 2>&1 | tee "logs/media-$KVER.log"
+      - if: always()
+        run: if mountpoint -q "$RUNNER_TEMP/mounted"; then sudo umount "$RUNNER_TEMP/mounted"; fi
+      - if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: media-${{ matrix.id }}-${{ matrix.kernel }}
+          path: logs/
+          retention-days: 7
+  finalize:
+    needs: media
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+        with:
+          name: E610-MultiOS-r2-candidate
+          path: release/
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+        with:
+          pattern: media-*
+          merge-multiple: true
+          path: release/
+      - run: python3 expanded/finalize.py release
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: E610-MultiOS-r2-validated
+          path: release/
           retention-days: 7

@@ -38,7 +38,7 @@ EOF
 cp "$esp/EFI/BOOT/grub.cfg" "$esp/EFI/ubuntu/grub.cfg"
 cp "$esp/EFI/BOOT/grub.cfg" "$esp/boot/grub/grub.cfg"
 extra=()
-if [[ $system == rocky ]]; then
+if [[ $system == rocky || $kernel == 5.15.0-25-generic || $kernel == 5.15.0-43-generic ]]; then
     # Ubuntu's shim is used only by this test harness. Add the Rocky kernel's
     # existing vendor certificate; no kernel is changed or re-signed.
     sbattach --detach "$work/kernel-signature.p7" "$esp/vmlinuz"

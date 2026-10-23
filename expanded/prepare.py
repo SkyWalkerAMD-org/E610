@@ -160,8 +160,12 @@ def main():
                 'set -euo pipefail; rpmkeys --import /etc/pki/rpm-gpg/RPM-GPG-KEY-Rocky-*; for p in "$1"/rpms/*.rpm; do rpmkeys --checksig "$p"; (cd "$1/root"; rpm2cpio "$p" | cpio -idm --quiet); done', 'bash', kw)
             run('sudo', 'chown', '-R', f'{os.getuid()}:{os.getgid()}', kw)
             kernels[kernel] = source
+    if '--fixtures-only' in sys.argv:
+        (out / 'prepared.json').write_text(json.dumps(list(kernels)) + '\n')
+        return
     for kernel, source in kernels.items():
         inspect_and_build(target, work, out, kernel, source)
+    (out / 'media-result.json').write_text(json.dumps({'id': target['id'], 'kernels': list(kernels), 'complete': True}, indent=2) + '\n')
 
 
 if __name__ == '__main__':

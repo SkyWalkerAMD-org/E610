@@ -70,7 +70,11 @@ def build(inputs, work, output):
         rows.append((*key, kind, path))
         item['kind'] = kind
         records.append(item)
+    completed_media = {json.loads(p.read_text())['id']: json.loads(p.read_text()) for p in inputs.glob('**/media-result.json')}
     for target in inventory:
+        assert target['id'] in completed_media and completed_media[target['id']]['complete'], f"Incomplete media: {target['id']}"
+        for kernel in completed_media[target['id']]['kernels']:
+            assert (target['id'], kernel) in seen, f"Missing discovered kernel: {target['id']} {kernel}"
         for kernel in target['kernels']:
             assert (target['id'], kernel['kernel']) in seen, f"Missing {target['id']} {kernel['kernel']}"
         if target.get('hwe_overlays'):
