@@ -1,0 +1,59 @@
+name: E610 multi-system offline package
+on:
+  push:
+    branches: [codex/multios-offline]
+    paths: ['multios/**', '.github/workflows/multios.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  package-and-test:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      - name: Prepare media tools and exact Ubuntu kernel fixtures
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends xorriso
+          bash multios/prepare-ubuntu-kernels.sh "$RUNNER_TEMP/kernels"
+      - name: Package the unchanged installers into tar.gz, run and ISO
+        run: |
+          bash -n multios/install.sh.in multios/launcher.sh.in multios/iso-install.sh multios/test.sh multios/finalize.sh
+          python3 multios/build.py --work "$RUNNER_TEMP/multios" --output "$PWD/output/multios"
+          cp "$RUNNER_TEMP/kernels/kernel-fixtures.sha256" output/multios/
+      - name: Mount the actual driver ISO read-only
+        run: |
+          mkdir -p "$RUNNER_TEMP/mounted"
+          test "$(blkid -p -s LABEL -o value output/multios/*.iso)" = E610_MULTIOS
+          sudo mount -o loop,ro output/multios/*.iso "$RUNNER_TEMP/mounted"
+          test "$(findmnt -n -o FSTYPE --target "$RUNNER_TEMP/mounted")" = iso9660
+      - name: Test Ubuntu 22.04 and 24.04 offline selection, installation and rollback
+        run: |
+          set -o pipefail
+          for target in ubuntu22 ubuntu24; do
+            if [ "$target" = ubuntu22 ]; then dockerfile=ubuntu22-offline/test/Dockerfile; kernel=5.15.0-78-generic
+            else dockerfile=ubuntu24-e610/test/Dockerfile; kernel=6.8.0-31-generic; fi
+            docker build -f "$dockerfile" -t "e610-multios-$target" .
+            docker run --rm --network none --entrypoint bash -e TARGET="$target" -e KVER="$kernel" -v "$RUNNER_TEMP/mounted:/media:ro" -v "$PWD/output/multios:/release:ro" -v "$RUNNER_TEMP/kernels/$target:/kernel-debs:ro" -v "$PWD/multios/test.sh:/multios-test.sh:ro" "e610-multios-$target" /multios-test.sh 2>&1 | tee "output/multios/test-$target.log"
+          done
+      - name: Test both CentOS 7.9 kernels offline
+        run: |
+          set -o pipefail
+          for kernel in 3.10.0-1160.el7.x86_64 3.10.0-1160.119.1.el7.x86_64; do
+            docker build --build-arg KVER="$kernel" -f centos7-media/Dockerfile -t e610-multios-centos7 .
+            docker run --rm --network none --entrypoint bash -e TARGET=centos7 -v "$RUNNER_TEMP/mounted:/media:ro" -v "$PWD/output/multios:/release:ro" -v "$PWD/multios/test.sh:/multios-test.sh:ro" e610-multios-centos7 /multios-test.sh 2>&1 | tee "output/multios/test-centos7-$kernel.log"
+          done
+      - name: Finalize validation and checksums after all four targets pass
+        run: bash multios/finalize.sh "$PWD/output/multios"
+      - name: Detach test ISO
+        if: always()
+        run: if mountpoint -q "$RUNNER_TEMP/mounted"; then sudo umount "$RUNNER_TEMP/mounted"; fi
+      - name: Save public package and test evidence
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: E610-MultiOS-6.4.5-r1
+          path: output/multios/
+          if-no-files-found: error
+          retention-days: 7
