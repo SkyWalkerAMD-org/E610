@@ -1,4 +1,5 @@
-import importlib.util,io,pathlib,tarfile,tempfile,unittest
+import importlib.util,io,pathlib,tarfile,tempfile,unittest,sys
+sys.dont_write_bytecode=True
 spec=importlib.util.spec_from_file_location('extract',pathlib.Path(__file__).with_name('e610-extract.py'))
 module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module)
 class ExtractTests(unittest.TestCase):
