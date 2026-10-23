@@ -19,12 +19,24 @@ test "$(modinfo -F version "$out/ixgbe.ko")" = 6.4.5
 for id in 57AE 57AF 57B0 57B1 57B2; do modinfo -F alias "$out/ixgbe.ko" | grep "v00008086d0000$id"; done
 umask 077
 trap 'rm -f "$work/release-signing.key"' EXIT
+cat > "$work/signing.cnf" <<EOF
+[req]
+distinguished_name=dn
+x509_extensions=ext
+prompt=no
+[dn]
+CN=E610 MultiOS r2 $kver
+[ext]
+basicConstraints=critical,CA:FALSE
+keyUsage=critical,digitalSignature
+subjectKeyIdentifier=hash
+authorityKeyIdentifier=keyid
+extendedKeyUsage=codeSigning,1.3.6.1.4.1.2312.16.1.2
+EOF
+# OpenSSL 1.1 on EL8 appends -addext to system-config extensions, creating
+# duplicate SKID/basicConstraints fields. An isolated config avoids that.
 openssl req -new -x509 -newkey rsa:3072 -nodes -sha256 -days 3650 \
-  -subj "/CN=E610 MultiOS r2 $kver/" \
-  -addext 'basicConstraints=critical,CA:FALSE' \
-  -addext 'keyUsage=critical,digitalSignature' \
-  -addext 'subjectKeyIdentifier=hash' \
-  -addext 'extendedKeyUsage=codeSigning,1.3.6.1.4.1.2312.16.1.2' \
+  -config "$work/signing.cnf" \
   -keyout "$work/release-signing.key" -out "$work/release-signing.pem"
 openssl x509 -in "$work/release-signing.pem" -outform DER -out "$out/E610-MOK.der"
 "$headers/scripts/sign-file" sha256 "$work/release-signing.key" "$out/E610-MOK.der" "$out/ixgbe.ko"
