@@ -7,7 +7,10 @@ runfile=/media/E610-Ubuntu22.04.3-5.15.0-78-r1.run
 dest=/lib/modules/$kver/updates/e610/ixgbe.ko
 state=/var/lib/e610-ixgbe/ubuntu22-$kver
 image=/boot/initrd.img-$kver
-for deb in /kernel-debs/*.deb; do dpkg-deb -x "$deb" /; done
+# Preserve merged-/usr directory symlinks when extracting legacy /lib entries.
+for deb in /kernel-debs/*.deb; do
+    dpkg-deb --fsys-tarfile "$deb" | tar -C / --keep-directory-symlink -xf -
+done
 depmod -a "$kver"
 update-initramfs -c -k "$kver"
 original_image=$(sha256sum "$image" | awk '{print $1}')

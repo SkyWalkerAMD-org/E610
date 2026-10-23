@@ -7,7 +7,11 @@ dest=/lib/modules/$kver/updates/e610/ixgbe.ko
 hook=/etc/initramfs-tools/hooks/e610-ixgbe-5.15.0-78
 image=/boot/initrd.img-$kver
 state=/var/lib/e610-ixgbe/ubuntu22-$kver
-for deb in /kernel-debs/*.deb; do dpkg-deb -x "$deb" /; done
+# Jammy kernel packages contain /lib; preserve the container's /lib -> usr/lib
+# symlink instead of replacing it and hiding the dynamic loader.
+for deb in /kernel-debs/*.deb; do
+    dpkg-deb --fsys-tarfile "$deb" | tar -C / --keep-directory-symlink -xf -
+done
 depmod -a "$kver"
 update-initramfs -c -k "$kver"
 original_image=$(sha256sum "$image" | awk '{print $1}')
