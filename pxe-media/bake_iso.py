@@ -25,7 +25,7 @@ def archive_files(p):
             files[m.name]=(tar.extractfile(m).read(),0o100000|m.mode)
     return files
 
-def embed_initrd(raw, files, ubuntu):
+def embed_initrd(raw, files, ubuntu, el=False):
     existing={};order=None
     for n,m,d in initramfs_files(raw):
         existing[n]=m
@@ -43,6 +43,12 @@ def embed_initrd(raw, files, ubuntu):
             if str(p)!='.' and str(p) not in existing:dirs.add(str(p))
     entries=[(n,b'',0o40755) for n in sorted(dirs,key=lambda n:(n.count('/'),n))]
     entries += [(n,d,m) for n,(d,m) in sorted(payload.items())]
+    if el:
+        # iVentoy's EL initrd patcher reads only the main CPIO. Concatenating
+        # a second overlay silently loses drivers and completion hooks.
+        replacement={n:d for n,d,m in entries if n in existing}
+        addition={n:(d,m) for n,d,m in entries if n not in existing}
+        return rewrite_initramfs_files(raw,replacement,addition)
     return normalize_for_append(raw)+cpio(entries)
 
 def main():
@@ -60,6 +66,9 @@ def main():
         files[n]=v
     if a.iso.startswith('Ubuntu/'):
         files['ventoy-e610/ubuntu-stage.sh']=((a.work/'assets/ubuntu-stage.sh').read_bytes(),0o100755)
+    if a.iso.split('/')[0] in ('CentOS','Rocky','RHEL','AlmaLinux'):
+        files['ventoy-e610/el-stage.sh']=((a.work/'assets/el-stage.sh').read_bytes(),0o100755)
+        files['usr/lib/dracut/hooks/pre-pivot/99-zz-ventoy-e610.sh']=(b'#!/bin/sh\n[ -f /sysroot/etc/os-release ] || return 0\nif ! /bin/sh /ventoy-e610/el-stage.sh /sysroot; then\n    die "E610 Anaconda preparation failed"\n    return 1\nfi\n',0o100755)
     updates={}
     for index,boot in enumerate(rec['boots']):
         raw=(P(rec['work'])/('initrd-'+str(index))).read_bytes()
@@ -71,7 +80,8 @@ def main():
             native=prepare(rec,index,a.work,per_boot=True)
             if native:
                 for n,(data,mode) in native['files'].items():payload[n]=(data,0o100000|mode)
-        dest=folder/('initrd-'+str(index));dest.write_bytes(embed_initrd(raw,payload,a.iso.startswith('Ubuntu/')))
+        is_el=a.iso.split('/')[0] in ('CentOS','Rocky','RHEL','AlmaLinux')
+        dest=folder/('initrd-'+str(index));dest.write_bytes(embed_initrd(raw,payload,a.iso.startswith('Ubuntu/'),is_el))
         updates[boot['initrd']]=dest
         kernel=folder/('vmlinuz-'+str(index))
         if not kernel.exists():kernel.symlink_to(P(rec['work'])/('vmlinuz-'+str(index)))
@@ -82,6 +92,7 @@ def main():
     evidence['manual_preload_sha256']=sha(a.work/'manual-common.tar.gz')
     if a.iso.startswith('Debian/'):evidence['boot_module_layout']='per-initrd'
     if a.iso.startswith('Ubuntu/'):evidence['live_hook']='native-init-bottom-order-v3'
+    if a.iso.split('/')[0] in ('CentOS','Rocky','RHEL','AlmaLinux'):evidence['archive_layout']='single-main-cpio-v3'
     for path in ('/md5sum.txt','/SHA256SUMS','/SHA512SUMS'):
         if path not in paths:continue
         old=folder/P(path).name

@@ -3,6 +3,19 @@ from assemble_boot import cpio, copy_boot_tree
 from media_lib import initramfs_files, normalize_for_append, file_path, rewrite_initramfs_files, cpio_entries
 
 class Archives(unittest.TestCase):
+    def test_el_payload_is_inside_first_main_cpio(self):
+        from bake_iso import embed_initrd
+        early=gzip.decompress(cpio([('microcode',b'ucode',0o100644)]))
+        raw=cpio([('init',b'init',0o100755),('usr',b'',0o40755),('usr/lib/modules/k/modules.dep',b'old',0o100644)])
+        payload={'ventoy-e610/prepare-live.sh':(b'hook',0o100755),'usr/lib/modules/k/modules.dep':(b'updated',0o100644)}
+        result=embed_initrd(early+raw,payload,False,True)
+        self.assertTrue(result.startswith(early))
+        first=list(cpio_entries(gzip.decompress(result[len(early):])))
+        self.assertEqual([d for n,_,d,_ in first if n=='ventoy-e610/prepare-live.sh'],[b'hook'])
+        self.assertEqual([d for n,_,d,_ in first if n=='usr/lib/modules/k/modules.dep'],[b'updated'])
+        self.assertEqual(sum(n=='TRAILER!!!' for n,_,_,_ in first),1)
+        with self.assertRaises(ValueError):rewrite_initramfs_files(raw,{}, {'init':(b'x',0o100755)})
+
     def test_ubuntu_native_order_survives_first_entry_readers(self):
         from bake_iso import embed_initrd
         original=b'#!/bin/sh\necho native-init\n'

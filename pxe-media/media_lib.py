@@ -66,7 +66,7 @@ def cpio_entries(data, offset=0):
         raise ValueError('not newc cpio at %s' % pos)
 
 
-def rewrite_initramfs_files(data, replacements):
+def rewrite_initramfs_files(data, replacements, additions=None):
     """Replace unique regular files in their original CPIO, retaining inode data.
 
     Some netboot patchers select the first copy of a pathname. Appending another
@@ -74,7 +74,10 @@ def rewrite_initramfs_files(data, replacements):
     Only changed compressed frames are normalized to gzip; early archives and
     untouched entries (including hard links and device nodes) remain intact.
     """
+    additions = additions or {}
+    if set(replacements) & set(additions): raise ValueError('replacement/addition overlap')
     counts = dict.fromkeys(replacements, 0)
+    added = dict.fromkeys(additions, 0)
     def rewrite(blob):
         pos, pieces, changed = 0, [], False
         while pos < len(blob):
@@ -83,7 +86,24 @@ def rewrite_initramfs_files(data, replacements):
             pieces.append(blob[start:pos])
             if pos == len(blob): break
             if blob[pos:pos+6] in (b'070701', b'070702'):
-                for name, mode, content, end in cpio_entries(blob, pos):
+                entries=list(cpio_entries(blob,pos))
+                main=any(name=='init' for name,_,_,_ in entries)
+                cursor=pos;highest=0
+                for _,_,_,end in entries:
+                    highest=max(highest,int(blob[cursor+6:cursor+14],16));cursor=end
+                for name, mode, content, end in entries:
+                    if name in additions: raise ValueError('addition path already exists: '+name)
+                    if name=='TRAILER!!!' and main:
+                        for index,(newname,(value,newmode)) in enumerate(additions.items(),1):
+                            if not newname or newname.startswith('/') or '..' in pathlib.PurePosixPath(newname).parts:
+                                raise ValueError('unsafe addition path')
+                            ino=highest+index
+                            if ino>0xffffffff: raise ValueError('CPIO inode overflow')
+                            encoded=newname.encode()+b'\0'
+                            fields=(ino,newmode,0,0,1,0,len(value),0,0,0,0,len(encoded),0)
+                            record=b'070701'+''.join('%08x'%v for v in fields).encode()+encoded
+                            record+=b'\0'*((-len(record))%4)+value+b'\0'*((-len(value))%4)
+                            pieces.append(record);added[newname]+=1;changed=True
                     if name in replacements:
                         header = bytearray(blob[pos:pos+110])
                         if mode & 0o170000 != 0o100000 or int(header[38:46],16) != 1:
@@ -124,6 +144,8 @@ def rewrite_initramfs_files(data, replacements):
     output,_=rewrite(data)
     if any(n != 1 for n in counts.values()):
         raise ValueError('replacement path must occur exactly once: '+str(counts))
+    if any(n != 1 for n in added.values()):
+        raise ValueError('additions require exactly one main init archive: '+str(added))
     return output
 
 

@@ -15,6 +15,9 @@ media/ 下的 tar.gz 是中间产物，不能代替最终 ISO 或安装验证。
 - Ubuntu 在原始 init-bottom/ORDER 的唯一 CPIO 记录中增加收尾准备，
   不依赖会被 iVentoy 替换的 /init。只读 casper 模块目录使用独立
   tmpfs 上层的临时 overlay，保留原版模块，确保 live root 仍选中 E610。
+- EL 将驱动、索引与钩子合入原始主 CPIO，避免 iVentoy 丢弃追加归档；
+  Anaconda 切换根目录前也建立 live 模块覆盖。CentOS 7.9 原型通过
+  隔离真实 iVentoy UEFI 启动与 ixgbe 6.4.5 加载，28 个 EL 成品重测中。
 - 目标系统的正常启动 initramfs 与 EL 救援启动 initramfs均包含驱动。
 - 已有自定义模块不同、目标内核未适配或安装验证失败时，停止并报告。
 - 新签名模块的公开 MOK 证书随包保存。Secure Boot 启用时必须按机器
@@ -72,7 +75,7 @@ Module.symvers 和对应编译器。脚本需要 /root/E610-DISPOSABLE-BUILDER
    bash /root/ventoy-linux-setup.run --apply 后应用 SSH、DHCP、主机名、
    内核锁定和禁用自动更新策略；其 --check 检查应用结果。
 
-验证本目录的归档解析、唯一启动脚本记录和精简 initramfs 兼容性（7 项）：
+验证本目录的归档解析、唯一启动脚本记录和精简 initramfs 兼容性（8 项）：
   python3 test_media.py
 
 不携带生产密码、私钥、清盘脚本或自动安装答案。制作 ISO 不代表允许
