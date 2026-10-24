@@ -4,7 +4,7 @@
 The original ISO is never opened for writing. Reflink plus xorriso growing
 shares unchanged data, while the resulting ISO remains a standalone file.
 """
-import argparse, gzip, hashlib, io, json, os, pathlib, re, subprocess, tarfile
+import argparse, gzip, hashlib, io, json, os, pathlib, re, shutil, subprocess, tarfile
 from media_lib import initramfs_files, normalize_for_append
 from assemble_boot import cpio
 P=pathlib.Path
@@ -101,7 +101,24 @@ def main():
     args=['xorriso','-abort_on','FAILURE','-dev',a.out]
     for path,file in updates.items():args += ['-map',file,path]
     args += ['-boot_image','any','replay','-commit','-end']
-    with (folder/'build.log').open('wb') as log:run(args,stdout=log,stderr=log)
+    try:
+        with (folder/'build.log').open('wb') as log:run(args,stdout=log,stderr=log)
+        evidence['storage_mode']='reflink-grow'
+    except subprocess.CalledProcessError:
+        detail=(folder/'build.log').read_text(errors='replace')
+        if 'Overlapping GPT entries requested' not in detail:raise
+        # EL10 uses a hidden appended EFI partition. A growing session can
+        # overlap its old GPT extent; rebuild its layout from the original.
+        # This needs real space rather than reflink sharing.
+        needed=source.stat().st_size+sum(p.stat().st_size for p in updates.values())
+        assert shutil.disk_usage(a.out.parent).free>needed+8*1024**3,'Insufficient space for appended-EFI rewrite'
+        a.out.rename(folder/'failed-grow.iso')
+        evidence['storage_mode']='full-rewrite-appended-efi'
+        info.write_text(json.dumps(evidence,indent=2)+'\n')
+        args=['xorriso','-abort_on','FAILURE','-indev',source,'-outdev',a.out]
+        for path,file in updates.items():args+=['-map',file,path]
+        args+=['-boot_image','any','replay','-commit','-end']
+        with (folder/'build-rewrite.log').open('wb') as log:run(args,stdout=log,stderr=log)
     # EL's menu media check uses the embedded ISO digest, separate from treeinfo.
     if '/.treeinfo' in paths:
         with (folder/'media-check.log').open('wb') as log:

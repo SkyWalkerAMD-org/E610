@@ -27,6 +27,7 @@ media/ 下的 tar.gz 是中间产物，不能代替最终 ISO 或安装验证。
 Linux x86_64、Python >=3.9、xorriso、cpio、kmod、gzip/xz/zstd、
 liblz4/libzstd、openssl，以及 EL 的 implantisomd5/checkisomd5。
 制作输出要求文件系统支持 reflink（例如启用 reflink 的 XFS）。
+隐藏 EFI 分区无法原地扩展时，检查可用空间后完整重写 ISO 引导布局。
 原版只读打开；输出是不同 inode 的完整 ISO。共享底层数据块不产生
 运行时对原版文件路径的依赖。
 编译必须在可丢弃的构建环境里执行 build_exact.sh，使用精确头文件、
@@ -41,9 +42,10 @@ Module.symvers 和对应编译器。脚本需要 /root/E610-DISPOSABLE-BUILDER
    仅复用精确内核模块。其余内核在隔离环境编译，输出放 drivers/<ABI>。
    build_exact.sh 使用 patches/ 中的补丁；0001-0003 来自既有 CentOS
    适配源码，0004-0006 在本目录。公开证书保留，私钥构建后删除。
-3. smoke_kernels.py 在对应 ISO 内核中验证模块实际加载。
+3. python3 assemble_boot.py --work "$WORK"
+   使用原版模块树生成依赖与覆盖层。
+4. smoke_kernels.py 在对应 ISO 内核中验证模块实际加载。
    只有 kernel-smoke-results.json 中通过、且哈希匹配的模块才能打包。
-4. python3 assemble_boot.py --work "$WORK"
 5. python3 package_media.py --work "$WORK" --iso-root "$ISO_ROOT" \
       --out "$WORK/media"
 6. 将 Ventoy Center 的 Linux 手动配置预置包保存为

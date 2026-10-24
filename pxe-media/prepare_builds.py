@@ -39,6 +39,9 @@ def main():
         if job['published_module']:
             shutil.copyfile(job['published_module'],out/'ixgbe.ko');job['status']='reused-exact-kernel'
             job['module_sha256']=sha(out/'ixgbe.ko')
+            # Reuse the public enrollment certificate together with its module.
+            cert=P(job['published_module']).parent/'E610-MOK.der'
+            if cert.is_file():shutil.copyfile(cert,out/'E610-MOK.der')
         else:
             src=P(job['audit_work']);paths=[s.strip().strip("'") for s in (src/'iso-files.txt').read_text().splitlines()]
             if '.el' in k:
@@ -74,6 +77,10 @@ def main():
                     if not dest.exists():run(['curl','--fail','--location','--retry','3','--output',dest,url])
                     hashes[url]=sha(dest)
             shutil.copyfile(source,inputs/'ixgbe-6.4.5.tar.gz')
+            patches=inputs/'patches';patches.mkdir(exist_ok=True)
+            here=P(__file__).resolve().parent
+            for patch in list((here.parent/'patches').glob('*.patch'))+list(here.glob('*.patch')):
+                shutil.copyfile(patch,patches/patch.name)
             job['packages']=hashes;job['status']='headers-staged' if hashes else 'headers-missing'
             job['input_dir']=str(inputs)
         (out/'build-plan.json').write_text(json.dumps(job,indent=2)+'\n')
