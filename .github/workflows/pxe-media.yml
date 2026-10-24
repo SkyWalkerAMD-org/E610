@@ -1,0 +1,22 @@
+name: E610 ISO tooling
+on:
+  push:
+    branches: [main]
+    paths: ['pxe-media/**', '.github/workflows/pxe-media.yml']
+  pull_request:
+    paths: ['pxe-media/**', '.github/workflows/pxe-media.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  archive-regression:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      - name: Install archive test dependencies
+        run: sudo apt-get update -qq && sudo apt-get install -y --no-install-recommends zstd liblz4-1 libzstd1
+      - name: Check syntax and archive regressions
+        run: |
+          python3 -m py_compile pxe-media/*.py
+          for script in pxe-media/assets/*.sh pxe-media/assets/finish-debian pxe-media/build_exact.sh; do bash -n "$script"; done
+          python3 pxe-media/test_media.py

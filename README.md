@@ -1,5 +1,7 @@
 # Intel E610 / Linux compatibility
 
+**[E610 ISO Kit 6.4.5 r1](https://github.com/SkyWalkerAMD-org/E610/releases/tag/v6.4.5-iso-kit-r1)** embeds exact-kernel drivers and native installer completion hooks in Linux ISOs. The same adapted image supports manual and PXE automatic installation. The kit includes 38 prebuilt ABI-specific modules, source and public evidence for 43 distinct ISO outputs (86 isolated installation/reboot cases). See the [Chinese ISO kit guide](pxe-media/RELEASE.zh-CN.md). Physical E610 link/traffic and machine-specific Secure Boot trust enrollment remain pending.
+
 **[Download the multi-system offline package r2](https://github.com/SkyWalkerAMD-org/E610/releases/tag/v6.4.5-multios-r2)**:
 one `.tar.gz`, `.run`, or KVM driver data ISO covers installation-media kernels
 from Ubuntu 22.04 / 24.04 and Rocky Linux 8 / 9, retaining CentOS 7.9 support.
