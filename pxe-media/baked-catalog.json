@@ -1,6 +1,7 @@
 {
   "new_baked_iso_count": 41,
-  "existing_adaptations_reused": {
+  "updated_existing_iso_count": 2,
+  "existing_adaptations_updated": {
     "CentOS/CentOS-7.9-x86_64-DVD-2009.iso": "CentOS/CentOS-7.9-x86_64-E610-r2-DVD.iso",
     "Ubuntu/ubuntu-22.04.3-live-server-amd64.iso": "Ubuntu/ubuntu-22.04.3-live-server-amd64-E610.iso"
   },
@@ -44,6 +45,20 @@
       "storage_mode": null,
       "kernel_abis": [
         "3.10.0-957.el7.x86_64"
+      ],
+      "hardware_e610": "not_available",
+      "software_installation": "in_progress"
+    },
+    {
+      "source_iso": "CentOS/CentOS-7.9-x86_64-DVD-2009.iso",
+      "output_iso": "CentOS/CentOS-7.9-x86_64-E610-r2-DVD.iso",
+      "sha256": "fbe40eccb5a310bf444e67ea24723752c02c188958bdd2308144f031c1f41ca9",
+      "driver_archive_sha256": "73583f06a7fd069d3b50563e90b1520d7318a4b5ee05536956a2ee6c40445e24",
+      "size": 4801560576,
+      "source_sha256": "e33d7b1ea7a9e2f38c8f693215dd85254c3a4fe446f93f563279715b68d07987",
+      "storage_mode": "reflink-grow",
+      "kernel_abis": [
+        "3.10.0-1160.el7.x86_64"
       ],
       "hardware_e610": "not_available",
       "software_installation": "in_progress"
@@ -135,11 +150,11 @@
     {
       "source_iso": "Debian/debian-10.11.0-amd64-DVD-1.iso",
       "output_iso": "Debian/debian-10.11.0-amd64-DVD-1-E610.iso",
-      "sha256": "028ddd7a2b5eb0c075fbfa841a987d8544681bff7700e3268f6d3415fc599385",
+      "sha256": "3b5ee5b2f9a38e0946b44d87fe63bd003f95fe46f3ac02d0caf859d7741eb93f",
       "driver_archive_sha256": "32ce9ec666719862b74e7d6c89f5e86448564a4dfdab1d251ee493df739c89dd",
       "size": 4011130880,
       "source_sha256": "ee63ab538efbf73e6e3e363395599d52b9981655c2327e560c2cbcf3a93095ec",
-      "storage_mode": null,
+      "storage_mode": "reflink-grow",
       "kernel_abis": [
         "4.19.0-18-amd64"
       ],
@@ -149,11 +164,11 @@
     {
       "source_iso": "Debian/debian-11.4.0-amd64-DVD-1.iso",
       "output_iso": "Debian/debian-11.4.0-amd64-DVD-1-E610.iso",
-      "sha256": "0b1ac5210099f340e86197855a9016f3923039c6a38ebe201f87b89bbfa24fe7",
+      "sha256": "050666297014c0f433696555d1518c4a5f4c98f049147840f99fdb5079992e86",
       "driver_archive_sha256": "a64c8fd347e1ff01bc2023a23dfd5e22f0f938b07ac4340fb2b5dc811a17e420",
       "size": 4022927360,
       "source_sha256": "32c7ce39dbc977ce655869c7bd744db39fb84dff1e2493ad56ce05c3540dfc40",
-      "storage_mode": null,
+      "storage_mode": "reflink-grow",
       "kernel_abis": [
         "5.10.0-16-amd64"
       ],
@@ -163,11 +178,11 @@
     {
       "source_iso": "Debian/debian-12.15.0-amd64-DVD-1.iso",
       "output_iso": "Debian/debian-12.15.0-amd64-DVD-1-E610.iso",
-      "sha256": "4fe13311a79f882543c57b5fcea0cf9ec8f524ea89ab3a2101297628338f65be",
+      "sha256": "9e298c89e883ccaead46a4ed2958c1240e17caaf7b9399d415eaab897a3f42a0",
       "driver_archive_sha256": "63048df9b7a7f62966c7cf6aa3b0c61213586aa3d09fb4d056eeece2ed426d34",
       "size": 4127522816,
       "source_sha256": "484e1250d3dd29c8d7f83f30a08efb22f922830b8fe9f1e299e89a21c895955f",
-      "storage_mode": null,
+      "storage_mode": "reflink-grow",
       "kernel_abis": [
         "6.1.0-50-amd64"
       ],
@@ -177,11 +192,11 @@
     {
       "source_iso": "Debian/debian-12.5.0-amd64-DVD-1.iso",
       "output_iso": "Debian/debian-12.5.0-amd64-DVD-1-E610.iso",
-      "sha256": "a06c9a531150562bbdfbc45db032d9be70e332b9cb8e32bd64fedee6d600abbe",
+      "sha256": "28f1d22ed5619af210e574ae60805ee29652e68eabe6840083f14680496c5f9e",
       "driver_archive_sha256": "c95d1e285ca6dc931aeeca4f3aab853a2313c6d0902afb2db0f0d19fec472d0e",
-      "size": 4130865152,
+      "size": 4130799616,
       "source_sha256": "1e8037d1d208b4d6a2f4ff54cacc8df8f6e51ec326be8598661a1d9988839158",
-      "storage_mode": null,
+      "storage_mode": "reflink-grow",
       "kernel_abis": [
         "6.1.0-18-amd64"
       ],
@@ -191,11 +206,11 @@
     {
       "source_iso": "Debian/debian-12.8.0-amd64-DVD-1.iso",
       "output_iso": "Debian/debian-12.8.0-amd64-DVD-1-E610.iso",
-      "sha256": "619d9570e8196ebdcd6dedf7a3c9763fd11f4bbf32815fea4c0c1547c426871a",
+      "sha256": "d3d4832c09c375848274795378e59693258414d33f8ae67ae99845d57a1d360f",
       "driver_archive_sha256": "e926b39ce794bb728dd8e1ea65c5edb318648cb22ddbf49c5c8b936072a91848",
       "size": 4136239104,
       "source_sha256": "eadbecad1801066111cf2c654a76cdc49fb6ee8d7683dd4492eeadb8cb5348ba",
-      "storage_mode": null,
+      "storage_mode": "reflink-grow",
       "kernel_abis": [
         "6.1.0-27-amd64"
       ],
@@ -205,11 +220,11 @@
     {
       "source_iso": "Debian/debian-13.0.0-amd64-DVD-1.iso",
       "output_iso": "Debian/debian-13.0.0-amd64-DVD-1-E610.iso",
-      "sha256": "73b1101aeb73367876914007f7f944656a8a0da08932f69c5771cffa43f008c5",
+      "sha256": "d3898061f1a679845e6bbb547806ac774dcb17d564676fb7615d38f723813d1c",
       "driver_archive_sha256": "aa05c744bd5709a60dff4bac406c5b46fd3748190b432b06ec1c54d75a5ea409",
       "size": 4152950784,
       "source_sha256": "c998fe73ca8dbce235f189a2a92873bf0a8f70b0982f361629a18a0f38b6fe92",
-      "storage_mode": null,
+      "storage_mode": "reflink-grow",
       "kernel_abis": [
         "6.12.38+deb13-amd64"
       ],
@@ -219,11 +234,11 @@
     {
       "source_iso": "Debian/debian-13.4.0-amd64-DVD-1.iso",
       "output_iso": "Debian/debian-13.4.0-amd64-DVD-1-E610.iso",
-      "sha256": "e25a6cc15a7679679b7ecd8de9e358289f9625110923bbeacdb4908cebd3273a",
+      "sha256": "fd200608970d66c641ab6bd986943fc1bd1bc7f96e07fd04b7b982bbf12ae915",
       "driver_archive_sha256": "4922e135acb9be438a49accb7c9837c65c0d180da1b5b121e94ed4b4b17ee1d4",
       "size": 4144300032,
       "source_sha256": "e41eeaffa4fdd64fbf07fc8b0d18a1b5f15ba9743a72c222008f8fd0b6463355",
-      "storage_mode": null,
+      "storage_mode": "reflink-grow",
       "kernel_abis": [
         "6.12.73+deb13-amd64"
       ],
@@ -493,6 +508,21 @@
       "kernel_abis": [
         "5.11.0-27-generic",
         "5.4.0-81-generic"
+      ],
+      "hardware_e610": "not_available",
+      "software_installation": "in_progress"
+    },
+    {
+      "source_iso": "Ubuntu/ubuntu-22.04.3-live-server-amd64.iso",
+      "output_iso": "Ubuntu/ubuntu-22.04.3-live-server-amd64-E610.iso",
+      "sha256": "605dcd151866972e4ddc4a78008f7778fe6b674e069153131abc0d0a17485013",
+      "driver_archive_sha256": "b1109b9dab04dac22f63dd9e690c03f22605e18fd8514917add4097b1dd51ec3",
+      "size": 2430074880,
+      "source_sha256": "a4acfda10b18da50e2ec50ccaf860d7f20b389df8765611142305c0e911d16fd",
+      "storage_mode": "reflink-grow",
+      "kernel_abis": [
+        "5.15.0-78-generic",
+        "6.2.0-26-generic"
       ],
       "hardware_e610": "not_available",
       "software_installation": "in_progress"

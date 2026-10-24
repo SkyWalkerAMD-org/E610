@@ -6,7 +6,7 @@ shares unchanged data, while the resulting ISO remains a standalone file.
 """
 import argparse, gzip, hashlib, io, json, os, pathlib, re, shutil, subprocess, tarfile
 from media_lib import initramfs_files, normalize_for_append
-from assemble_boot import cpio
+from assemble_boot import cpio, prepare
 P=pathlib.Path
 HOOK='live_injection_7ed136ec_7a61_4b54_adc3_ae494d5106ea/hook.sh'
 
@@ -60,7 +60,15 @@ def main():
     updates={}
     for index,boot in enumerate(rec['boots']):
         raw=(P(rec['work'])/('initrd-'+str(index))).read_bytes()
-        dest=folder/('initrd-'+str(index));dest.write_bytes(embed_initrd(raw,files,a.iso.startswith('Ubuntu/')))
+        payload=files
+        if a.iso.startswith('Debian/'):
+            # Text and GTK boot images have distinct display-module sets.
+            # A combined depmod index advertises modules absent from that image.
+            payload={n:v for n,v in files.items() if not re.search(r'(?:^|/)lib/modules/',n)}
+            native=prepare(rec,index,a.work,per_boot=True)
+            if native:
+                for n,(data,mode) in native['files'].items():payload[n]=(data,0o100000|mode)
+        dest=folder/('initrd-'+str(index));dest.write_bytes(embed_initrd(raw,payload,a.iso.startswith('Ubuntu/')))
         updates[boot['initrd']]=dest
         kernel=folder/('vmlinuz-'+str(index))
         if not kernel.exists():kernel.symlink_to(P(rec['work'])/('vmlinuz-'+str(index)))
@@ -68,6 +76,7 @@ def main():
     paths=[s.strip().strip("'") for s in (P(rec['work'])/'iso-files.txt').read_text().splitlines()]
     if '/isolinux/initrd.img' in paths:updates['/isolinux/initrd.img']=updates['/images/pxeboot/initrd.img']
     evidence={'format':1,'source_iso':a.iso,'source_size':source.stat().st_size,'source_sha256':sha(source),'embedded_in_iso':True,'kernel_replaced':False,'hardware_e610':'not_tested','installer_paths':list(updates),'driver_archive_sha256':item['sha256']}
+    if a.iso.startswith('Debian/'):evidence['boot_module_layout']='per-initrd'
     for path in ('/md5sum.txt','/SHA256SUMS','/SHA512SUMS'):
         if path not in paths:continue
         old=folder/P(path).name

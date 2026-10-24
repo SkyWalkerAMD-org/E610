@@ -1,8 +1,25 @@
 import gzip, lzma, pathlib, subprocess, unittest, ctypes, tempfile, shutil, os
-from assemble_boot import cpio
+from assemble_boot import cpio, copy_boot_tree
 from media_lib import initramfs_files, normalize_for_append, file_path
 
 class Archives(unittest.TestCase):
+    def test_merged_usr_keeps_installer_and_udeb_modules(self):
+        with tempfile.TemporaryDirectory() as temp:
+            source=pathlib.Path(temp)/'source';root=pathlib.Path(temp)/'root'
+            entries={'usr/lib/modules/k/modules.builtin':b'kernel/fb.ko\n',
+                     'usr/lib/modules/k/kernel/display.ko':b'display',
+                     'lib/modules/k/kernel/nic.ko':b'nic'}
+            for name,data in entries.items():
+                file=source/name;file.parent.mkdir(parents=True,exist_ok=True);file.write_bytes(data)
+            copy_boot_tree(source,root,True)
+            self.assertTrue((root/'lib').is_symlink())
+            self.assertEqual((root/'lib/modules/k/modules.builtin').read_bytes(),b'kernel/fb.ko\n')
+            self.assertEqual((root/'lib/modules/k/kernel/display.ko').read_bytes(),b'display')
+            self.assertEqual((root/'usr/lib/modules/k/kernel/nic.ko').read_bytes(),b'nic')
+            (source/'lib/modules/k/kernel/display.ko').write_bytes(b'conflicting-display')
+            with self.assertRaisesRegex(AssertionError,'Conflicting merged module'):
+                copy_boot_tree(source,pathlib.Path(temp)/'conflict',True)
+
     def test_mixed_compression_and_override(self):
         early=gzip.decompress(cpio([('early',b'ucode',0o100644)]))
         main=gzip.decompress(cpio([('init',b'old',0o100755)]))

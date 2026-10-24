@@ -1,11 +1,12 @@
 {
   "audit_date": "2026-10-24",
   "hardware_e610": "unavailable; no physical link, DHCP or traffic certification",
-  "counting": "43 original ISOs need injection; 2 have existing adapted alternatives; 41 new ISOs",
+  "counting": "43 original ISOs need injection: 41 new variants plus 2 updates of existing E610 variants; no duplicate version menu added",
   "images": [
     {
       "iso": "AlmaLinux/AlmaLinux-8.10-x86_64-dvd.iso",
       "status": "needs-injection",
+      "all_boot_modules_cover_e610": false,
       "boot_paths": [
         "/images/pxeboot/initrd.img"
       ],
@@ -16,6 +17,7 @@
     {
       "iso": "AlmaLinux/AlmaLinux-9.5-x86_64-dvd.iso",
       "status": "needs-injection",
+      "all_boot_modules_cover_e610": false,
       "boot_paths": [
         "/images/pxeboot/initrd.img"
       ],
@@ -26,6 +28,7 @@
     {
       "iso": "CentOS/CentOS-7.6-x86_64-DVD-1810.iso",
       "status": "needs-injection",
+      "all_boot_modules_cover_e610": false,
       "boot_paths": [
         "/images/pxeboot/initrd.img"
       ],
@@ -36,6 +39,7 @@
     {
       "iso": "CentOS/CentOS-7.9-x86_64-DVD-2009.iso",
       "status": "needs-injection",
+      "all_boot_modules_cover_e610": false,
       "boot_paths": [
         "/images/pxeboot/initrd.img"
       ],
@@ -46,6 +50,7 @@
     {
       "iso": "CentOS/CentOS-7.9-x86_64-E610-r2-DVD.iso",
       "status": "existing-adapted",
+      "all_boot_modules_cover_e610": true,
       "boot_paths": [
         "/images/pxeboot/initrd.img"
       ],
@@ -56,6 +61,7 @@
     {
       "iso": "CentOS/CentOS-8-x86_64-1905-dvd1.iso",
       "status": "needs-injection",
+      "all_boot_modules_cover_e610": false,
       "boot_paths": [
         "/images/pxeboot/initrd.img"
       ],
@@ -66,6 +72,7 @@
     {
       "iso": "CentOS/CentOS-8.4.2105-x86_64-dvd1.iso",
       "status": "needs-injection",
+      "all_boot_modules_cover_e610": false,
       "boot_paths": [
         "/images/pxeboot/initrd.img"
       ],
@@ -76,6 +83,7 @@
     {
       "iso": "CentOS/CentOS-8.5.2111-x86_64-dvd1.iso",
       "status": "needs-injection",
+      "all_boot_modules_cover_e610": false,
       "boot_paths": [
         "/images/pxeboot/initrd.img"
       ],
@@ -86,6 +94,7 @@
     {
       "iso": "CentOS/CentOS-Stream-10-latest-x86_64-dvd1.iso",
       "status": "needs-injection",
+      "all_boot_modules_cover_e610": false,
       "boot_paths": [
         "/images/pxeboot/initrd.img"
       ],
@@ -96,6 +105,7 @@
     {
       "iso": "CentOS/CentOS-Stream-8-20240101.0-x86_64-dvd1.iso",
       "status": "needs-injection",
+      "all_boot_modules_cover_e610": false,
       "boot_paths": [
         "/images/pxeboot/initrd.img"
       ],
@@ -106,6 +116,7 @@
     {
       "iso": "CentOS/CentOS-Stream-9-latest-x86_64-dvd1.iso",
       "status": "needs-injection",
+      "all_boot_modules_cover_e610": false,
       "boot_paths": [
         "/images/pxeboot/initrd.img"
       ],
@@ -116,6 +127,7 @@
     {
       "iso": "Debian/debian-10.11.0-amd64-DVD-1.iso",
       "status": "needs-injection",
+      "all_boot_modules_cover_e610": false,
       "boot_paths": [
         "/install.amd/initrd.gz",
         "/install.amd/gtk/initrd.gz"
@@ -127,6 +139,7 @@
     {
       "iso": "Debian/debian-11.4.0-amd64-DVD-1.iso",
       "status": "needs-injection",
+      "all_boot_modules_cover_e610": false,
       "boot_paths": [
         "/install.amd/initrd.gz",
         "/install.amd/gtk/initrd.gz"
@@ -138,6 +151,7 @@
     {
       "iso": "Debian/debian-12.15.0-amd64-DVD-1.iso",
       "status": "needs-injection",
+      "all_boot_modules_cover_e610": false,
       "boot_paths": [
         "/install.amd/initrd.gz",
         "/install.amd/gtk/initrd.gz"
@@ -149,6 +163,7 @@
     {
       "iso": "Debian/debian-12.5.0-amd64-DVD-1.iso",
       "status": "needs-injection",
+      "all_boot_modules_cover_e610": false,
       "boot_paths": [
         "/install.amd/initrd.gz",
         "/install.amd/gtk/initrd.gz"
@@ -160,6 +175,7 @@
     {
       "iso": "Debian/debian-12.8.0-amd64-DVD-1.iso",
       "status": "needs-injection",
+      "all_boot_modules_cover_e610": false,
       "boot_paths": [
         "/install.amd/initrd.gz",
         "/install.amd/gtk/initrd.gz"
@@ -171,6 +187,7 @@
     {
       "iso": "Debian/debian-13.0.0-amd64-DVD-1.iso",
       "status": "needs-injection",
+      "all_boot_modules_cover_e610": false,
       "boot_paths": [
         "/install.amd/initrd.gz",
         "/install.amd/gtk/initrd.gz"
@@ -182,6 +199,7 @@
     {
       "iso": "Debian/debian-13.4.0-amd64-DVD-1.iso",
       "status": "needs-injection",
+      "all_boot_modules_cover_e610": false,
       "boot_paths": [
         "/install.amd/initrd.gz",
         "/install.amd/gtk/initrd.gz"
@@ -193,6 +211,7 @@
     {
       "iso": "RHEL/rhel-8.0-x86_64-dvd.iso",
       "status": "needs-injection",
+      "all_boot_modules_cover_e610": false,
       "boot_paths": [
         "/images/pxeboot/initrd.img"
       ],
@@ -203,6 +222,7 @@
     {
       "iso": "RHEL/rhel-8.1-x86_64-dvd.iso",
       "status": "needs-injection",
+      "all_boot_modules_cover_e610": false,
       "boot_paths": [
         "/images/pxeboot/initrd.img"
       ],
@@ -213,6 +233,7 @@
     {
       "iso": "RHEL/rhel-8.10-x86_64-dvd.iso",
       "status": "needs-injection",
+      "all_boot_modules_cover_e610": false,
       "boot_paths": [
         "/images/pxeboot/initrd.img"
       ],
@@ -223,6 +244,7 @@
     {
       "iso": "RHEL/rhel-8.6-x86_64-dvd.iso",
       "status": "needs-injection",
+      "all_boot_modules_cover_e610": false,
       "boot_paths": [
         "/images/pxeboot/initrd.img"
       ],
@@ -233,6 +255,7 @@
     {
       "iso": "RHEL/rhel-9.2-x86_64-dvd.iso",
       "status": "needs-injection",
+      "all_boot_modules_cover_e610": false,
       "boot_paths": [
         "/images/pxeboot/initrd.img"
       ],
@@ -243,6 +266,7 @@
     {
       "iso": "RHEL/rhel-9.4-x86_64-dvd.iso",
       "status": "needs-injection",
+      "all_boot_modules_cover_e610": false,
       "boot_paths": [
         "/images/pxeboot/initrd.img"
       ],
@@ -253,6 +277,7 @@
     {
       "iso": "RHEL/rhel-server-7.6-x86_64-dvd.iso",
       "status": "needs-injection",
+      "all_boot_modules_cover_e610": false,
       "boot_paths": [
         "/images/pxeboot/initrd.img"
       ],
@@ -263,6 +288,7 @@
     {
       "iso": "RHEL/rhel-server-7.9-x86_64-dvd.iso",
       "status": "needs-injection",
+      "all_boot_modules_cover_e610": false,
       "boot_paths": [
         "/images/pxeboot/initrd.img"
       ],
@@ -273,6 +299,7 @@
     {
       "iso": "Rocky/Rocky-10.0-x86_64-dvd1.iso",
       "status": "needs-injection",
+      "all_boot_modules_cover_e610": false,
       "boot_paths": [
         "/images/pxeboot/initrd.img"
       ],
@@ -283,6 +310,7 @@
     {
       "iso": "Rocky/Rocky-10.2-x86_64-dvd1.iso",
       "status": "boot-native",
+      "all_boot_modules_cover_e610": true,
       "boot_paths": [
         "/images/pxeboot/initrd.img"
       ],
@@ -293,6 +321,7 @@
     {
       "iso": "Rocky/Rocky-8.10-x86_64-dvd.iso",
       "status": "needs-injection",
+      "all_boot_modules_cover_e610": false,
       "boot_paths": [
         "/images/pxeboot/initrd.img"
       ],
@@ -303,6 +332,7 @@
     {
       "iso": "Rocky/Rocky-8.6-x86_64-dvd1.iso",
       "status": "needs-injection",
+      "all_boot_modules_cover_e610": false,
       "boot_paths": [
         "/images/pxeboot/initrd.img"
       ],
@@ -313,6 +343,7 @@
     {
       "iso": "Rocky/Rocky-8.7-x86_64-dvd1.iso",
       "status": "needs-injection",
+      "all_boot_modules_cover_e610": false,
       "boot_paths": [
         "/images/pxeboot/initrd.img"
       ],
@@ -323,6 +354,7 @@
     {
       "iso": "Rocky/Rocky-8.9-x86_64-dvd1.iso",
       "status": "needs-injection",
+      "all_boot_modules_cover_e610": false,
       "boot_paths": [
         "/images/pxeboot/initrd.img"
       ],
@@ -333,6 +365,7 @@
     {
       "iso": "Rocky/Rocky-9.1-x86_64-dvd.iso",
       "status": "needs-injection",
+      "all_boot_modules_cover_e610": false,
       "boot_paths": [
         "/images/pxeboot/initrd.img"
       ],
@@ -343,6 +376,7 @@
     {
       "iso": "Rocky/Rocky-9.2-x86_64-dvd.iso",
       "status": "needs-injection",
+      "all_boot_modules_cover_e610": false,
       "boot_paths": [
         "/images/pxeboot/initrd.img"
       ],
@@ -353,6 +387,7 @@
     {
       "iso": "Rocky/Rocky-9.3-x86_64-dvd.iso",
       "status": "needs-injection",
+      "all_boot_modules_cover_e610": false,
       "boot_paths": [
         "/images/pxeboot/initrd.img"
       ],
@@ -363,6 +398,7 @@
     {
       "iso": "Rocky/Rocky-9.4-x86_64-dvd.iso",
       "status": "needs-injection",
+      "all_boot_modules_cover_e610": false,
       "boot_paths": [
         "/images/pxeboot/initrd.img"
       ],
@@ -373,6 +409,7 @@
     {
       "iso": "Rocky/Rocky-9.5-x86_64-dvd.iso",
       "status": "needs-injection",
+      "all_boot_modules_cover_e610": false,
       "boot_paths": [
         "/images/pxeboot/initrd.img"
       ],
@@ -383,6 +420,7 @@
     {
       "iso": "Rocky/Rocky-9.6-x86_64-dvd.iso",
       "status": "boot-native",
+      "all_boot_modules_cover_e610": true,
       "boot_paths": [
         "/images/pxeboot/initrd.img"
       ],
@@ -393,6 +431,7 @@
     {
       "iso": "Rocky/Rocky-9.7-x86_64-dvd.iso",
       "status": "boot-native",
+      "all_boot_modules_cover_e610": true,
       "boot_paths": [
         "/images/pxeboot/initrd.img"
       ],
@@ -403,6 +442,7 @@
     {
       "iso": "Rocky/Rocky-9.8-x86_64-dvd.iso",
       "status": "boot-native",
+      "all_boot_modules_cover_e610": true,
       "boot_paths": [
         "/images/pxeboot/initrd.img"
       ],
@@ -413,6 +453,7 @@
     {
       "iso": "Ubuntu/ubuntu-20.04.3-live-server-amd64.iso",
       "status": "needs-injection",
+      "all_boot_modules_cover_e610": false,
       "boot_paths": [
         "/casper/hwe-initrd",
         "/casper/initrd"
@@ -425,6 +466,7 @@
     {
       "iso": "Ubuntu/ubuntu-22.04.3-live-server-amd64-E610.iso",
       "status": "existing-adapted",
+      "all_boot_modules_cover_e610": false,
       "boot_paths": [
         "/casper/hwe-initrd",
         "/casper/initrd"
@@ -437,6 +479,7 @@
     {
       "iso": "Ubuntu/ubuntu-22.04.3-live-server-amd64.iso",
       "status": "needs-injection",
+      "all_boot_modules_cover_e610": false,
       "boot_paths": [
         "/casper/hwe-initrd",
         "/casper/initrd"
@@ -449,6 +492,7 @@
     {
       "iso": "Ubuntu/ubuntu-22.04.4-desktop-amd64.iso",
       "status": "needs-injection",
+      "all_boot_modules_cover_e610": false,
       "boot_paths": [
         "/casper/initrd"
       ],
@@ -459,6 +503,7 @@
     {
       "iso": "Ubuntu/ubuntu-22.04.4-live-server-amd64.iso",
       "status": "needs-injection",
+      "all_boot_modules_cover_e610": false,
       "boot_paths": [
         "/casper/hwe-initrd",
         "/casper/initrd"
@@ -471,6 +516,7 @@
     {
       "iso": "Ubuntu/ubuntu-22.04.5-live-server-amd64.iso",
       "status": "needs-injection",
+      "all_boot_modules_cover_e610": false,
       "boot_paths": [
         "/casper/hwe-initrd",
         "/casper/initrd"
@@ -483,6 +529,7 @@
     {
       "iso": "Ubuntu/ubuntu-24.04-live-server-amd64.iso",
       "status": "needs-injection",
+      "all_boot_modules_cover_e610": false,
       "boot_paths": [
         "/casper/initrd"
       ],
@@ -493,6 +540,7 @@
     {
       "iso": "Ubuntu/ubuntu-24.04.3-live-server-amd64.iso",
       "status": "needs-injection",
+      "all_boot_modules_cover_e610": false,
       "boot_paths": [
         "/casper/hwe-initrd",
         "/casper/initrd"
@@ -505,6 +553,7 @@
     {
       "iso": "Ubuntu/ubuntu-24.04.4-live-server-amd64.iso",
       "status": "boot-native",
+      "all_boot_modules_cover_e610": true,
       "boot_paths": [
         "/casper/hwe-initrd",
         "/casper/initrd"
@@ -517,6 +566,7 @@
     {
       "iso": "Ubuntu/ubuntu-24.04.5-live-server-amd64.iso",
       "status": "boot-native",
+      "all_boot_modules_cover_e610": true,
       "boot_paths": [
         "/casper/hwe-initrd",
         "/casper/initrd"
@@ -529,6 +579,7 @@
     {
       "iso": "Ubuntu/ubuntu-24.10-live-server-amd64.iso",
       "status": "needs-injection",
+      "all_boot_modules_cover_e610": false,
       "boot_paths": [
         "/casper/initrd"
       ],
@@ -539,6 +590,7 @@
     {
       "iso": "Ubuntu/ubuntu-25.04-live-server-amd64.iso",
       "status": "boot-native",
+      "all_boot_modules_cover_e610": true,
       "boot_paths": [
         "/casper/initrd"
       ],
@@ -549,6 +601,7 @@
     {
       "iso": "Ubuntu/ubuntu-26.04-desktop-amd64.iso",
       "status": "boot-native",
+      "all_boot_modules_cover_e610": true,
       "boot_paths": [
         "/casper/initrd"
       ],
@@ -559,6 +612,7 @@
     {
       "iso": "Ubuntu/ubuntu-26.04-live-server-amd64.iso",
       "status": "boot-native",
+      "all_boot_modules_cover_e610": true,
       "boot_paths": [
         "/casper/initrd"
       ],

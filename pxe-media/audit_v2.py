@@ -60,6 +60,10 @@ def inspect(record, iso_root):
         boot['modules']=modules;boot['detected_kernels']=sorted(kernels)
         boot['error']='ixgbe missing; must inspect installed-module package' if not modules else ''
     native=all(b['modules'] and all(m['all_e610_ids'] for m in b['modules']) for b in record['boots'])
+    # A pre-existing E610 filename is a catalog category, not proof that every
+    # boot kernel or manual-install completion path is covered.
+    record['all_boot_modules_cover_e610']=native
+    record['manual_persistence']='requires_installation_test'
     record['status']='existing-adapted' if 'E610' in iso.name else ('boot-native' if native else 'needs-injection')
     record['audit_version']=2
     (folder/'audit-v2.json').write_text(json.dumps(record,indent=2)+'\n')
