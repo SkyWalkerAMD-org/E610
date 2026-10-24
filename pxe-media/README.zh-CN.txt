@@ -26,6 +26,9 @@ media/ 下的 tar.gz 是中间产物，不能代替最终 ISO 或安装验证。
 构建环境
 Linux x86_64、Python >=3.9、xorriso、cpio、kmod、gzip/xz/zstd、
 liblz4/libzstd、openssl，以及 EL 的 implantisomd5/checkisomd5。
+xorriso 推荐 1.5.8.pl02 或更新版本：Rocky 9.1 的隐藏 EFI 引导映像
+在 1.5.4 上 replay 失败，已用 1.5.8.pl02 完成重制与介质校验。
+可把独立编译版本的 bin 放到 PATH 前面，无需替换宿主机系统软件。
 制作输出要求文件系统支持 reflink（例如启用 reflink 的 XFS）。
 隐藏 EFI 分区无法原地扩展时，检查可用空间后完整重写 ISO 引导布局。
 原版只读打开；输出是不同 inode 的完整 ISO。共享底层数据块不产生

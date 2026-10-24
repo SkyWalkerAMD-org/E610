@@ -1,0 +1,589 @@
+{
+  "new_baked_iso_count": 41,
+  "existing_adaptations_reused": {
+    "CentOS/CentOS-7.9-x86_64-DVD-2009.iso": "CentOS/CentOS-7.9-x86_64-E610-r2-DVD.iso",
+    "Ubuntu/ubuntu-22.04.3-live-server-amd64.iso": "Ubuntu/ubuntu-22.04.3-live-server-amd64-E610.iso"
+  },
+  "native_original_count": 9,
+  "images": [
+    {
+      "source_iso": "AlmaLinux/AlmaLinux-8.10-x86_64-dvd.iso",
+      "output_iso": "AlmaLinux/AlmaLinux-8.10-x86_64-dvd-E610.iso",
+      "sha256": "dcdf00d11c2618439635b53cda9ff55e9af6ff8d2972d1da9baee964735c1852",
+      "driver_archive_sha256": "45befcb3ea1ebd2b2de3097c1f8edcd859a32ca5c49e17b02ee9e9f9ed418854",
+      "size": 13853130752,
+      "source_sha256": "463fa92155b886e31627f6713e1c2824343762245a914715ffd6f2efc300b7a1",
+      "storage_mode": null,
+      "kernel_abis": [
+        "4.18.0-553.el8_10.x86_64"
+      ],
+      "hardware_e610": "not_available",
+      "software_installation": "in_progress"
+    },
+    {
+      "source_iso": "AlmaLinux/AlmaLinux-9.5-x86_64-dvd.iso",
+      "output_iso": "AlmaLinux/AlmaLinux-9.5-x86_64-dvd-E610.iso",
+      "sha256": "7b2ac7275d5887e7dc4d5f2117ada01f70e09e1c1fe7d6afec0c44e8f44447cc",
+      "driver_archive_sha256": "23e2a044166a9426873655607effb05fbe03c01c383f2a5859293c7a8c8879ac",
+      "size": 11557404672,
+      "source_sha256": "3947accd140a2a1833b1ef2c811f8c0d48cd27624cad343992f86cfabd2474c9",
+      "storage_mode": null,
+      "kernel_abis": [
+        "5.14.0-503.11.1.el9_5.x86_64"
+      ],
+      "hardware_e610": "not_available",
+      "software_installation": "in_progress"
+    },
+    {
+      "source_iso": "CentOS/CentOS-7.6-x86_64-DVD-1810.iso",
+      "output_iso": "CentOS/CentOS-7.6-x86_64-DVD-1810-E610.iso",
+      "sha256": "eac5736b09fa952ab2bf6db2feb9a0e71d0291643c98afcbd9aa02546375ade8",
+      "driver_archive_sha256": "682682119373734cebb2d0fd2dd94844ac8f02992c8a800f744a58ba0d8eb02e",
+      "size": 4666228736,
+      "source_sha256": "6d44331cc4f6c506c7bbe9feb8468fad6c51a88ca1393ca6b8b486ea04bec3c1",
+      "storage_mode": null,
+      "kernel_abis": [
+        "3.10.0-957.el7.x86_64"
+      ],
+      "hardware_e610": "not_available",
+      "software_installation": "in_progress"
+    },
+    {
+      "source_iso": "CentOS/CentOS-8-x86_64-1905-dvd1.iso",
+      "output_iso": "CentOS/CentOS-8-x86_64-1905-dvd1-E610.iso",
+      "sha256": "e4710233ad4b96f93fdbc6603d0f423364786291f7c3a56e8fc6651ef1140ad5",
+      "driver_archive_sha256": "3e11480d805d357bfe02996b771ff6d5346e7bb59b7abdf5621c95363bf01b7d",
+      "size": 7221608448,
+      "source_sha256": "ea17ef71e0df3f6bf1d4bf1fc25bec1a76d1f211c115d39618fe688be34503e8",
+      "storage_mode": null,
+      "kernel_abis": [
+        "4.18.0-80.el8.x86_64"
+      ],
+      "hardware_e610": "not_available",
+      "software_installation": "in_progress"
+    },
+    {
+      "source_iso": "CentOS/CentOS-8.4.2105-x86_64-dvd1.iso",
+      "output_iso": "CentOS/CentOS-8.4.2105-x86_64-dvd1-E610.iso",
+      "sha256": "dac4f52e212f29adeac8ed21973642a70abd0a7127d8e36ef5a823a04ae61112",
+      "driver_archive_sha256": "b62d6927731d78e001a2693ecd2ebbe5a76db920d2f8e0ba366bbcaae498dd53",
+      "size": 10030088192,
+      "source_sha256": "0394ecfa994db75efc1413207d2e5ac67af4f6685b3b896e2837c682221fd6b2",
+      "storage_mode": null,
+      "kernel_abis": [
+        "4.18.0-305.3.1.el8.x86_64"
+      ],
+      "hardware_e610": "not_available",
+      "software_installation": "in_progress"
+    },
+    {
+      "source_iso": "CentOS/CentOS-8.5.2111-x86_64-dvd1.iso",
+      "output_iso": "CentOS/CentOS-8.5.2111-x86_64-dvd1-E610.iso",
+      "sha256": "2443b1f8893f89727bac696d5fa318ecfc3fc69dddf8603102185900b63206f1",
+      "driver_archive_sha256": "def74463fc61058147c4d79d9839d0ada863cd8a1b1d1eefcaa1d3c6ba244cd4",
+      "size": 10900144128,
+      "source_sha256": "3b795863001461d4f670b0dedd02d25296b6d64683faceb8f2b60c53ac5ebb3e",
+      "storage_mode": null,
+      "kernel_abis": [
+        "4.18.0-348.el8.x86_64"
+      ],
+      "hardware_e610": "not_available",
+      "software_installation": "in_progress"
+    },
+    {
+      "source_iso": "CentOS/CentOS-Stream-10-latest-x86_64-dvd1.iso",
+      "output_iso": "CentOS/CentOS-Stream-10-latest-x86_64-dvd1-E610.iso",
+      "sha256": "12c4e0f455c111e790caf72e0cf355dd51bb73b65696efb1bddc9d6040ed75a1",
+      "driver_archive_sha256": "99f7dd5deeeed4d694e87a57b1b4c9fdfac4a7477fd65e337fe83aa2dd022243",
+      "size": 7436500992,
+      "source_sha256": "64f0cdba9c676f533442617457793d3ec1080bb147114da3d3d88a3794f50936",
+      "storage_mode": "full-rewrite-appended-efi",
+      "kernel_abis": [
+        "6.12.0-54.el10.x86_64"
+      ],
+      "hardware_e610": "not_available",
+      "software_installation": "in_progress"
+    },
+    {
+      "source_iso": "CentOS/CentOS-Stream-8-20240101.0-x86_64-dvd1.iso",
+      "output_iso": "CentOS/CentOS-Stream-8-20240101.0-x86_64-dvd1-E610.iso",
+      "sha256": "4a59fbf7e00f53a921b2cc08464d7a62794af34bd64f989aec0f86f11c4d373c",
+      "driver_archive_sha256": "af8b0ce4f103f37d44670c42ebd870f7b496a987357512441e539d94fd49ab91",
+      "size": 13271171072,
+      "source_sha256": "aca9cb090a3e688ccd7c853ffa863c5f1af193141e44d94dc771d27d80442d26",
+      "storage_mode": null,
+      "kernel_abis": [
+        "4.18.0-532.el8.x86_64"
+      ],
+      "hardware_e610": "not_available",
+      "software_installation": "in_progress"
+    },
+    {
+      "source_iso": "CentOS/CentOS-Stream-9-latest-x86_64-dvd1.iso",
+      "output_iso": "CentOS/CentOS-Stream-9-latest-x86_64-dvd1-E610.iso",
+      "sha256": "d05f017db28d09c2669435f142033ed14243a04c8191c0b49eab328146ed6e1e",
+      "driver_archive_sha256": "52b350859cbb49f01ce1528d5de45e8ef770fb14e9396a43d8f29ba248ba1bed",
+      "size": 10456137728,
+      "source_sha256": "8bc733808930869a6a1bddfca7c9180b2ac98e69db6cd888e866f4ddacad9ee9",
+      "storage_mode": null,
+      "kernel_abis": [
+        "5.14.0-383.el9.x86_64"
+      ],
+      "hardware_e610": "not_available",
+      "software_installation": "in_progress"
+    },
+    {
+      "source_iso": "Debian/debian-10.11.0-amd64-DVD-1.iso",
+      "output_iso": "Debian/debian-10.11.0-amd64-DVD-1-E610.iso",
+      "sha256": "028ddd7a2b5eb0c075fbfa841a987d8544681bff7700e3268f6d3415fc599385",
+      "driver_archive_sha256": "32ce9ec666719862b74e7d6c89f5e86448564a4dfdab1d251ee493df739c89dd",
+      "size": 4011130880,
+      "source_sha256": "ee63ab538efbf73e6e3e363395599d52b9981655c2327e560c2cbcf3a93095ec",
+      "storage_mode": null,
+      "kernel_abis": [
+        "4.19.0-18-amd64"
+      ],
+      "hardware_e610": "not_available",
+      "software_installation": "in_progress"
+    },
+    {
+      "source_iso": "Debian/debian-11.4.0-amd64-DVD-1.iso",
+      "output_iso": "Debian/debian-11.4.0-amd64-DVD-1-E610.iso",
+      "sha256": "0b1ac5210099f340e86197855a9016f3923039c6a38ebe201f87b89bbfa24fe7",
+      "driver_archive_sha256": "a64c8fd347e1ff01bc2023a23dfd5e22f0f938b07ac4340fb2b5dc811a17e420",
+      "size": 4022927360,
+      "source_sha256": "32c7ce39dbc977ce655869c7bd744db39fb84dff1e2493ad56ce05c3540dfc40",
+      "storage_mode": null,
+      "kernel_abis": [
+        "5.10.0-16-amd64"
+      ],
+      "hardware_e610": "not_available",
+      "software_installation": "in_progress"
+    },
+    {
+      "source_iso": "Debian/debian-12.15.0-amd64-DVD-1.iso",
+      "output_iso": "Debian/debian-12.15.0-amd64-DVD-1-E610.iso",
+      "sha256": "4fe13311a79f882543c57b5fcea0cf9ec8f524ea89ab3a2101297628338f65be",
+      "driver_archive_sha256": "63048df9b7a7f62966c7cf6aa3b0c61213586aa3d09fb4d056eeece2ed426d34",
+      "size": 4127522816,
+      "source_sha256": "484e1250d3dd29c8d7f83f30a08efb22f922830b8fe9f1e299e89a21c895955f",
+      "storage_mode": null,
+      "kernel_abis": [
+        "6.1.0-50-amd64"
+      ],
+      "hardware_e610": "not_available",
+      "software_installation": "in_progress"
+    },
+    {
+      "source_iso": "Debian/debian-12.5.0-amd64-DVD-1.iso",
+      "output_iso": "Debian/debian-12.5.0-amd64-DVD-1-E610.iso",
+      "sha256": "a06c9a531150562bbdfbc45db032d9be70e332b9cb8e32bd64fedee6d600abbe",
+      "driver_archive_sha256": "c95d1e285ca6dc931aeeca4f3aab853a2313c6d0902afb2db0f0d19fec472d0e",
+      "size": 4130865152,
+      "source_sha256": "1e8037d1d208b4d6a2f4ff54cacc8df8f6e51ec326be8598661a1d9988839158",
+      "storage_mode": null,
+      "kernel_abis": [
+        "6.1.0-18-amd64"
+      ],
+      "hardware_e610": "not_available",
+      "software_installation": "in_progress"
+    },
+    {
+      "source_iso": "Debian/debian-12.8.0-amd64-DVD-1.iso",
+      "output_iso": "Debian/debian-12.8.0-amd64-DVD-1-E610.iso",
+      "sha256": "619d9570e8196ebdcd6dedf7a3c9763fd11f4bbf32815fea4c0c1547c426871a",
+      "driver_archive_sha256": "e926b39ce794bb728dd8e1ea65c5edb318648cb22ddbf49c5c8b936072a91848",
+      "size": 4136239104,
+      "source_sha256": "eadbecad1801066111cf2c654a76cdc49fb6ee8d7683dd4492eeadb8cb5348ba",
+      "storage_mode": null,
+      "kernel_abis": [
+        "6.1.0-27-amd64"
+      ],
+      "hardware_e610": "not_available",
+      "software_installation": "in_progress"
+    },
+    {
+      "source_iso": "Debian/debian-13.0.0-amd64-DVD-1.iso",
+      "output_iso": "Debian/debian-13.0.0-amd64-DVD-1-E610.iso",
+      "sha256": "73b1101aeb73367876914007f7f944656a8a0da08932f69c5771cffa43f008c5",
+      "driver_archive_sha256": "aa05c744bd5709a60dff4bac406c5b46fd3748190b432b06ec1c54d75a5ea409",
+      "size": 4152950784,
+      "source_sha256": "c998fe73ca8dbce235f189a2a92873bf0a8f70b0982f361629a18a0f38b6fe92",
+      "storage_mode": null,
+      "kernel_abis": [
+        "6.12.38+deb13-amd64"
+      ],
+      "hardware_e610": "not_available",
+      "software_installation": "in_progress"
+    },
+    {
+      "source_iso": "Debian/debian-13.4.0-amd64-DVD-1.iso",
+      "output_iso": "Debian/debian-13.4.0-amd64-DVD-1-E610.iso",
+      "sha256": "e25a6cc15a7679679b7ecd8de9e358289f9625110923bbeacdb4908cebd3273a",
+      "driver_archive_sha256": "4922e135acb9be438a49accb7c9837c65c0d180da1b5b121e94ed4b4b17ee1d4",
+      "size": 4144300032,
+      "source_sha256": "e41eeaffa4fdd64fbf07fc8b0d18a1b5f15ba9743a72c222008f8fd0b6463355",
+      "storage_mode": null,
+      "kernel_abis": [
+        "6.12.73+deb13-amd64"
+      ],
+      "hardware_e610": "not_available",
+      "software_installation": "in_progress"
+    },
+    {
+      "source_iso": "RHEL/rhel-8.0-x86_64-dvd.iso",
+      "output_iso": "RHEL/rhel-8.0-x86_64-dvd-E610.iso",
+      "sha256": "e0cc8d0dd1dff6895211825b77c1b79966e1e024237c06369966f51c50539e16",
+      "driver_archive_sha256": "7199d01b552bd442183e07faebdf73d27c7ecc9143e9b604996180a706a51afb",
+      "size": 7189102592,
+      "source_sha256": "005d4f88fff6d63b0fc01a10822380ef52570edd8834321de7be63002cc6cc43",
+      "storage_mode": null,
+      "kernel_abis": [
+        "4.18.0-80.el8.x86_64"
+      ],
+      "hardware_e610": "not_available",
+      "software_installation": "in_progress"
+    },
+    {
+      "source_iso": "RHEL/rhel-8.1-x86_64-dvd.iso",
+      "output_iso": "RHEL/rhel-8.1-x86_64-dvd-E610.iso",
+      "sha256": "13ba9a9ea7d7702dac003a63b97543dbb4c22b2279980feb3e37480577226372",
+      "driver_archive_sha256": "8140bcfb2cecac60e4e01c50aeeecfd107fb41c36925002400810d5c0c69241b",
+      "size": 7939620864,
+      "source_sha256": "2323ad44d75df1a1e83048a34e196ddfedcd6c0f6c49ea59bf08095e3bb9ef65",
+      "storage_mode": null,
+      "kernel_abis": [
+        "4.18.0-147.el8.x86_64"
+      ],
+      "hardware_e610": "not_available",
+      "software_installation": "in_progress"
+    },
+    {
+      "source_iso": "RHEL/rhel-8.10-x86_64-dvd.iso",
+      "output_iso": "RHEL/rhel-8.10-x86_64-dvd-E610.iso",
+      "sha256": "5551f83981c060287923628e983747e71a77eb9ce0e6b237d1c87f723ae38556",
+      "driver_archive_sha256": "520d69359709b2917d018333b377164334c4c44bf1956ada8188822be1398e74",
+      "size": 14351597568,
+      "source_sha256": "9b3c8e31bc2cdd2de9cf96abb3726347f5840ff3b176270647b3e66639af291b",
+      "storage_mode": null,
+      "kernel_abis": [
+        "4.18.0-553.el8_10.x86_64"
+      ],
+      "hardware_e610": "not_available",
+      "software_installation": "in_progress"
+    },
+    {
+      "source_iso": "RHEL/rhel-8.6-x86_64-dvd.iso",
+      "output_iso": "RHEL/rhel-8.6-x86_64-dvd-E610.iso",
+      "sha256": "f2905ff6511d851ecfe06d2670328efab1cbfc3b4927e2a7e29df178a5f6d52f",
+      "driver_archive_sha256": "4f69a06b4f5050fd9157078e5fa4039de0508d38e621b845c25928b1b1bc8da1",
+      "size": 11574312960,
+      "source_sha256": "8cb0dfacc94b789933253d5583a2fb7afce26d38d75be7c204975fe20b7bdf71",
+      "storage_mode": null,
+      "kernel_abis": [
+        "4.18.0-372.9.1.el8.x86_64"
+      ],
+      "hardware_e610": "not_available",
+      "software_installation": "in_progress"
+    },
+    {
+      "source_iso": "RHEL/rhel-9.2-x86_64-dvd.iso",
+      "output_iso": "RHEL/rhel-9.2-x86_64-dvd-E610.iso",
+      "sha256": "1f6459e8c23447b28867dae6531c77aa076ae319bb97eb43707b677dd8cf060f",
+      "driver_archive_sha256": "5b491b97b653c27ce69599d19f3869b6fcf3ea7536b328299993a431600eac0d",
+      "size": 9722658816,
+      "source_sha256": "a18bf014e2cb5b6b9cee3ea09ccfd7bc2a84e68e09487bb119a98aa0e3563ac2",
+      "storage_mode": "reflink-grow",
+      "kernel_abis": [
+        "5.14.0-284.11.1.el9_2.x86_64"
+      ],
+      "hardware_e610": "not_available",
+      "software_installation": "in_progress"
+    },
+    {
+      "source_iso": "RHEL/rhel-9.4-x86_64-dvd.iso",
+      "output_iso": "RHEL/rhel-9.4-x86_64-dvd-E610.iso",
+      "sha256": "9a4ed3c47e35b7fcd88f591de09eae482290b45f804ea04176fcb651074f2128",
+      "driver_archive_sha256": "6f139bacfcc0b7684d2dca8e153305f868ff229a848e9dc653de460ce6140fbe",
+      "size": 11218583552,
+      "source_sha256": "398561d7b66f1a4bf23664f4aa8f2cfbb3641aa2f01a320068e86bd1fc0e9076",
+      "storage_mode": "reflink-grow",
+      "kernel_abis": [
+        "5.14.0-427.13.1.el9_4.x86_64"
+      ],
+      "hardware_e610": "not_available",
+      "software_installation": "in_progress"
+    },
+    {
+      "source_iso": "RHEL/rhel-server-7.6-x86_64-dvd.iso",
+      "output_iso": "RHEL/rhel-server-7.6-x86_64-dvd-E610.iso",
+      "sha256": "d6988b0022e57531c0e092ee721faa0fe1d243c0a1e4357735d3a8e19ff1c521",
+      "driver_archive_sha256": "7c37cc6beffb655425c4552f03a1f136abba4b3dad345b28ad95c59a54e2a6da",
+      "size": 4577361920,
+      "source_sha256": "60a0be5aeed1f08f2bb7599a578c89ec134b4016cd62a8604b29f15d543a469c",
+      "storage_mode": "reflink-grow",
+      "kernel_abis": [
+        "3.10.0-957.el7.x86_64"
+      ],
+      "hardware_e610": "not_available",
+      "software_installation": "in_progress"
+    },
+    {
+      "source_iso": "RHEL/rhel-server-7.9-x86_64-dvd.iso",
+      "output_iso": "RHEL/rhel-server-7.9-x86_64-dvd-E610.iso",
+      "sha256": "4dbe696444fdf0558fa3ee886c37697f8be1b0e2e2bb08f3df93bd17e8627ee4",
+      "driver_archive_sha256": "9fb690dfe9552351e6fca879286e4162d269ae8b88e64404c49398af3981ce25",
+      "size": 4613144576,
+      "source_sha256": "19d653ce2f04f202e79773a0cbeda82070e7527557e814ebbce658773fbe8191",
+      "storage_mode": "reflink-grow",
+      "kernel_abis": [
+        "3.10.0-1160.el7.x86_64"
+      ],
+      "hardware_e610": "not_available",
+      "software_installation": "in_progress"
+    },
+    {
+      "source_iso": "Rocky/Rocky-10.0-x86_64-dvd1.iso",
+      "output_iso": "Rocky/Rocky-10.0-x86_64-dvd1-E610.iso",
+      "sha256": "16be19ccd38ede41dabfe7bbb76c2a732bb4b4d27581a0d73662814b8fc615b8",
+      "driver_archive_sha256": "d94c5f65f5e068526012762fac7f0aa7a93bfdd121a155c060195a21ecbee5b6",
+      "size": 7683506176,
+      "source_sha256": "678ea3e1eea6f5d6c220c46fab34f5e0add260e7b64f0139ee3b9f7b7ca7d2f3",
+      "storage_mode": "full-rewrite-appended-efi",
+      "kernel_abis": [
+        "6.12.0-55.12.1.el10_0.x86_64"
+      ],
+      "hardware_e610": "not_available",
+      "software_installation": "in_progress"
+    },
+    {
+      "source_iso": "Rocky/Rocky-8.10-x86_64-dvd.iso",
+      "output_iso": "Rocky/Rocky-8.10-x86_64-dvd-E610.iso",
+      "sha256": "52e0aa16029b9a57596733a96e9675fdb9120620fcabf48fe8376349e8de0b2d",
+      "driver_archive_sha256": "17d09c9438bf9887d5fc8eefa8aaf018bcc42df308f59c6363a680e3b1f3ef97",
+      "size": 14331412480,
+      "source_sha256": "642ada8a49dbeca8cca6543b31196019ee3d649a0163b5db0e646c7409364eeb",
+      "storage_mode": "reflink-grow",
+      "kernel_abis": [
+        "4.18.0-553.el8_10.x86_64"
+      ],
+      "hardware_e610": "not_available",
+      "software_installation": "in_progress"
+    },
+    {
+      "source_iso": "Rocky/Rocky-8.6-x86_64-dvd1.iso",
+      "output_iso": "Rocky/Rocky-8.6-x86_64-dvd1-E610.iso",
+      "sha256": "dc79e386796eb648e13eb6145f2de5fcf177e9ad174d62d45e59a0237f2b958d",
+      "driver_archive_sha256": "b8e664f9e171ec886b75bbd947f17a2353555b545d495d3e59c2118b853374a1",
+      "size": 11323244544,
+      "source_sha256": "1d48e0af63d07ff4e582a1819348e714c694e7fd33207f48879c2bc806960786",
+      "storage_mode": "reflink-grow",
+      "kernel_abis": [
+        "4.18.0-372.9.1.el8.x86_64"
+      ],
+      "hardware_e610": "not_available",
+      "software_installation": "in_progress"
+    },
+    {
+      "source_iso": "Rocky/Rocky-8.7-x86_64-dvd1.iso",
+      "output_iso": "Rocky/Rocky-8.7-x86_64-dvd1-E610.iso",
+      "sha256": "b34617f759d92a253bd20017e3cc74f63e41f5a59a77dbb21328e7f01dcf84c0",
+      "driver_archive_sha256": "d6d95490add0027cca513e8805bc0501c933d70cfeaad6f438074b38591c19f2",
+      "size": 12241469440,
+      "source_sha256": "4827dce1c58560d3ca470a5053e8d86ba059cbb77cfca3b5f6a5863d2aac5b84",
+      "storage_mode": "reflink-grow",
+      "kernel_abis": [
+        "4.18.0-425.3.1.el8.x86_64"
+      ],
+      "hardware_e610": "not_available",
+      "software_installation": "in_progress"
+    },
+    {
+      "source_iso": "Rocky/Rocky-8.9-x86_64-dvd1.iso",
+      "output_iso": "Rocky/Rocky-8.9-x86_64-dvd1-E610.iso",
+      "sha256": "297ce13ea2b0163f5ee7e027869eb6cdca86e5cf439a0feb6d86177ff5a47660",
+      "driver_archive_sha256": "5b31e5beeb78a9ab27ed9b9daecb67b3443ab17ba01ad44ba1d3dae53b1f315e",
+      "size": 13851099136,
+      "source_sha256": "1abe38fd11279879e3e7658ef748c1ef06ee763351a53bb424020ec053c50d0b",
+      "storage_mode": "reflink-grow",
+      "kernel_abis": [
+        "4.18.0-513.5.1.el8_9.x86_64"
+      ],
+      "hardware_e610": "not_available",
+      "software_installation": "in_progress"
+    },
+    {
+      "source_iso": "Rocky/Rocky-9.1-x86_64-dvd.iso",
+      "output_iso": "Rocky/Rocky-9.1-x86_64-dvd-E610.iso",
+      "sha256": "dcdd42e183673200f9995ae6dc9a693ef8ef61d840820feb09dffa63a6f3c73d",
+      "driver_archive_sha256": "5a916d5863a6f9fae98ebd3af605d601def86c78afe86f7d6baeb8da34919fec",
+      "size": 9126936576,
+      "source_sha256": "69fa71d69a07c9d204da81767719a2af183d113bc87ee5f533f98a194a5a1f8a",
+      "storage_mode": "reflink-grow",
+      "kernel_abis": [
+        "5.14.0-162.6.1.el9_1.x86_64"
+      ],
+      "hardware_e610": "not_available",
+      "software_installation": "in_progress"
+    },
+    {
+      "source_iso": "Rocky/Rocky-9.2-x86_64-dvd.iso",
+      "output_iso": "Rocky/Rocky-9.2-x86_64-dvd-E610.iso",
+      "sha256": "fe1a2e426f00f7d2aae5c8bf8b858d627c4241d277bc29b4a5d03c3c5e10574a",
+      "driver_archive_sha256": "d29ace70888ef48c2eba6aa465efe47dbb33e75331e067b45fcd766c03b63e6c",
+      "size": 9582673920,
+      "source_sha256": "cd43bb2671472471b1fc0a7a30113dfc9a56831516c46f4dbd12fb43bb4286d2",
+      "storage_mode": "reflink-grow",
+      "kernel_abis": [
+        "5.14.0-284.11.1.el9_2.x86_64"
+      ],
+      "hardware_e610": "not_available",
+      "software_installation": "in_progress"
+    },
+    {
+      "source_iso": "Rocky/Rocky-9.3-x86_64-dvd.iso",
+      "output_iso": "Rocky/Rocky-9.3-x86_64-dvd-E610.iso",
+      "sha256": "26366074361b078c6da07817fc1115e20c584a887caf95d541d9c103a7f67ff1",
+      "driver_archive_sha256": "3996a617fbdd3d1fbfd97475300838492a8e19b82fe5badc67a321413519bd93",
+      "size": 10643505152,
+      "source_sha256": "82441c7c9630b313d4183106231b08e192382bb6c7827e62acd467a749f030b9",
+      "storage_mode": "reflink-grow",
+      "kernel_abis": [
+        "5.14.0-362.8.1.el9_3.x86_64"
+      ],
+      "hardware_e610": "not_available",
+      "software_installation": "in_progress"
+    },
+    {
+      "source_iso": "Rocky/Rocky-9.4-x86_64-dvd.iso",
+      "output_iso": "Rocky/Rocky-9.4-x86_64-dvd-E610.iso",
+      "sha256": "39320944195aae9722540c699f2e832b5ea6a294748ff2b81acaece381b5dfd7",
+      "driver_archive_sha256": "d992fdaa5c3dffc16c68635aeadf43c0616749b38ed058782c034e2d521e47ee",
+      "size": 11049369600,
+      "source_sha256": "e20445907daefbfcdb05ba034e9fc4cf91e0e8dc164ebd7266ffb8fdd8ea99e7",
+      "storage_mode": "reflink-grow",
+      "kernel_abis": [
+        "5.14.0-427.13.1.el9_4.x86_64"
+      ],
+      "hardware_e610": "not_available",
+      "software_installation": "in_progress"
+    },
+    {
+      "source_iso": "Rocky/Rocky-9.5-x86_64-dvd.iso",
+      "output_iso": "Rocky/Rocky-9.5-x86_64-dvd-E610.iso",
+      "sha256": "655fe9bb03bebf35e0b7fb52c7328431bbe8071d811b9541544b5d8eec90cd0d",
+      "driver_archive_sha256": "769302a5a68256603a8c44e0345a9fc31d488e2eb75a0b09b94c7d96c7ed03b6",
+      "size": 11684872192,
+      "source_sha256": "ba60c3653640b5747610ddfb4d09520529bef2d1d83c1feb86b0c84dff31e04e",
+      "storage_mode": "reflink-grow",
+      "kernel_abis": [
+        "5.14.0-503.14.1.el9_5.x86_64"
+      ],
+      "hardware_e610": "not_available",
+      "software_installation": "in_progress"
+    },
+    {
+      "source_iso": "Ubuntu/ubuntu-20.04.3-live-server-amd64.iso",
+      "output_iso": "Ubuntu/ubuntu-20.04.3-live-server-amd64-E610.iso",
+      "sha256": "11c897f44012faa1efa579d36c7cd105b0edaab2196f37c7f7a629bf5996cbb0",
+      "driver_archive_sha256": "230795c079f8dae3feef159a33ed10b4c86c39822ee9d8d9586495d8ee5dc2b9",
+      "size": 1469513728,
+      "source_sha256": "f8e3086f3cea0fb3fefb29937ab5ed9d19e767079633960ccb50e76153effc98",
+      "storage_mode": "reflink-grow",
+      "kernel_abis": [
+        "5.11.0-27-generic",
+        "5.4.0-81-generic"
+      ],
+      "hardware_e610": "not_available",
+      "software_installation": "in_progress"
+    },
+    {
+      "source_iso": "Ubuntu/ubuntu-22.04.4-desktop-amd64.iso",
+      "output_iso": "Ubuntu/ubuntu-22.04.4-desktop-amd64-E610.iso",
+      "sha256": "f7ef3b1f0c3f3e98ec2efdaa29617201ca7b749942090929fffd1d2decbcefc1",
+      "driver_archive_sha256": "b2275f32cc7bfd418916cf9d91bfa6f0472e59ce3c652c479d7f52d901f828ff",
+      "size": 5041356800,
+      "source_sha256": "071d5a534c1a2d61d64c6599c47c992c778e08b054daecc2540d57929e4ab1fd",
+      "storage_mode": "full-rewrite-appended-efi",
+      "kernel_abis": [
+        "6.5.0-18-generic"
+      ],
+      "hardware_e610": "not_available",
+      "software_installation": "in_progress"
+    },
+    {
+      "source_iso": "Ubuntu/ubuntu-22.04.4-live-server-amd64.iso",
+      "output_iso": "Ubuntu/ubuntu-22.04.4-live-server-amd64-E610.iso",
+      "sha256": "af2d5d15af53596a4ae8166928729fb4e8b95301ac9ca72725ab016e775f4aed",
+      "driver_archive_sha256": "abd2da6b2c5fb3a013748581fae88915d793e85c2c7816a6c615ec47d9cdbb4c",
+      "size": 2395930624,
+      "source_sha256": "45f873de9f8cb637345d6e66a583762730bbea30277ef7b32c9c3bd6700a32b2",
+      "storage_mode": "reflink-grow",
+      "kernel_abis": [
+        "5.15.0-94-generic",
+        "6.5.0-18-generic"
+      ],
+      "hardware_e610": "not_available",
+      "software_installation": "in_progress"
+    },
+    {
+      "source_iso": "Ubuntu/ubuntu-22.04.5-live-server-amd64.iso",
+      "output_iso": "Ubuntu/ubuntu-22.04.5-live-server-amd64-E610.iso",
+      "sha256": "687d838c484c95a5b795f5ac145e494ac43e66dc20a1adf73b7166fddfa468d5",
+      "driver_archive_sha256": "aa6b67342ef213557d4f2056dea96ae8e66fe034ceb76bf69996d073d595aa2f",
+      "size": 2433613824,
+      "source_sha256": "9bc6028870aef3f74f4e16b900008179e78b130e6b0b9a140635434a46aa98b0",
+      "storage_mode": "reflink-grow",
+      "kernel_abis": [
+        "5.15.0-119-generic",
+        "6.8.0-40-generic"
+      ],
+      "hardware_e610": "not_available",
+      "software_installation": "in_progress"
+    },
+    {
+      "source_iso": "Ubuntu/ubuntu-24.04-live-server-amd64.iso",
+      "output_iso": "Ubuntu/ubuntu-24.04-live-server-amd64-E610.iso",
+      "sha256": "d859e9c4cf380b595b27e0766814c74f6108c09cf93560c9153c78c33fa255b3",
+      "driver_archive_sha256": "fcb197897e0bab6ce16a900837fa8cdf9bfe2da9bd9e9c278a0866ce469056f7",
+      "size": 2850095104,
+      "source_sha256": "8762f7e74e4d64d72fceb5f70682e6b069932deedb4949c6975d0f0fe0a91be3",
+      "storage_mode": "reflink-grow",
+      "kernel_abis": [
+        "6.8.0-31-generic"
+      ],
+      "hardware_e610": "not_available",
+      "software_installation": "in_progress"
+    },
+    {
+      "source_iso": "Ubuntu/ubuntu-24.04.3-live-server-amd64.iso",
+      "output_iso": "Ubuntu/ubuntu-24.04.3-live-server-amd64-E610.iso",
+      "sha256": "e560534db0748bcf6cf349b221a06aee3be0823ce9518dfd611daf83f16da3e1",
+      "driver_archive_sha256": "584dff36edee91663781863820e5a5d1766e6129c07cfbb5c71d15bd40e2bcd1",
+      "size": 3504603136,
+      "source_sha256": "37d869b4a4d0a216a516b47d26f2c8266fe0267231aa5e469d13f2df30ff45ba",
+      "storage_mode": "reflink-grow",
+      "kernel_abis": [
+        "6.14.0-27-generic",
+        "6.8.0-71-generic"
+      ],
+      "hardware_e610": "not_available",
+      "software_installation": "in_progress"
+    },
+    {
+      "source_iso": "Ubuntu/ubuntu-24.10-live-server-amd64.iso",
+      "output_iso": "Ubuntu/ubuntu-24.10-live-server-amd64-E610.iso",
+      "sha256": "e12eeaa6ef25a7c8045dc1b3815cba51db683d6ac3fa00bd2b191fd28edc10fb",
+      "driver_archive_sha256": "7a754ec0942f0828b5e1c635624e4e1df785377a3112f71323fbe8cc2ba28009",
+      "size": 2194735104,
+      "source_sha256": "4fce7c02a5e5dbe3426da4aa0f8b7845e9a36aff29c5884d206a08e51b2c4c47",
+      "storage_mode": "reflink-grow",
+      "kernel_abis": [
+        "6.11.0-8-generic"
+      ],
+      "hardware_e610": "not_available",
+      "software_installation": "in_progress"
+    }
+  ],
+  "production_published": false
+}
