@@ -1,0 +1,762 @@
+{
+  "audit_date": "2026-10-24",
+  "hardware_e610": "unavailable; no physical link, DHCP or traffic certification",
+  "counting": "43 original ISOs need injection; 2 have existing adapted alternatives; 41 new ISOs",
+  "images": [
+    {
+      "iso": "AlmaLinux/AlmaLinux-8.10-x86_64-dvd.iso",
+      "status": "needs-injection",
+      "boot_paths": [
+        "/images/pxeboot/initrd.img"
+      ],
+      "kernels": [
+        "4.18.0-553.el8_10.x86_64"
+      ]
+    },
+    {
+      "iso": "AlmaLinux/AlmaLinux-9.5-x86_64-dvd.iso",
+      "status": "needs-injection",
+      "boot_paths": [
+        "/images/pxeboot/initrd.img"
+      ],
+      "kernels": [
+        "5.14.0-503.11.1.el9_5.x86_64"
+      ]
+    },
+    {
+      "iso": "CentOS/CentOS-7.6-x86_64-DVD-1810.iso",
+      "status": "needs-injection",
+      "boot_paths": [
+        "/images/pxeboot/initrd.img"
+      ],
+      "kernels": [
+        "3.10.0-957.el7.x86_64"
+      ]
+    },
+    {
+      "iso": "CentOS/CentOS-7.9-x86_64-DVD-2009.iso",
+      "status": "needs-injection",
+      "boot_paths": [
+        "/images/pxeboot/initrd.img"
+      ],
+      "kernels": [
+        "3.10.0-1160.el7.x86_64"
+      ]
+    },
+    {
+      "iso": "CentOS/CentOS-7.9-x86_64-E610-r2-DVD.iso",
+      "status": "existing-adapted",
+      "boot_paths": [
+        "/images/pxeboot/initrd.img"
+      ],
+      "kernels": [
+        "3.10.0-1160.el7.x86_64"
+      ]
+    },
+    {
+      "iso": "CentOS/CentOS-8-x86_64-1905-dvd1.iso",
+      "status": "needs-injection",
+      "boot_paths": [
+        "/images/pxeboot/initrd.img"
+      ],
+      "kernels": [
+        "4.18.0-80.el8.x86_64"
+      ]
+    },
+    {
+      "iso": "CentOS/CentOS-8.4.2105-x86_64-dvd1.iso",
+      "status": "needs-injection",
+      "boot_paths": [
+        "/images/pxeboot/initrd.img"
+      ],
+      "kernels": [
+        "4.18.0-305.3.1.el8.x86_64"
+      ]
+    },
+    {
+      "iso": "CentOS/CentOS-8.5.2111-x86_64-dvd1.iso",
+      "status": "needs-injection",
+      "boot_paths": [
+        "/images/pxeboot/initrd.img"
+      ],
+      "kernels": [
+        "4.18.0-348.el8.x86_64"
+      ]
+    },
+    {
+      "iso": "CentOS/CentOS-Stream-10-latest-x86_64-dvd1.iso",
+      "status": "needs-injection",
+      "boot_paths": [
+        "/images/pxeboot/initrd.img"
+      ],
+      "kernels": [
+        "6.12.0-54.el10.x86_64"
+      ]
+    },
+    {
+      "iso": "CentOS/CentOS-Stream-8-20240101.0-x86_64-dvd1.iso",
+      "status": "needs-injection",
+      "boot_paths": [
+        "/images/pxeboot/initrd.img"
+      ],
+      "kernels": [
+        "4.18.0-532.el8.x86_64"
+      ]
+    },
+    {
+      "iso": "CentOS/CentOS-Stream-9-latest-x86_64-dvd1.iso",
+      "status": "needs-injection",
+      "boot_paths": [
+        "/images/pxeboot/initrd.img"
+      ],
+      "kernels": [
+        "5.14.0-383.el9.x86_64"
+      ]
+    },
+    {
+      "iso": "Debian/debian-10.11.0-amd64-DVD-1.iso",
+      "status": "needs-injection",
+      "boot_paths": [
+        "/install.amd/initrd.gz",
+        "/install.amd/gtk/initrd.gz"
+      ],
+      "kernels": [
+        "4.19.0-18-amd64"
+      ]
+    },
+    {
+      "iso": "Debian/debian-11.4.0-amd64-DVD-1.iso",
+      "status": "needs-injection",
+      "boot_paths": [
+        "/install.amd/initrd.gz",
+        "/install.amd/gtk/initrd.gz"
+      ],
+      "kernels": [
+        "5.10.0-16-amd64"
+      ]
+    },
+    {
+      "iso": "Debian/debian-12.15.0-amd64-DVD-1.iso",
+      "status": "needs-injection",
+      "boot_paths": [
+        "/install.amd/initrd.gz",
+        "/install.amd/gtk/initrd.gz"
+      ],
+      "kernels": [
+        "6.1.0-50-amd64"
+      ]
+    },
+    {
+      "iso": "Debian/debian-12.5.0-amd64-DVD-1.iso",
+      "status": "needs-injection",
+      "boot_paths": [
+        "/install.amd/initrd.gz",
+        "/install.amd/gtk/initrd.gz"
+      ],
+      "kernels": [
+        "6.1.0-18-amd64"
+      ]
+    },
+    {
+      "iso": "Debian/debian-12.8.0-amd64-DVD-1.iso",
+      "status": "needs-injection",
+      "boot_paths": [
+        "/install.amd/initrd.gz",
+        "/install.amd/gtk/initrd.gz"
+      ],
+      "kernels": [
+        "6.1.0-27-amd64"
+      ]
+    },
+    {
+      "iso": "Debian/debian-13.0.0-amd64-DVD-1.iso",
+      "status": "needs-injection",
+      "boot_paths": [
+        "/install.amd/initrd.gz",
+        "/install.amd/gtk/initrd.gz"
+      ],
+      "kernels": [
+        "6.12.38+deb13-amd64"
+      ]
+    },
+    {
+      "iso": "Debian/debian-13.4.0-amd64-DVD-1.iso",
+      "status": "needs-injection",
+      "boot_paths": [
+        "/install.amd/initrd.gz",
+        "/install.amd/gtk/initrd.gz"
+      ],
+      "kernels": [
+        "6.12.73+deb13-amd64"
+      ]
+    },
+    {
+      "iso": "RHEL/rhel-8.0-x86_64-dvd.iso",
+      "status": "needs-injection",
+      "boot_paths": [
+        "/images/pxeboot/initrd.img"
+      ],
+      "kernels": [
+        "4.18.0-80.el8.x86_64"
+      ]
+    },
+    {
+      "iso": "RHEL/rhel-8.1-x86_64-dvd.iso",
+      "status": "needs-injection",
+      "boot_paths": [
+        "/images/pxeboot/initrd.img"
+      ],
+      "kernels": [
+        "4.18.0-147.el8.x86_64"
+      ]
+    },
+    {
+      "iso": "RHEL/rhel-8.10-x86_64-dvd.iso",
+      "status": "needs-injection",
+      "boot_paths": [
+        "/images/pxeboot/initrd.img"
+      ],
+      "kernels": [
+        "4.18.0-553.el8_10.x86_64"
+      ]
+    },
+    {
+      "iso": "RHEL/rhel-8.6-x86_64-dvd.iso",
+      "status": "needs-injection",
+      "boot_paths": [
+        "/images/pxeboot/initrd.img"
+      ],
+      "kernels": [
+        "4.18.0-372.9.1.el8.x86_64"
+      ]
+    },
+    {
+      "iso": "RHEL/rhel-9.2-x86_64-dvd.iso",
+      "status": "needs-injection",
+      "boot_paths": [
+        "/images/pxeboot/initrd.img"
+      ],
+      "kernels": [
+        "5.14.0-284.11.1.el9_2.x86_64"
+      ]
+    },
+    {
+      "iso": "RHEL/rhel-9.4-x86_64-dvd.iso",
+      "status": "needs-injection",
+      "boot_paths": [
+        "/images/pxeboot/initrd.img"
+      ],
+      "kernels": [
+        "5.14.0-427.13.1.el9_4.x86_64"
+      ]
+    },
+    {
+      "iso": "RHEL/rhel-server-7.6-x86_64-dvd.iso",
+      "status": "needs-injection",
+      "boot_paths": [
+        "/images/pxeboot/initrd.img"
+      ],
+      "kernels": [
+        "3.10.0-957.el7.x86_64"
+      ]
+    },
+    {
+      "iso": "RHEL/rhel-server-7.9-x86_64-dvd.iso",
+      "status": "needs-injection",
+      "boot_paths": [
+        "/images/pxeboot/initrd.img"
+      ],
+      "kernels": [
+        "3.10.0-1160.el7.x86_64"
+      ]
+    },
+    {
+      "iso": "Rocky/Rocky-10.0-x86_64-dvd1.iso",
+      "status": "needs-injection",
+      "boot_paths": [
+        "/images/pxeboot/initrd.img"
+      ],
+      "kernels": [
+        "6.12.0-55.12.1.el10_0.x86_64"
+      ]
+    },
+    {
+      "iso": "Rocky/Rocky-10.2-x86_64-dvd1.iso",
+      "status": "boot-native",
+      "boot_paths": [
+        "/images/pxeboot/initrd.img"
+      ],
+      "kernels": [
+        "6.12.0-211.16.1.el10_2.0.1.x86_64"
+      ]
+    },
+    {
+      "iso": "Rocky/Rocky-8.10-x86_64-dvd.iso",
+      "status": "needs-injection",
+      "boot_paths": [
+        "/images/pxeboot/initrd.img"
+      ],
+      "kernels": [
+        "4.18.0-553.el8_10.x86_64"
+      ]
+    },
+    {
+      "iso": "Rocky/Rocky-8.6-x86_64-dvd1.iso",
+      "status": "needs-injection",
+      "boot_paths": [
+        "/images/pxeboot/initrd.img"
+      ],
+      "kernels": [
+        "4.18.0-372.9.1.el8.x86_64"
+      ]
+    },
+    {
+      "iso": "Rocky/Rocky-8.7-x86_64-dvd1.iso",
+      "status": "needs-injection",
+      "boot_paths": [
+        "/images/pxeboot/initrd.img"
+      ],
+      "kernels": [
+        "4.18.0-425.3.1.el8.x86_64"
+      ]
+    },
+    {
+      "iso": "Rocky/Rocky-8.9-x86_64-dvd1.iso",
+      "status": "needs-injection",
+      "boot_paths": [
+        "/images/pxeboot/initrd.img"
+      ],
+      "kernels": [
+        "4.18.0-513.5.1.el8_9.x86_64"
+      ]
+    },
+    {
+      "iso": "Rocky/Rocky-9.1-x86_64-dvd.iso",
+      "status": "needs-injection",
+      "boot_paths": [
+        "/images/pxeboot/initrd.img"
+      ],
+      "kernels": [
+        "5.14.0-162.6.1.el9_1.x86_64"
+      ]
+    },
+    {
+      "iso": "Rocky/Rocky-9.2-x86_64-dvd.iso",
+      "status": "needs-injection",
+      "boot_paths": [
+        "/images/pxeboot/initrd.img"
+      ],
+      "kernels": [
+        "5.14.0-284.11.1.el9_2.x86_64"
+      ]
+    },
+    {
+      "iso": "Rocky/Rocky-9.3-x86_64-dvd.iso",
+      "status": "needs-injection",
+      "boot_paths": [
+        "/images/pxeboot/initrd.img"
+      ],
+      "kernels": [
+        "5.14.0-362.8.1.el9_3.x86_64"
+      ]
+    },
+    {
+      "iso": "Rocky/Rocky-9.4-x86_64-dvd.iso",
+      "status": "needs-injection",
+      "boot_paths": [
+        "/images/pxeboot/initrd.img"
+      ],
+      "kernels": [
+        "5.14.0-427.13.1.el9_4.x86_64"
+      ]
+    },
+    {
+      "iso": "Rocky/Rocky-9.5-x86_64-dvd.iso",
+      "status": "needs-injection",
+      "boot_paths": [
+        "/images/pxeboot/initrd.img"
+      ],
+      "kernels": [
+        "5.14.0-503.14.1.el9_5.x86_64"
+      ]
+    },
+    {
+      "iso": "Rocky/Rocky-9.6-x86_64-dvd.iso",
+      "status": "boot-native",
+      "boot_paths": [
+        "/images/pxeboot/initrd.img"
+      ],
+      "kernels": [
+        "5.14.0-570.17.1.el9_6.x86_64"
+      ]
+    },
+    {
+      "iso": "Rocky/Rocky-9.7-x86_64-dvd.iso",
+      "status": "boot-native",
+      "boot_paths": [
+        "/images/pxeboot/initrd.img"
+      ],
+      "kernels": [
+        "5.14.0-611.5.1.el9_7.x86_64"
+      ]
+    },
+    {
+      "iso": "Rocky/Rocky-9.8-x86_64-dvd.iso",
+      "status": "boot-native",
+      "boot_paths": [
+        "/images/pxeboot/initrd.img"
+      ],
+      "kernels": [
+        "5.14.0-687.10.1.el9_8.0.1.x86_64"
+      ]
+    },
+    {
+      "iso": "Ubuntu/ubuntu-20.04.3-live-server-amd64.iso",
+      "status": "needs-injection",
+      "boot_paths": [
+        "/casper/hwe-initrd",
+        "/casper/initrd"
+      ],
+      "kernels": [
+        "5.11.0-27-generic",
+        "5.4.0-81-generic"
+      ]
+    },
+    {
+      "iso": "Ubuntu/ubuntu-22.04.3-live-server-amd64-E610.iso",
+      "status": "existing-adapted",
+      "boot_paths": [
+        "/casper/hwe-initrd",
+        "/casper/initrd"
+      ],
+      "kernels": [
+        "5.15.0-78-generic",
+        "6.2.0-26-generic"
+      ]
+    },
+    {
+      "iso": "Ubuntu/ubuntu-22.04.3-live-server-amd64.iso",
+      "status": "needs-injection",
+      "boot_paths": [
+        "/casper/hwe-initrd",
+        "/casper/initrd"
+      ],
+      "kernels": [
+        "5.15.0-78-generic",
+        "6.2.0-26-generic"
+      ]
+    },
+    {
+      "iso": "Ubuntu/ubuntu-22.04.4-desktop-amd64.iso",
+      "status": "needs-injection",
+      "boot_paths": [
+        "/casper/initrd"
+      ],
+      "kernels": [
+        "6.5.0-18-generic"
+      ]
+    },
+    {
+      "iso": "Ubuntu/ubuntu-22.04.4-live-server-amd64.iso",
+      "status": "needs-injection",
+      "boot_paths": [
+        "/casper/hwe-initrd",
+        "/casper/initrd"
+      ],
+      "kernels": [
+        "5.15.0-94-generic",
+        "6.5.0-18-generic"
+      ]
+    },
+    {
+      "iso": "Ubuntu/ubuntu-22.04.5-live-server-amd64.iso",
+      "status": "needs-injection",
+      "boot_paths": [
+        "/casper/hwe-initrd",
+        "/casper/initrd"
+      ],
+      "kernels": [
+        "5.15.0-119-generic",
+        "6.8.0-40-generic"
+      ]
+    },
+    {
+      "iso": "Ubuntu/ubuntu-24.04-live-server-amd64.iso",
+      "status": "needs-injection",
+      "boot_paths": [
+        "/casper/initrd"
+      ],
+      "kernels": [
+        "6.8.0-31-generic"
+      ]
+    },
+    {
+      "iso": "Ubuntu/ubuntu-24.04.3-live-server-amd64.iso",
+      "status": "needs-injection",
+      "boot_paths": [
+        "/casper/hwe-initrd",
+        "/casper/initrd"
+      ],
+      "kernels": [
+        "6.14.0-27-generic",
+        "6.8.0-71-generic"
+      ]
+    },
+    {
+      "iso": "Ubuntu/ubuntu-24.04.4-live-server-amd64.iso",
+      "status": "boot-native",
+      "boot_paths": [
+        "/casper/hwe-initrd",
+        "/casper/initrd"
+      ],
+      "kernels": [
+        "6.17.0-14-generic",
+        "6.8.0-100-generic"
+      ]
+    },
+    {
+      "iso": "Ubuntu/ubuntu-24.04.5-live-server-amd64.iso",
+      "status": "boot-native",
+      "boot_paths": [
+        "/casper/hwe-initrd",
+        "/casper/initrd"
+      ],
+      "kernels": [
+        "6.8.0-139-generic",
+        "7.0.0-31-generic"
+      ]
+    },
+    {
+      "iso": "Ubuntu/ubuntu-24.10-live-server-amd64.iso",
+      "status": "needs-injection",
+      "boot_paths": [
+        "/casper/initrd"
+      ],
+      "kernels": [
+        "6.11.0-8-generic"
+      ]
+    },
+    {
+      "iso": "Ubuntu/ubuntu-25.04-live-server-amd64.iso",
+      "status": "boot-native",
+      "boot_paths": [
+        "/casper/initrd"
+      ],
+      "kernels": [
+        "6.14.0-15-generic"
+      ]
+    },
+    {
+      "iso": "Ubuntu/ubuntu-26.04-desktop-amd64.iso",
+      "status": "boot-native",
+      "boot_paths": [
+        "/casper/initrd"
+      ],
+      "kernels": [
+        "7.0.0-14-generic"
+      ]
+    },
+    {
+      "iso": "Ubuntu/ubuntu-26.04-live-server-amd64.iso",
+      "status": "boot-native",
+      "boot_paths": [
+        "/casper/initrd"
+      ],
+      "kernels": [
+        "7.0.0-14-generic"
+      ]
+    }
+  ],
+  "exact_kernel_load_tests": [
+    {
+      "kernel": "4.18.0-553.el8_10.x86_64",
+      "status": "passed",
+      "module_sha256": "8907816cda6ef7757898b7378cb85d0d0092b051ea1f1c85db45df6e317e2d8f"
+    },
+    {
+      "kernel": "5.14.0-503.11.1.el9_5.x86_64",
+      "status": "passed",
+      "module_sha256": "f6700911aadaf1415f07acec2799c13494bb085650c2d4a998b90ff16cf9d070"
+    },
+    {
+      "kernel": "3.10.0-957.el7.x86_64",
+      "status": "passed",
+      "module_sha256": "8881368ab70f2425b641d4e35fc086aa944439e96a6f748aefb43a71e5f8e61a"
+    },
+    {
+      "kernel": "3.10.0-1160.el7.x86_64",
+      "status": "passed",
+      "module_sha256": "4139a6de9813f4b686e980165e4dfb108f36df015dbe855fbaa014a750aaa341"
+    },
+    {
+      "kernel": "4.18.0-80.el8.x86_64",
+      "status": "passed",
+      "module_sha256": "98b9d7352c4a12ee264145d62ef29738325837b9fa51205c7d56bac1a4f3b0bb"
+    },
+    {
+      "kernel": "4.18.0-305.3.1.el8.x86_64",
+      "status": "passed",
+      "module_sha256": "c132a56577cb1733dfea37d2342da08e095d5724e2817abdbc8cf033d0564dce"
+    },
+    {
+      "kernel": "4.18.0-348.el8.x86_64",
+      "status": "passed",
+      "module_sha256": "bd07e2199689a23f9f53549348d1609257045affee32f9ae9eb17a4b7b27eafa"
+    },
+    {
+      "kernel": "6.12.0-54.el10.x86_64",
+      "status": "passed",
+      "module_sha256": "7cef70f5378f6634c44ef08b25d768f318d9094ee822314bb64111d39b155035"
+    },
+    {
+      "kernel": "4.18.0-532.el8.x86_64",
+      "status": "passed",
+      "module_sha256": "78764b7f3103d6421561d302d2195158e012482e67e50c908c87deb63ea4579d"
+    },
+    {
+      "kernel": "5.14.0-383.el9.x86_64",
+      "status": "passed",
+      "module_sha256": "7bc7f44d38bacba32c03e74df3c8c1c611bea13c50c0200762048fb8a6d1b1ac"
+    },
+    {
+      "kernel": "4.19.0-18-amd64",
+      "status": "passed",
+      "module_sha256": "298a6db1771e13bb6b6986eadd8b4289050baf9a221f9eeac5d5989202ed62b1"
+    },
+    {
+      "kernel": "5.10.0-16-amd64",
+      "status": "passed",
+      "module_sha256": "4f34cf5abce917ca87d296a873fc64b1ccbc8601efa38f813b2bbb2115f69243"
+    },
+    {
+      "kernel": "6.1.0-50-amd64",
+      "status": "passed",
+      "module_sha256": "df2df9aad84ff30d9e58093e52d06bbb7cb156cee16c16d97e2a7b785151c80f"
+    },
+    {
+      "kernel": "6.1.0-18-amd64",
+      "status": "passed",
+      "module_sha256": "58f5b1190968a4c046b5b1a95f1d4aa6d4a53b50b60a64b9c5c745e69ca3971d"
+    },
+    {
+      "kernel": "6.1.0-27-amd64",
+      "status": "passed",
+      "module_sha256": "85672bc280089b95a75296d0f1ec596007d4b43dbaf9c1e8235889ba7896208b"
+    },
+    {
+      "kernel": "6.12.38+deb13-amd64",
+      "status": "passed",
+      "module_sha256": "d875f4304d69512be0ced798965c994e690f474431ac8f67e34259a0422fb9f9"
+    },
+    {
+      "kernel": "6.12.73+deb13-amd64",
+      "status": "passed",
+      "module_sha256": "b26c4202336ae03fe3c25e9f448dd995926973739fb066edef3cb962cec169a3"
+    },
+    {
+      "kernel": "4.18.0-147.el8.x86_64",
+      "status": "passed",
+      "module_sha256": "3fca25df75c14f0ea87b5931f5bad218647b7bc0af8db014352bfd7f23e4ae07"
+    },
+    {
+      "kernel": "4.18.0-372.9.1.el8.x86_64",
+      "status": "passed",
+      "module_sha256": "26218cc80372bd831c8ee489fd682620943e3d8d9e11607ce5478fcfdb3a42cf"
+    },
+    {
+      "kernel": "5.14.0-284.11.1.el9_2.x86_64",
+      "status": "passed",
+      "module_sha256": "b3a17f5ed17c0cd9917fe2ab194e723e3d32e3d16951fd26d250464161bf7be6"
+    },
+    {
+      "kernel": "5.14.0-427.13.1.el9_4.x86_64",
+      "status": "passed",
+      "module_sha256": "b541c58f6acfc2bbc83cdf052cc2dd07aeba4ad6e6c5c1b0e1b75e5bc93578a1"
+    },
+    {
+      "kernel": "6.12.0-55.12.1.el10_0.x86_64",
+      "status": "passed",
+      "module_sha256": "788a76e650985f44f63cdd1460b0cc82bd64d8e66c4557372a9373d00a088b01"
+    },
+    {
+      "kernel": "4.18.0-425.3.1.el8.x86_64",
+      "status": "passed",
+      "module_sha256": "e434fa0c5ea547fef3b1b41a947c5b8b0b81c09373a9535d6f2aac742ef429d8"
+    },
+    {
+      "kernel": "4.18.0-513.5.1.el8_9.x86_64",
+      "status": "passed",
+      "module_sha256": "2b1c89d9d7aff1bddf901bfa26d3edf49a0de737e2fac49b81f3f22f1ee42425"
+    },
+    {
+      "kernel": "5.14.0-162.6.1.el9_1.x86_64",
+      "status": "passed",
+      "module_sha256": "c716b3da4237f9cf9556fc1201c25ccb57cffc32c91418e293b3a99809736211"
+    },
+    {
+      "kernel": "5.14.0-362.8.1.el9_3.x86_64",
+      "status": "passed",
+      "module_sha256": "576484de9e1cf5762ba8a520ae66ef47cfb26298fb8c8695525ed7367cb93701"
+    },
+    {
+      "kernel": "5.14.0-503.14.1.el9_5.x86_64",
+      "status": "passed",
+      "module_sha256": "1c0776d503849855fc61de9b6871dffee7f32fc45ba642b65f61f7b547f74296"
+    },
+    {
+      "kernel": "5.11.0-27-generic",
+      "status": "passed",
+      "module_sha256": "331b8d1c9f25f093f89014d654f07842acf7968546466aa927f110da00f8d96f"
+    },
+    {
+      "kernel": "5.4.0-81-generic",
+      "status": "passed",
+      "module_sha256": "51a69cfd11013496bab0c36568af81d58e860cec1ab330bded3954248f90ac64"
+    },
+    {
+      "kernel": "6.2.0-26-generic",
+      "status": "passed",
+      "module_sha256": "7daa9dbb73d77a03a5d128bebda13abd626da2ce4fa917e509a25442215defbb"
+    },
+    {
+      "kernel": "5.15.0-78-generic",
+      "status": "passed",
+      "module_sha256": "43afae311f0a21975f327e809c6136deb56eda51d73ca972c0f4d88a292ab78f"
+    },
+    {
+      "kernel": "6.5.0-18-generic",
+      "status": "passed",
+      "module_sha256": "7b6ef7a2d2120c25b034c689276ad1d09b5f02d681965bf6b4a5b5912b76ce7e"
+    },
+    {
+      "kernel": "5.15.0-94-generic",
+      "status": "passed",
+      "module_sha256": "49cf79a488ae140d263d40dcf633c9fa451133c2ab4c26cf00daecb6abe8b57f"
+    },
+    {
+      "kernel": "6.8.0-40-generic",
+      "status": "passed",
+      "module_sha256": "7cd58899aa000f1e7f711caf14ff0a331b074b4c3df909a3ef279f940607f27c"
+    },
+    {
+      "kernel": "5.15.0-119-generic",
+      "status": "passed",
+      "module_sha256": "7d1aa04592df6b9adb7ca50538b917cebc31e6da28e3af76af80180fd6b8b8d4"
+    },
+    {
+      "kernel": "6.8.0-31-generic",
+      "status": "passed",
+      "module_sha256": "846e8c45328507d3474019611e5ce4f1c40a7f20875b2b05c4645a15358ca9e1"
+    },
+    {
+      "kernel": "6.8.0-71-generic",
+      "status": "passed",
+      "module_sha256": "43b6a06c96c7f27ea7ab9792f34e3a3ba5955c77550be2157ae2375f6ea72260"
+    },
+    {
+      "kernel": "6.11.0-8-generic",
+      "status": "passed",
+      "module_sha256": "7db47e86b70bb398ab18bfbc6be71829775a05b9c7a1a8dec71b67672a07fe60"
+    }
+  ]
+}

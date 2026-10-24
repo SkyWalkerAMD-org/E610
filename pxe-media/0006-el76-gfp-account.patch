@@ -1,0 +1,14 @@
+--- a/src/kcompat_xarray.h
++++ b/src/kcompat_xarray.h
+@@ -21,6 +21,11 @@
+ #include <linux/err.h>
+ #include <linux/export.h>
+ #include <linux/gfp.h>
++/* EL 7.6 uses the old name for memcg-accounted kernel allocations. */
++#ifndef __GFP_ACCOUNT
++#define __GFP_ACCOUNT __GFP_KMEMCG
++#endif
++
+ #include <linux/kconfig.h>
+ #include <linux/limits.h>
+ #include <linux/list.h>

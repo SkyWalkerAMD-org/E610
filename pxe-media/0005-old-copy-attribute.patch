@@ -1,0 +1,14 @@
+--- a/src/kcompat.h
++++ b/src/kcompat.h
+@@ -55,6 +55,11 @@
+ 
+ #include <linux/module.h>
+ 
++/* Old distribution headers omit the optional compiler copy attribute. */
++#ifndef __copy
++#define __copy(symbol)
++#endif
++
+ /* any of the features that need to alter module_init */
+ #if !defined(HAVE_XARRAY_API)
+ 
