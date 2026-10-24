@@ -17,10 +17,12 @@ media/ 下的 tar.gz 是中间产物，不能代替最终 ISO 或安装验证。
   tmpfs 上层的临时 overlay，保留原版模块，确保 live root 仍选中 E610。
 - EL 将驱动、索引与钩子合入原始主 CPIO，避免 iVentoy 丢弃追加归档；
   Anaconda 切换根目录前也建立 live 模块覆盖。CentOS 7.9 最终成品通过
-  隔离真实 iVentoy UEFI 启动与 ixgbe 6.4.5 加载，28 个 EL 成品重测中。
+  隔离真实 iVentoy UEFI 启动与 ixgbe 6.4.5 加载，28 个 EL 成品的
+  56 项完整手动/PXE 安装及再次硬盘启动均通过。
   EL10 的 initramfs 不含 chroot 时，调用 live 根目录自身的 loader、库
   和 chroot；不混入构建宿主机二进制。修复后的 CentOS Stream 10 已通过
-  无硬盘 UEFI 光盘启动至 Anaconda，完整安装结果另行记录。
+  实际隔离 iVentoy 网启至 Anaconda，并完成自动安装、控制器 installed
+  回报及两次硬盘启动。
   EL10 的 dracut/hooks 是指向 /var/lib 的链接；新增文件先解析原有
   符号链接后写入规范路径，避免 iVentoy BusyBox cpio 延迟创建链接时
   与新增目录冲突并中断后续解包。重建后的 CentOS Stream 10 和
@@ -41,7 +43,15 @@ Ubuntu 22.04.3 专用版本的完整安装钩子，不增加重复系统版本�
 E610 不能代替逐个启动内核与手动安装持久化验收。旧成功镜像保留备份。
 38 个精确内核模块已在对应原版内核的隔离虚拟机中完成加载/卸载检查。
 这是 ABI 验证，不能代替真实 E610 的探测、链路、DHCP 和收发验收。
-当前无 E610 实卡；各 ISO 的完整手动/PXE 安装验收仍须以逐项结果为准。
+43 个最终 ISO 的完整手动/PXE 软件安装验收为 86/86 项通过：
+AlmaLinux 4 项、CentOS 16 项、Debian 14 项、RHEL 16 项、Rocky 20 项、
+Ubuntu 16 项。每项记录最终 ISO SHA256、安装内核、驱动加载与再次启动、
+root/admin 密码 SSH、CLI 和内核/更新策略检查。手动路径由测试专用答案
+驱动原生安装器，交付 ISO 不携带自动答案；先验收驱动持久化，再执行 setup。
+逐镜像矩阵采用可丢弃 KVM/UEFI 和生成的 PXE 配置，不是 86 次物理网启；
+真实 iVentoy 传输抽检及 CentOS Stream 10 完整自动安装另外记录。
+当前无 E610 实卡，物理探测、链路、DHCP/收发及 Secure Boot 信任登记待验收。
+现场发布状态以 baked-catalog.json 的 production_published 为准。
 
 构建环境
 Linux x86_64、Python >=3.9、xorriso、cpio、kmod、gzip/xz/zstd、
@@ -96,4 +106,7 @@ Module.symvers 和对应编译器。脚本需要 /root/E610-DISPOSABLE-BUILDER
 已通过官方 ISO 的精确字节范围取得对应软件包，并核对介质 MD5 与包 SHA256。
 构建器仅在存在明确修复清单、文件路径/大小和固定 SHA256 全部匹配时，
 将该包替换到 E610 输出镜像；原版和其审计证据保留。该可选修复不是驱动注入，
-也不替换内核。最终介质及完整安装仍需重新验收。
+也不替换内核。最终介质全量 MD5、完整手动/PXE 安装和重启检查均通过。
+Ubuntu 24.04.3 完整安装使用普通 GA 6.8.0-71 入口；该 ISO 的离线 pool
+不带 HWE 6.14.0-27 内核 DEB。早期 QA 答案误指定 HWE 后失败，已修正
+测试选择并重跑，未修改 ISO 或驱动；不宣称该版本 HWE 目标系统已验收。

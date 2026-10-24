@@ -812,5 +812,1432 @@
       "status": "passed",
       "module_sha256": "7db47e86b70bb398ab18bfbc6be71829775a05b9c7a1a8dec71b67672a07fe60"
     }
-  ]
+  ],
+  "audit_scope": "The images array describes original media before injection; baked_images contains acceptance of the final outputs.",
+  "baked_images": [
+    {
+      "iso": "AlmaLinux/AlmaLinux-8.10-x86_64-dvd.iso",
+      "sha256": "30e0347b23b4976fa4519851d16d3196128b94f5a977c3971de2072eb5f91db0",
+      "manual_preload_sha256": "94e0003aa3c2af38bef405a80a4265a68bc6ba02bb1d99b13ea8b9bc3cfc4c5e",
+      "kernel_abis": [
+        "4.18.0-553.el8_10.x86_64"
+      ],
+      "installation_cases": {
+        "manual": {
+          "status": "passed",
+          "firmware": "uefi",
+          "kernel": "4.18.0-553.el8_10.x86_64",
+          "driver_load": "passed",
+          "reboot": "passed",
+          "root_admin_ssh": "passed",
+          "policy": "passed",
+          "cli": "passed"
+        },
+        "pxe": {
+          "status": "passed",
+          "firmware": "uefi",
+          "kernel": "4.18.0-553.el8_10.x86_64",
+          "driver_load": "passed",
+          "reboot": "passed",
+          "root_admin_ssh": "passed",
+          "policy": "passed",
+          "cli": "passed"
+        }
+      }
+    },
+    {
+      "iso": "AlmaLinux/AlmaLinux-9.5-x86_64-dvd.iso",
+      "sha256": "8c8efcf6c382a016f4f18cdf26275f1f811d0367ec845e11e7114a7af4ade3f3",
+      "manual_preload_sha256": "94e0003aa3c2af38bef405a80a4265a68bc6ba02bb1d99b13ea8b9bc3cfc4c5e",
+      "kernel_abis": [
+        "5.14.0-503.11.1.el9_5.x86_64"
+      ],
+      "installation_cases": {
+        "manual": {
+          "status": "passed",
+          "firmware": "uefi",
+          "kernel": "5.14.0-503.11.1.el9_5.x86_64",
+          "driver_load": "passed",
+          "reboot": "passed",
+          "root_admin_ssh": "passed",
+          "policy": "passed",
+          "cli": "passed"
+        },
+        "pxe": {
+          "status": "passed",
+          "firmware": "uefi",
+          "kernel": "5.14.0-503.11.1.el9_5.x86_64",
+          "driver_load": "passed",
+          "reboot": "passed",
+          "root_admin_ssh": "passed",
+          "policy": "passed",
+          "cli": "passed"
+        }
+      }
+    },
+    {
+      "iso": "CentOS/CentOS-7.6-x86_64-DVD-1810.iso",
+      "sha256": "c67363a8e0733093be94bf4ab485b436c948a73ce6c9f562020fe446691b0b12",
+      "manual_preload_sha256": "94e0003aa3c2af38bef405a80a4265a68bc6ba02bb1d99b13ea8b9bc3cfc4c5e",
+      "kernel_abis": [
+        "3.10.0-957.el7.x86_64"
+      ],
+      "installation_cases": {
+        "manual": {
+          "status": "passed",
+          "firmware": "uefi",
+          "kernel": "3.10.0-957.el7.x86_64",
+          "driver_load": "passed",
+          "reboot": "passed",
+          "root_admin_ssh": "passed",
+          "policy": "passed",
+          "cli": "passed"
+        },
+        "pxe": {
+          "status": "passed",
+          "firmware": "uefi",
+          "kernel": "3.10.0-957.el7.x86_64",
+          "driver_load": "passed",
+          "reboot": "passed",
+          "root_admin_ssh": "passed",
+          "policy": "passed",
+          "cli": "passed"
+        }
+      }
+    },
+    {
+      "iso": "CentOS/CentOS-7.9-x86_64-DVD-2009.iso",
+      "sha256": "2ea38a0ffe838288264ed3fdc1ec0df9937b5297a788ec3d0a226b0dd63c2de9",
+      "manual_preload_sha256": "94e0003aa3c2af38bef405a80a4265a68bc6ba02bb1d99b13ea8b9bc3cfc4c5e",
+      "kernel_abis": [
+        "3.10.0-1160.el7.x86_64"
+      ],
+      "installation_cases": {
+        "manual": {
+          "status": "passed",
+          "firmware": "uefi",
+          "kernel": "3.10.0-1160.el7.x86_64",
+          "driver_load": "passed",
+          "reboot": "passed",
+          "root_admin_ssh": "passed",
+          "policy": "passed",
+          "cli": "passed"
+        },
+        "pxe": {
+          "status": "passed",
+          "firmware": "uefi",
+          "kernel": "3.10.0-1160.el7.x86_64",
+          "driver_load": "passed",
+          "reboot": "passed",
+          "root_admin_ssh": "passed",
+          "policy": "passed",
+          "cli": "passed"
+        }
+      }
+    },
+    {
+      "iso": "CentOS/CentOS-8-x86_64-1905-dvd1.iso",
+      "sha256": "2f45966aa91d0aa8f25912bda053f957020e9f00330884dcb60122dc9f9dec77",
+      "manual_preload_sha256": "94e0003aa3c2af38bef405a80a4265a68bc6ba02bb1d99b13ea8b9bc3cfc4c5e",
+      "kernel_abis": [
+        "4.18.0-80.el8.x86_64"
+      ],
+      "installation_cases": {
+        "manual": {
+          "status": "passed",
+          "firmware": "uefi",
+          "kernel": "4.18.0-80.el8.x86_64",
+          "driver_load": "passed",
+          "reboot": "passed",
+          "root_admin_ssh": "passed",
+          "policy": "passed",
+          "cli": "passed"
+        },
+        "pxe": {
+          "status": "passed",
+          "firmware": "uefi",
+          "kernel": "4.18.0-80.el8.x86_64",
+          "driver_load": "passed",
+          "reboot": "passed",
+          "root_admin_ssh": "passed",
+          "policy": "passed",
+          "cli": "passed"
+        }
+      }
+    },
+    {
+      "iso": "CentOS/CentOS-8.4.2105-x86_64-dvd1.iso",
+      "sha256": "5acadd1d701d13578adc1410ce53493bd3a3065fae63c05b36277e5f6f867cce",
+      "manual_preload_sha256": "94e0003aa3c2af38bef405a80a4265a68bc6ba02bb1d99b13ea8b9bc3cfc4c5e",
+      "kernel_abis": [
+        "4.18.0-305.3.1.el8.x86_64"
+      ],
+      "installation_cases": {
+        "manual": {
+          "status": "passed",
+          "firmware": "uefi",
+          "kernel": "4.18.0-305.3.1.el8.x86_64",
+          "driver_load": "passed",
+          "reboot": "passed",
+          "root_admin_ssh": "passed",
+          "policy": "passed",
+          "cli": "passed"
+        },
+        "pxe": {
+          "status": "passed",
+          "firmware": "uefi",
+          "kernel": "4.18.0-305.3.1.el8.x86_64",
+          "driver_load": "passed",
+          "reboot": "passed",
+          "root_admin_ssh": "passed",
+          "policy": "passed",
+          "cli": "passed"
+        }
+      }
+    },
+    {
+      "iso": "CentOS/CentOS-8.5.2111-x86_64-dvd1.iso",
+      "sha256": "15e295f2842ad359dd93e1aa4bf6e3e41ad3b42e42efa243034b7c835fad458c",
+      "manual_preload_sha256": "94e0003aa3c2af38bef405a80a4265a68bc6ba02bb1d99b13ea8b9bc3cfc4c5e",
+      "kernel_abis": [
+        "4.18.0-348.el8.x86_64"
+      ],
+      "installation_cases": {
+        "manual": {
+          "status": "passed",
+          "firmware": "uefi",
+          "kernel": "4.18.0-348.el8.x86_64",
+          "driver_load": "passed",
+          "reboot": "passed",
+          "root_admin_ssh": "passed",
+          "policy": "passed",
+          "cli": "passed"
+        },
+        "pxe": {
+          "status": "passed",
+          "firmware": "uefi",
+          "kernel": "4.18.0-348.el8.x86_64",
+          "driver_load": "passed",
+          "reboot": "passed",
+          "root_admin_ssh": "passed",
+          "policy": "passed",
+          "cli": "passed"
+        }
+      }
+    },
+    {
+      "iso": "CentOS/CentOS-Stream-10-latest-x86_64-dvd1.iso",
+      "sha256": "2fcb6eed6de0322688cc69239c233dcbf82625f6690686c3cd3fe58d22321144",
+      "manual_preload_sha256": "94e0003aa3c2af38bef405a80a4265a68bc6ba02bb1d99b13ea8b9bc3cfc4c5e",
+      "kernel_abis": [
+        "6.12.0-54.el10.x86_64"
+      ],
+      "installation_cases": {
+        "manual": {
+          "status": "passed",
+          "firmware": "uefi",
+          "kernel": "6.12.0-54.el10.x86_64",
+          "driver_load": "passed",
+          "reboot": "passed",
+          "root_admin_ssh": "passed",
+          "policy": "passed",
+          "cli": "passed"
+        },
+        "pxe": {
+          "status": "passed",
+          "firmware": "uefi",
+          "kernel": "6.12.0-54.el10.x86_64",
+          "driver_load": "passed",
+          "reboot": "passed",
+          "root_admin_ssh": "passed",
+          "policy": "passed",
+          "cli": "passed"
+        }
+      }
+    },
+    {
+      "iso": "CentOS/CentOS-Stream-8-20240101.0-x86_64-dvd1.iso",
+      "sha256": "13adb43c864702cba910f45fc2052f32a1ec9d3ae28933b9f1985cfc711e2ac3",
+      "manual_preload_sha256": "94e0003aa3c2af38bef405a80a4265a68bc6ba02bb1d99b13ea8b9bc3cfc4c5e",
+      "kernel_abis": [
+        "4.18.0-532.el8.x86_64"
+      ],
+      "installation_cases": {
+        "manual": {
+          "status": "passed",
+          "firmware": "uefi",
+          "kernel": "4.18.0-532.el8.x86_64",
+          "driver_load": "passed",
+          "reboot": "passed",
+          "root_admin_ssh": "passed",
+          "policy": "passed",
+          "cli": "passed"
+        },
+        "pxe": {
+          "status": "passed",
+          "firmware": "uefi",
+          "kernel": "4.18.0-532.el8.x86_64",
+          "driver_load": "passed",
+          "reboot": "passed",
+          "root_admin_ssh": "passed",
+          "policy": "passed",
+          "cli": "passed"
+        }
+      }
+    },
+    {
+      "iso": "CentOS/CentOS-Stream-9-latest-x86_64-dvd1.iso",
+      "sha256": "1831c8307a0fdd910843990e0c8f3bba336876015b15d56fa90ea909be09e7af",
+      "manual_preload_sha256": "94e0003aa3c2af38bef405a80a4265a68bc6ba02bb1d99b13ea8b9bc3cfc4c5e",
+      "kernel_abis": [
+        "5.14.0-383.el9.x86_64"
+      ],
+      "installation_cases": {
+        "manual": {
+          "status": "passed",
+          "firmware": "uefi",
+          "kernel": "5.14.0-383.el9.x86_64",
+          "driver_load": "passed",
+          "reboot": "passed",
+          "root_admin_ssh": "passed",
+          "policy": "passed",
+          "cli": "passed"
+        },
+        "pxe": {
+          "status": "passed",
+          "firmware": "uefi",
+          "kernel": "5.14.0-383.el9.x86_64",
+          "driver_load": "passed",
+          "reboot": "passed",
+          "root_admin_ssh": "passed",
+          "policy": "passed",
+          "cli": "passed"
+        }
+      }
+    },
+    {
+      "iso": "Debian/debian-10.11.0-amd64-DVD-1.iso",
+      "sha256": "1c593641edf2f63af8b12dd6599f29af74cc4d61b4a8a7d0a91ac5cc00ee65ed",
+      "manual_preload_sha256": "94e0003aa3c2af38bef405a80a4265a68bc6ba02bb1d99b13ea8b9bc3cfc4c5e",
+      "kernel_abis": [
+        "4.19.0-18-amd64"
+      ],
+      "installation_cases": {
+        "manual": {
+          "status": "passed",
+          "firmware": "uefi",
+          "kernel": "4.19.0-18-amd64",
+          "driver_load": "passed",
+          "reboot": "passed",
+          "root_admin_ssh": "passed",
+          "policy": "passed",
+          "cli": "passed"
+        },
+        "pxe": {
+          "status": "passed",
+          "firmware": "uefi",
+          "kernel": "4.19.0-18-amd64",
+          "driver_load": "passed",
+          "reboot": "passed",
+          "root_admin_ssh": "passed",
+          "policy": "passed",
+          "cli": "passed"
+        }
+      }
+    },
+    {
+      "iso": "Debian/debian-11.4.0-amd64-DVD-1.iso",
+      "sha256": "89624364418571b2f4e46bbd772683bbba2978cc10528673ce91133cdf6c0a66",
+      "manual_preload_sha256": "94e0003aa3c2af38bef405a80a4265a68bc6ba02bb1d99b13ea8b9bc3cfc4c5e",
+      "kernel_abis": [
+        "5.10.0-16-amd64"
+      ],
+      "installation_cases": {
+        "manual": {
+          "status": "passed",
+          "firmware": "uefi",
+          "kernel": "5.10.0-16-amd64",
+          "driver_load": "passed",
+          "reboot": "passed",
+          "root_admin_ssh": "passed",
+          "policy": "passed",
+          "cli": "passed"
+        },
+        "pxe": {
+          "status": "passed",
+          "firmware": "uefi",
+          "kernel": "5.10.0-16-amd64",
+          "driver_load": "passed",
+          "reboot": "passed",
+          "root_admin_ssh": "passed",
+          "policy": "passed",
+          "cli": "passed"
+        }
+      }
+    },
+    {
+      "iso": "Debian/debian-12.15.0-amd64-DVD-1.iso",
+      "sha256": "dd2b9a6d67442674ee911f930a782c20e5f7a6f2c8bfff092138e73e54ebce68",
+      "manual_preload_sha256": "94e0003aa3c2af38bef405a80a4265a68bc6ba02bb1d99b13ea8b9bc3cfc4c5e",
+      "kernel_abis": [
+        "6.1.0-50-amd64"
+      ],
+      "installation_cases": {
+        "manual": {
+          "status": "passed",
+          "firmware": "uefi",
+          "kernel": "6.1.0-50-amd64",
+          "driver_load": "passed",
+          "reboot": "passed",
+          "root_admin_ssh": "passed",
+          "policy": "passed",
+          "cli": "passed"
+        },
+        "pxe": {
+          "status": "passed",
+          "firmware": "uefi",
+          "kernel": "6.1.0-50-amd64",
+          "driver_load": "passed",
+          "reboot": "passed",
+          "root_admin_ssh": "passed",
+          "policy": "passed",
+          "cli": "passed"
+        }
+      }
+    },
+    {
+      "iso": "Debian/debian-12.5.0-amd64-DVD-1.iso",
+      "sha256": "ede7b0827e45bef183d60a19fa51b5d304a28c5995fa30933ece64070b350058",
+      "manual_preload_sha256": "94e0003aa3c2af38bef405a80a4265a68bc6ba02bb1d99b13ea8b9bc3cfc4c5e",
+      "kernel_abis": [
+        "6.1.0-18-amd64"
+      ],
+      "installation_cases": {
+        "manual": {
+          "status": "passed",
+          "firmware": "uefi",
+          "kernel": "6.1.0-18-amd64",
+          "driver_load": "passed",
+          "reboot": "passed",
+          "root_admin_ssh": "passed",
+          "policy": "passed",
+          "cli": "passed"
+        },
+        "pxe": {
+          "status": "passed",
+          "firmware": "uefi",
+          "kernel": "6.1.0-18-amd64",
+          "driver_load": "passed",
+          "reboot": "passed",
+          "root_admin_ssh": "passed",
+          "policy": "passed",
+          "cli": "passed"
+        }
+      }
+    },
+    {
+      "iso": "Debian/debian-12.8.0-amd64-DVD-1.iso",
+      "sha256": "d85bfedfeb0b3347f53b123ec3b4f03105a86ef826967f4e021d4ae206482b33",
+      "manual_preload_sha256": "94e0003aa3c2af38bef405a80a4265a68bc6ba02bb1d99b13ea8b9bc3cfc4c5e",
+      "kernel_abis": [
+        "6.1.0-27-amd64"
+      ],
+      "installation_cases": {
+        "manual": {
+          "status": "passed",
+          "firmware": "uefi",
+          "kernel": "6.1.0-27-amd64",
+          "driver_load": "passed",
+          "reboot": "passed",
+          "root_admin_ssh": "passed",
+          "policy": "passed",
+          "cli": "passed"
+        },
+        "pxe": {
+          "status": "passed",
+          "firmware": "uefi",
+          "kernel": "6.1.0-27-amd64",
+          "driver_load": "passed",
+          "reboot": "passed",
+          "root_admin_ssh": "passed",
+          "policy": "passed",
+          "cli": "passed"
+        }
+      }
+    },
+    {
+      "iso": "Debian/debian-13.0.0-amd64-DVD-1.iso",
+      "sha256": "e71b44362717db512520cc6f7b118afaa3abd2e24e3df143d130c9214bdd0291",
+      "manual_preload_sha256": "94e0003aa3c2af38bef405a80a4265a68bc6ba02bb1d99b13ea8b9bc3cfc4c5e",
+      "kernel_abis": [
+        "6.12.38+deb13-amd64"
+      ],
+      "installation_cases": {
+        "manual": {
+          "status": "passed",
+          "firmware": "uefi",
+          "kernel": "6.12.38+deb13-amd64",
+          "driver_load": "passed",
+          "reboot": "passed",
+          "root_admin_ssh": "passed",
+          "policy": "passed",
+          "cli": "passed"
+        },
+        "pxe": {
+          "status": "passed",
+          "firmware": "uefi",
+          "kernel": "6.12.38+deb13-amd64",
+          "driver_load": "passed",
+          "reboot": "passed",
+          "root_admin_ssh": "passed",
+          "policy": "passed",
+          "cli": "passed"
+        }
+      }
+    },
+    {
+      "iso": "Debian/debian-13.4.0-amd64-DVD-1.iso",
+      "sha256": "36ba24aa67517f43a78f149e30464f068c2997e3a59b711d44f04441091dde27",
+      "manual_preload_sha256": "94e0003aa3c2af38bef405a80a4265a68bc6ba02bb1d99b13ea8b9bc3cfc4c5e",
+      "kernel_abis": [
+        "6.12.73+deb13-amd64"
+      ],
+      "installation_cases": {
+        "manual": {
+          "status": "passed",
+          "firmware": "uefi",
+          "kernel": "6.12.73+deb13-amd64",
+          "driver_load": "passed",
+          "reboot": "passed",
+          "root_admin_ssh": "passed",
+          "policy": "passed",
+          "cli": "passed"
+        },
+        "pxe": {
+          "status": "passed",
+          "firmware": "uefi",
+          "kernel": "6.12.73+deb13-amd64",
+          "driver_load": "passed",
+          "reboot": "passed",
+          "root_admin_ssh": "passed",
+          "policy": "passed",
+          "cli": "passed"
+        }
+      }
+    },
+    {
+      "iso": "RHEL/rhel-8.0-x86_64-dvd.iso",
+      "sha256": "74d00be02313fe6a91b6bbb9d21f246052759c2f0c0f4038b4bf882af5657fe5",
+      "manual_preload_sha256": "94e0003aa3c2af38bef405a80a4265a68bc6ba02bb1d99b13ea8b9bc3cfc4c5e",
+      "kernel_abis": [
+        "4.18.0-80.el8.x86_64"
+      ],
+      "installation_cases": {
+        "manual": {
+          "status": "passed",
+          "firmware": "uefi",
+          "kernel": "4.18.0-80.el8.x86_64",
+          "driver_load": "passed",
+          "reboot": "passed",
+          "root_admin_ssh": "passed",
+          "policy": "passed",
+          "cli": "passed"
+        },
+        "pxe": {
+          "status": "passed",
+          "firmware": "uefi",
+          "kernel": "4.18.0-80.el8.x86_64",
+          "driver_load": "passed",
+          "reboot": "passed",
+          "root_admin_ssh": "passed",
+          "policy": "passed",
+          "cli": "passed"
+        }
+      }
+    },
+    {
+      "iso": "RHEL/rhel-8.1-x86_64-dvd.iso",
+      "sha256": "7318df3678db32db94c46a19caaa8f4d72e89c5eb4862462ea11077170fca05b",
+      "manual_preload_sha256": "94e0003aa3c2af38bef405a80a4265a68bc6ba02bb1d99b13ea8b9bc3cfc4c5e",
+      "kernel_abis": [
+        "4.18.0-147.el8.x86_64"
+      ],
+      "installation_cases": {
+        "manual": {
+          "status": "passed",
+          "firmware": "uefi",
+          "kernel": "4.18.0-147.el8.x86_64",
+          "driver_load": "passed",
+          "reboot": "passed",
+          "root_admin_ssh": "passed",
+          "policy": "passed",
+          "cli": "passed"
+        },
+        "pxe": {
+          "status": "passed",
+          "firmware": "uefi",
+          "kernel": "4.18.0-147.el8.x86_64",
+          "driver_load": "passed",
+          "reboot": "passed",
+          "root_admin_ssh": "passed",
+          "policy": "passed",
+          "cli": "passed"
+        }
+      }
+    },
+    {
+      "iso": "RHEL/rhel-8.10-x86_64-dvd.iso",
+      "sha256": "ee0f46208d5afcf6c9634aced580a2c6329de516adf2bec932763237b9908b2d",
+      "manual_preload_sha256": "94e0003aa3c2af38bef405a80a4265a68bc6ba02bb1d99b13ea8b9bc3cfc4c5e",
+      "kernel_abis": [
+        "4.18.0-553.el8_10.x86_64"
+      ],
+      "installation_cases": {
+        "manual": {
+          "status": "passed",
+          "firmware": "uefi",
+          "kernel": "4.18.0-553.el8_10.x86_64",
+          "driver_load": "passed",
+          "reboot": "passed",
+          "root_admin_ssh": "passed",
+          "policy": "passed",
+          "cli": "passed"
+        },
+        "pxe": {
+          "status": "passed",
+          "firmware": "uefi",
+          "kernel": "4.18.0-553.el8_10.x86_64",
+          "driver_load": "passed",
+          "reboot": "passed",
+          "root_admin_ssh": "passed",
+          "policy": "passed",
+          "cli": "passed"
+        }
+      }
+    },
+    {
+      "iso": "RHEL/rhel-8.6-x86_64-dvd.iso",
+      "sha256": "21434dd7e9d3cf9e48089b8ba9e008da73bb0e28306a19bcf98def18e1d9aed5",
+      "manual_preload_sha256": "94e0003aa3c2af38bef405a80a4265a68bc6ba02bb1d99b13ea8b9bc3cfc4c5e",
+      "kernel_abis": [
+        "4.18.0-372.9.1.el8.x86_64"
+      ],
+      "installation_cases": {
+        "manual": {
+          "status": "passed",
+          "firmware": "uefi",
+          "kernel": "4.18.0-372.9.1.el8.x86_64",
+          "driver_load": "passed",
+          "reboot": "passed",
+          "root_admin_ssh": "passed",
+          "policy": "passed",
+          "cli": "passed"
+        },
+        "pxe": {
+          "status": "passed",
+          "firmware": "uefi",
+          "kernel": "4.18.0-372.9.1.el8.x86_64",
+          "driver_load": "passed",
+          "reboot": "passed",
+          "root_admin_ssh": "passed",
+          "policy": "passed",
+          "cli": "passed"
+        }
+      }
+    },
+    {
+      "iso": "RHEL/rhel-9.2-x86_64-dvd.iso",
+      "sha256": "7c201790fc5b5d10639489e7afb821060a8939a17f97a74bf65b6b4c2b24a922",
+      "manual_preload_sha256": "94e0003aa3c2af38bef405a80a4265a68bc6ba02bb1d99b13ea8b9bc3cfc4c5e",
+      "kernel_abis": [
+        "5.14.0-284.11.1.el9_2.x86_64"
+      ],
+      "installation_cases": {
+        "manual": {
+          "status": "passed",
+          "firmware": "uefi",
+          "kernel": "5.14.0-284.11.1.el9_2.x86_64",
+          "driver_load": "passed",
+          "reboot": "passed",
+          "root_admin_ssh": "passed",
+          "policy": "passed",
+          "cli": "passed"
+        },
+        "pxe": {
+          "status": "passed",
+          "firmware": "uefi",
+          "kernel": "5.14.0-284.11.1.el9_2.x86_64",
+          "driver_load": "passed",
+          "reboot": "passed",
+          "root_admin_ssh": "passed",
+          "policy": "passed",
+          "cli": "passed"
+        }
+      }
+    },
+    {
+      "iso": "RHEL/rhel-9.4-x86_64-dvd.iso",
+      "sha256": "a9d9e83ab8637bd0fd61f6ba3141556d45d76fb9293ba2a20f19d31abc2b82e8",
+      "manual_preload_sha256": "94e0003aa3c2af38bef405a80a4265a68bc6ba02bb1d99b13ea8b9bc3cfc4c5e",
+      "kernel_abis": [
+        "5.14.0-427.13.1.el9_4.x86_64"
+      ],
+      "installation_cases": {
+        "manual": {
+          "status": "passed",
+          "firmware": "uefi",
+          "kernel": "5.14.0-427.13.1.el9_4.x86_64",
+          "driver_load": "passed",
+          "reboot": "passed",
+          "root_admin_ssh": "passed",
+          "policy": "passed",
+          "cli": "passed"
+        },
+        "pxe": {
+          "status": "passed",
+          "firmware": "uefi",
+          "kernel": "5.14.0-427.13.1.el9_4.x86_64",
+          "driver_load": "passed",
+          "reboot": "passed",
+          "root_admin_ssh": "passed",
+          "policy": "passed",
+          "cli": "passed"
+        }
+      }
+    },
+    {
+      "iso": "RHEL/rhel-server-7.6-x86_64-dvd.iso",
+      "sha256": "c5ef10f2c23e96b02ad743b69ec0a987bf4c9e1b13a283456e958b5280ba8f15",
+      "manual_preload_sha256": "94e0003aa3c2af38bef405a80a4265a68bc6ba02bb1d99b13ea8b9bc3cfc4c5e",
+      "kernel_abis": [
+        "3.10.0-957.el7.x86_64"
+      ],
+      "installation_cases": {
+        "manual": {
+          "status": "passed",
+          "firmware": "uefi",
+          "kernel": "3.10.0-957.el7.x86_64",
+          "driver_load": "passed",
+          "reboot": "passed",
+          "root_admin_ssh": "passed",
+          "policy": "passed",
+          "cli": "passed"
+        },
+        "pxe": {
+          "status": "passed",
+          "firmware": "uefi",
+          "kernel": "3.10.0-957.el7.x86_64",
+          "driver_load": "passed",
+          "reboot": "passed",
+          "root_admin_ssh": "passed",
+          "policy": "passed",
+          "cli": "passed"
+        }
+      }
+    },
+    {
+      "iso": "RHEL/rhel-server-7.9-x86_64-dvd.iso",
+      "sha256": "f93cb87bceda25fd35e6f1213a5022ad50e94ab34c799f8b1aed99075acae362",
+      "manual_preload_sha256": "94e0003aa3c2af38bef405a80a4265a68bc6ba02bb1d99b13ea8b9bc3cfc4c5e",
+      "kernel_abis": [
+        "3.10.0-1160.el7.x86_64"
+      ],
+      "installation_cases": {
+        "manual": {
+          "status": "passed",
+          "firmware": "uefi",
+          "kernel": "3.10.0-1160.el7.x86_64",
+          "driver_load": "passed",
+          "reboot": "passed",
+          "root_admin_ssh": "passed",
+          "policy": "passed",
+          "cli": "passed"
+        },
+        "pxe": {
+          "status": "passed",
+          "firmware": "uefi",
+          "kernel": "3.10.0-1160.el7.x86_64",
+          "driver_load": "passed",
+          "reboot": "passed",
+          "root_admin_ssh": "passed",
+          "policy": "passed",
+          "cli": "passed"
+        }
+      }
+    },
+    {
+      "iso": "Rocky/Rocky-10.0-x86_64-dvd1.iso",
+      "sha256": "5e69f86ec8e454dae6fcdca88a0465bfb570bd264178c4c5b40f2f72760e0014",
+      "manual_preload_sha256": "94e0003aa3c2af38bef405a80a4265a68bc6ba02bb1d99b13ea8b9bc3cfc4c5e",
+      "kernel_abis": [
+        "6.12.0-55.12.1.el10_0.x86_64"
+      ],
+      "installation_cases": {
+        "manual": {
+          "status": "passed",
+          "firmware": "uefi",
+          "kernel": "6.12.0-55.12.1.el10_0.x86_64",
+          "driver_load": "passed",
+          "reboot": "passed",
+          "root_admin_ssh": "passed",
+          "policy": "passed",
+          "cli": "passed"
+        },
+        "pxe": {
+          "status": "passed",
+          "firmware": "uefi",
+          "kernel": "6.12.0-55.12.1.el10_0.x86_64",
+          "driver_load": "passed",
+          "reboot": "passed",
+          "root_admin_ssh": "passed",
+          "policy": "passed",
+          "cli": "passed"
+        }
+      }
+    },
+    {
+      "iso": "Rocky/Rocky-8.10-x86_64-dvd.iso",
+      "sha256": "16b2bee8c9074f2fdf54ea32aa89913e692ead2b347622cd9157b659787588fe",
+      "manual_preload_sha256": "94e0003aa3c2af38bef405a80a4265a68bc6ba02bb1d99b13ea8b9bc3cfc4c5e",
+      "kernel_abis": [
+        "4.18.0-553.el8_10.x86_64"
+      ],
+      "installation_cases": {
+        "manual": {
+          "status": "passed",
+          "firmware": "uefi",
+          "kernel": "4.18.0-553.el8_10.x86_64",
+          "driver_load": "passed",
+          "reboot": "passed",
+          "root_admin_ssh": "passed",
+          "policy": "passed",
+          "cli": "passed"
+        },
+        "pxe": {
+          "status": "passed",
+          "firmware": "uefi",
+          "kernel": "4.18.0-553.el8_10.x86_64",
+          "driver_load": "passed",
+          "reboot": "passed",
+          "root_admin_ssh": "passed",
+          "policy": "passed",
+          "cli": "passed"
+        }
+      }
+    },
+    {
+      "iso": "Rocky/Rocky-8.6-x86_64-dvd1.iso",
+      "sha256": "10546b1ff63d7b4f8c37ae1b6051fa077ab380d8c070c30e5a6f4ccfa0aafdb4",
+      "manual_preload_sha256": "94e0003aa3c2af38bef405a80a4265a68bc6ba02bb1d99b13ea8b9bc3cfc4c5e",
+      "kernel_abis": [
+        "4.18.0-372.9.1.el8.x86_64"
+      ],
+      "installation_cases": {
+        "manual": {
+          "status": "passed",
+          "firmware": "uefi",
+          "kernel": "4.18.0-372.9.1.el8.x86_64",
+          "driver_load": "passed",
+          "reboot": "passed",
+          "root_admin_ssh": "passed",
+          "policy": "passed",
+          "cli": "passed"
+        },
+        "pxe": {
+          "status": "passed",
+          "firmware": "uefi",
+          "kernel": "4.18.0-372.9.1.el8.x86_64",
+          "driver_load": "passed",
+          "reboot": "passed",
+          "root_admin_ssh": "passed",
+          "policy": "passed",
+          "cli": "passed"
+        }
+      }
+    },
+    {
+      "iso": "Rocky/Rocky-8.7-x86_64-dvd1.iso",
+      "sha256": "2be2324ac62126a2bfc7924db2eacb8c434544bd272a2e076f289ab5abc0298a",
+      "manual_preload_sha256": "94e0003aa3c2af38bef405a80a4265a68bc6ba02bb1d99b13ea8b9bc3cfc4c5e",
+      "kernel_abis": [
+        "4.18.0-425.3.1.el8.x86_64"
+      ],
+      "installation_cases": {
+        "manual": {
+          "status": "passed",
+          "firmware": "uefi",
+          "kernel": "4.18.0-425.3.1.el8.x86_64",
+          "driver_load": "passed",
+          "reboot": "passed",
+          "root_admin_ssh": "passed",
+          "policy": "passed",
+          "cli": "passed"
+        },
+        "pxe": {
+          "status": "passed",
+          "firmware": "uefi",
+          "kernel": "4.18.0-425.3.1.el8.x86_64",
+          "driver_load": "passed",
+          "reboot": "passed",
+          "root_admin_ssh": "passed",
+          "policy": "passed",
+          "cli": "passed"
+        }
+      }
+    },
+    {
+      "iso": "Rocky/Rocky-8.9-x86_64-dvd1.iso",
+      "sha256": "be5188f78e5864066af51fb71534576bbb28d3c065744790d4b33787ba02267a",
+      "manual_preload_sha256": "94e0003aa3c2af38bef405a80a4265a68bc6ba02bb1d99b13ea8b9bc3cfc4c5e",
+      "kernel_abis": [
+        "4.18.0-513.5.1.el8_9.x86_64"
+      ],
+      "installation_cases": {
+        "manual": {
+          "status": "passed",
+          "firmware": "uefi",
+          "kernel": "4.18.0-513.5.1.el8_9.x86_64",
+          "driver_load": "passed",
+          "reboot": "passed",
+          "root_admin_ssh": "passed",
+          "policy": "passed",
+          "cli": "passed"
+        },
+        "pxe": {
+          "status": "passed",
+          "firmware": "uefi",
+          "kernel": "4.18.0-513.5.1.el8_9.x86_64",
+          "driver_load": "passed",
+          "reboot": "passed",
+          "root_admin_ssh": "passed",
+          "policy": "passed",
+          "cli": "passed"
+        }
+      }
+    },
+    {
+      "iso": "Rocky/Rocky-9.1-x86_64-dvd.iso",
+      "sha256": "7d4d53fe29c6b753f9988851edc1381e1e242b7bf661fdc1d1c269975b006d82",
+      "manual_preload_sha256": "94e0003aa3c2af38bef405a80a4265a68bc6ba02bb1d99b13ea8b9bc3cfc4c5e",
+      "kernel_abis": [
+        "5.14.0-162.6.1.el9_1.x86_64"
+      ],
+      "installation_cases": {
+        "manual": {
+          "status": "passed",
+          "firmware": "uefi",
+          "kernel": "5.14.0-162.6.1.el9_1.x86_64",
+          "driver_load": "passed",
+          "reboot": "passed",
+          "root_admin_ssh": "passed",
+          "policy": "passed",
+          "cli": "passed"
+        },
+        "pxe": {
+          "status": "passed",
+          "firmware": "uefi",
+          "kernel": "5.14.0-162.6.1.el9_1.x86_64",
+          "driver_load": "passed",
+          "reboot": "passed",
+          "root_admin_ssh": "passed",
+          "policy": "passed",
+          "cli": "passed"
+        }
+      }
+    },
+    {
+      "iso": "Rocky/Rocky-9.2-x86_64-dvd.iso",
+      "sha256": "2215e6f6ed5b9a4c329c210ca387e930ea2b42c6c863910db890a1d3b02f5c5c",
+      "manual_preload_sha256": "94e0003aa3c2af38bef405a80a4265a68bc6ba02bb1d99b13ea8b9bc3cfc4c5e",
+      "kernel_abis": [
+        "5.14.0-284.11.1.el9_2.x86_64"
+      ],
+      "installation_cases": {
+        "manual": {
+          "status": "passed",
+          "firmware": "uefi",
+          "kernel": "5.14.0-284.11.1.el9_2.x86_64",
+          "driver_load": "passed",
+          "reboot": "passed",
+          "root_admin_ssh": "passed",
+          "policy": "passed",
+          "cli": "passed"
+        },
+        "pxe": {
+          "status": "passed",
+          "firmware": "uefi",
+          "kernel": "5.14.0-284.11.1.el9_2.x86_64",
+          "driver_load": "passed",
+          "reboot": "passed",
+          "root_admin_ssh": "passed",
+          "policy": "passed",
+          "cli": "passed"
+        }
+      }
+    },
+    {
+      "iso": "Rocky/Rocky-9.3-x86_64-dvd.iso",
+      "sha256": "bfd990ac30f5083d307024868e59c59f940d6fa8b62c881c001479950e89d343",
+      "manual_preload_sha256": "94e0003aa3c2af38bef405a80a4265a68bc6ba02bb1d99b13ea8b9bc3cfc4c5e",
+      "kernel_abis": [
+        "5.14.0-362.8.1.el9_3.x86_64"
+      ],
+      "installation_cases": {
+        "manual": {
+          "status": "passed",
+          "firmware": "uefi",
+          "kernel": "5.14.0-362.8.1.el9_3.x86_64",
+          "driver_load": "passed",
+          "reboot": "passed",
+          "root_admin_ssh": "passed",
+          "policy": "passed",
+          "cli": "passed"
+        },
+        "pxe": {
+          "status": "passed",
+          "firmware": "uefi",
+          "kernel": "5.14.0-362.8.1.el9_3.x86_64",
+          "driver_load": "passed",
+          "reboot": "passed",
+          "root_admin_ssh": "passed",
+          "policy": "passed",
+          "cli": "passed"
+        }
+      }
+    },
+    {
+      "iso": "Rocky/Rocky-9.4-x86_64-dvd.iso",
+      "sha256": "0972fff3d473d4d6d4f9b496ad47b216b4eef92495ad7e9897ff4cb17a945430",
+      "manual_preload_sha256": "94e0003aa3c2af38bef405a80a4265a68bc6ba02bb1d99b13ea8b9bc3cfc4c5e",
+      "kernel_abis": [
+        "5.14.0-427.13.1.el9_4.x86_64"
+      ],
+      "installation_cases": {
+        "manual": {
+          "status": "passed",
+          "firmware": "uefi",
+          "kernel": "5.14.0-427.13.1.el9_4.x86_64",
+          "driver_load": "passed",
+          "reboot": "passed",
+          "root_admin_ssh": "passed",
+          "policy": "passed",
+          "cli": "passed"
+        },
+        "pxe": {
+          "status": "passed",
+          "firmware": "uefi",
+          "kernel": "5.14.0-427.13.1.el9_4.x86_64",
+          "driver_load": "passed",
+          "reboot": "passed",
+          "root_admin_ssh": "passed",
+          "policy": "passed",
+          "cli": "passed"
+        }
+      }
+    },
+    {
+      "iso": "Rocky/Rocky-9.5-x86_64-dvd.iso",
+      "sha256": "1e346aa49461d89d6622780c91549c16f61932e712fabe9126b32fd2a15d3e7a",
+      "manual_preload_sha256": "94e0003aa3c2af38bef405a80a4265a68bc6ba02bb1d99b13ea8b9bc3cfc4c5e",
+      "kernel_abis": [
+        "5.14.0-503.14.1.el9_5.x86_64"
+      ],
+      "installation_cases": {
+        "manual": {
+          "status": "passed",
+          "firmware": "uefi",
+          "kernel": "5.14.0-503.14.1.el9_5.x86_64",
+          "driver_load": "passed",
+          "reboot": "passed",
+          "root_admin_ssh": "passed",
+          "policy": "passed",
+          "cli": "passed"
+        },
+        "pxe": {
+          "status": "passed",
+          "firmware": "uefi",
+          "kernel": "5.14.0-503.14.1.el9_5.x86_64",
+          "driver_load": "passed",
+          "reboot": "passed",
+          "root_admin_ssh": "passed",
+          "policy": "passed",
+          "cli": "passed"
+        }
+      }
+    },
+    {
+      "iso": "Ubuntu/ubuntu-20.04.3-live-server-amd64.iso",
+      "sha256": "4bc064d30b6ae890da38b5ce1ef3b09b5cd83ad2e90382338756b8a0ff6f8a2b",
+      "manual_preload_sha256": "94e0003aa3c2af38bef405a80a4265a68bc6ba02bb1d99b13ea8b9bc3cfc4c5e",
+      "kernel_abis": [
+        "5.11.0-27-generic",
+        "5.4.0-81-generic"
+      ],
+      "installation_cases": {
+        "manual": {
+          "status": "passed",
+          "firmware": "uefi",
+          "kernel": "5.11.0-27-generic",
+          "driver_load": "passed",
+          "reboot": "passed",
+          "root_admin_ssh": "passed",
+          "policy": "passed",
+          "cli": "passed"
+        },
+        "pxe": {
+          "status": "passed",
+          "firmware": "uefi",
+          "kernel": "5.4.0-81-generic",
+          "driver_load": "passed",
+          "reboot": "passed",
+          "root_admin_ssh": "passed",
+          "policy": "passed",
+          "cli": "passed"
+        }
+      }
+    },
+    {
+      "iso": "Ubuntu/ubuntu-22.04.3-live-server-amd64.iso",
+      "sha256": "20fe97d0de3a0bc75690efc5a6bc4da2f25c251fb64c548f4066a3e0e9dfea78",
+      "manual_preload_sha256": "94e0003aa3c2af38bef405a80a4265a68bc6ba02bb1d99b13ea8b9bc3cfc4c5e",
+      "kernel_abis": [
+        "5.15.0-78-generic",
+        "6.2.0-26-generic"
+      ],
+      "installation_cases": {
+        "manual": {
+          "status": "passed",
+          "firmware": "uefi",
+          "kernel": "6.2.0-26-generic",
+          "driver_load": "passed",
+          "reboot": "passed",
+          "root_admin_ssh": "passed",
+          "policy": "passed",
+          "cli": "passed"
+        },
+        "pxe": {
+          "status": "passed",
+          "firmware": "uefi",
+          "kernel": "5.15.0-78-generic",
+          "driver_load": "passed",
+          "reboot": "passed",
+          "root_admin_ssh": "passed",
+          "policy": "passed",
+          "cli": "passed"
+        }
+      }
+    },
+    {
+      "iso": "Ubuntu/ubuntu-22.04.4-desktop-amd64.iso",
+      "sha256": "08fa5a924d0ab8363df0cc7d57d7b8f010c529c8523be37f45c3542a47c1576b",
+      "manual_preload_sha256": "94e0003aa3c2af38bef405a80a4265a68bc6ba02bb1d99b13ea8b9bc3cfc4c5e",
+      "kernel_abis": [
+        "6.5.0-18-generic"
+      ],
+      "installation_cases": {
+        "manual": {
+          "status": "passed",
+          "firmware": "uefi",
+          "kernel": "6.5.0-18-generic",
+          "driver_load": "passed",
+          "reboot": "passed",
+          "root_admin_ssh": "passed",
+          "policy": "passed",
+          "cli": "passed"
+        },
+        "pxe": {
+          "status": "passed",
+          "firmware": "uefi",
+          "kernel": "6.5.0-18-generic",
+          "driver_load": "passed",
+          "reboot": "passed",
+          "root_admin_ssh": "passed",
+          "policy": "passed",
+          "cli": "passed"
+        }
+      }
+    },
+    {
+      "iso": "Ubuntu/ubuntu-22.04.4-live-server-amd64.iso",
+      "sha256": "70537a709adf8cd16b08dc0227855fad139579667ef718ddaeb0566a855c2870",
+      "manual_preload_sha256": "94e0003aa3c2af38bef405a80a4265a68bc6ba02bb1d99b13ea8b9bc3cfc4c5e",
+      "kernel_abis": [
+        "5.15.0-94-generic",
+        "6.5.0-18-generic"
+      ],
+      "installation_cases": {
+        "manual": {
+          "status": "passed",
+          "firmware": "uefi",
+          "kernel": "6.5.0-18-generic",
+          "driver_load": "passed",
+          "reboot": "passed",
+          "root_admin_ssh": "passed",
+          "policy": "passed",
+          "cli": "passed"
+        },
+        "pxe": {
+          "status": "passed",
+          "firmware": "uefi",
+          "kernel": "5.15.0-94-generic",
+          "driver_load": "passed",
+          "reboot": "passed",
+          "root_admin_ssh": "passed",
+          "policy": "passed",
+          "cli": "passed"
+        }
+      }
+    },
+    {
+      "iso": "Ubuntu/ubuntu-22.04.5-live-server-amd64.iso",
+      "sha256": "2442a5f249a507349184eb04a43dabe471617bc9741e666ced5108d26e5e0bca",
+      "manual_preload_sha256": "94e0003aa3c2af38bef405a80a4265a68bc6ba02bb1d99b13ea8b9bc3cfc4c5e",
+      "kernel_abis": [
+        "5.15.0-119-generic",
+        "6.8.0-40-generic"
+      ],
+      "installation_cases": {
+        "manual": {
+          "status": "passed",
+          "firmware": "uefi",
+          "kernel": "6.8.0-40-generic",
+          "driver_load": "passed",
+          "reboot": "passed",
+          "root_admin_ssh": "passed",
+          "policy": "passed",
+          "cli": "passed"
+        },
+        "pxe": {
+          "status": "passed",
+          "firmware": "uefi",
+          "kernel": "5.15.0-119-generic",
+          "driver_load": "passed",
+          "reboot": "passed",
+          "root_admin_ssh": "passed",
+          "policy": "passed",
+          "cli": "passed"
+        }
+      }
+    },
+    {
+      "iso": "Ubuntu/ubuntu-24.04-live-server-amd64.iso",
+      "sha256": "c6d2d51114a7d38a6423a124c120032b503a2f867f9217fe8cd10c27a2a11088",
+      "manual_preload_sha256": "94e0003aa3c2af38bef405a80a4265a68bc6ba02bb1d99b13ea8b9bc3cfc4c5e",
+      "kernel_abis": [
+        "6.8.0-31-generic"
+      ],
+      "installation_cases": {
+        "manual": {
+          "status": "passed",
+          "firmware": "uefi",
+          "kernel": "6.8.0-31-generic",
+          "driver_load": "passed",
+          "reboot": "passed",
+          "root_admin_ssh": "passed",
+          "policy": "passed",
+          "cli": "passed"
+        },
+        "pxe": {
+          "status": "passed",
+          "firmware": "uefi",
+          "kernel": "6.8.0-31-generic",
+          "driver_load": "passed",
+          "reboot": "passed",
+          "root_admin_ssh": "passed",
+          "policy": "passed",
+          "cli": "passed"
+        }
+      }
+    },
+    {
+      "iso": "Ubuntu/ubuntu-24.04.3-live-server-amd64.iso",
+      "sha256": "3355f7e720e9aab8c218d4fbf0a3ccd51ed2a01cd3547a980c68d2ea622bf664",
+      "manual_preload_sha256": "94e0003aa3c2af38bef405a80a4265a68bc6ba02bb1d99b13ea8b9bc3cfc4c5e",
+      "kernel_abis": [
+        "6.14.0-27-generic",
+        "6.8.0-71-generic"
+      ],
+      "installation_cases": {
+        "manual": {
+          "status": "passed",
+          "firmware": "uefi",
+          "kernel": "6.8.0-71-generic",
+          "driver_load": "passed",
+          "reboot": "passed",
+          "root_admin_ssh": "passed",
+          "policy": "passed",
+          "cli": "passed"
+        },
+        "pxe": {
+          "status": "passed",
+          "firmware": "uefi",
+          "kernel": "6.8.0-71-generic",
+          "driver_load": "passed",
+          "reboot": "passed",
+          "root_admin_ssh": "passed",
+          "policy": "passed",
+          "cli": "passed"
+        }
+      }
+    },
+    {
+      "iso": "Ubuntu/ubuntu-24.10-live-server-amd64.iso",
+      "sha256": "b373ab7c4fd1488fe0a56bac054dda223e0b0b5f2b1d081c8e3e575bf08a4e62",
+      "manual_preload_sha256": "94e0003aa3c2af38bef405a80a4265a68bc6ba02bb1d99b13ea8b9bc3cfc4c5e",
+      "kernel_abis": [
+        "6.11.0-8-generic"
+      ],
+      "installation_cases": {
+        "manual": {
+          "status": "passed",
+          "firmware": "uefi",
+          "kernel": "6.11.0-8-generic",
+          "driver_load": "passed",
+          "reboot": "passed",
+          "root_admin_ssh": "passed",
+          "policy": "passed",
+          "cli": "passed"
+        },
+        "pxe": {
+          "status": "passed",
+          "firmware": "uefi",
+          "kernel": "6.11.0-8-generic",
+          "driver_load": "passed",
+          "reboot": "passed",
+          "root_admin_ssh": "passed",
+          "policy": "passed",
+          "cli": "passed"
+        }
+      }
+    }
+  ],
+  "installation_test_scope": "Disposable KVM/UEFI disks, native installer completion hooks and generated PXE configurations; root/admin password SSH, exact driver load/unload, CLI and policy verification after another boot. No physical E610 NIC attached.",
+  "manual_test_method": "Test-only installer answers drive the native manual completion path. The manual ISO itself contains no automatic answers; driver persistence is checked before running the preloaded common setup tool.",
+  "ubuntu_24_04_3_kernel_scope": "Full installation uses the ordinary GA entry and offline linux-image-6.8.0-71-generic package. The earlier test fixture incorrectly requested HWE 6.14.0-27, which has boot files but no kernel DEB in this ISO; that failed case is excluded. No HWE installed-system acceptance is claimed for this ISO.",
+  "accepted_installation_cases": 86,
+  "native_boot_checks": [
+    {
+      "status": "passed",
+      "iso_sha256": "20fe97d0de3a0bc75690efc5a6bc4da2f25c251fb64c548f4066a3e0e9dfea78",
+      "kernel": "5.15.0-78-generic",
+      "category": "transport",
+      "label": "ubuntu-final22-ga2 / validation.json"
+    },
+    {
+      "status": "passed",
+      "iso_sha256": "20fe97d0de3a0bc75690efc5a6bc4da2f25c251fb64c548f4066a3e0e9dfea78",
+      "kernel": "6.2.0-26-generic",
+      "category": "transport",
+      "label": "ubuntu-final22-hwe / validation.json"
+    },
+    {
+      "status": "passed",
+      "iso_sha256": "4bc064d30b6ae890da38b5ce1ef3b09b5cd83ad2e90382338756b8a0ff6f8a2b",
+      "kernel": "5.4.0-81-generic",
+      "category": "transport",
+      "label": "ubuntu-final20-ga / validation.json"
+    },
+    {
+      "status": "passed",
+      "iso_sha256": "2ea38a0ffe838288264ed3fdc1ec0df9937b5297a788ec3d0a226b0dd63c2de9",
+      "kernel": "3.10.0-1160.el7.x86_64",
+      "category": "transport",
+      "label": "centos-final7 / validation.json"
+    },
+    {
+      "status": "passed",
+      "iso_sha256": "36ba24aa67517f43a78f149e30464f068c2997e3a59b711d44f04441091dde27",
+      "driver_load": "passed",
+      "category": "transport",
+      "label": "debian-final13 / validation-gui.json"
+    },
+    {
+      "status": "passed",
+      "iso_sha256": "36ba24aa67517f43a78f149e30464f068c2997e3a59b711d44f04441091dde27",
+      "driver_load": "passed",
+      "category": "transport",
+      "label": "debian-final13-text / validation.json"
+    },
+    {
+      "status": "passed",
+      "scope": "Real isolated iVentoy PXE to Anaconda; final live-root driver, five E610 PCI IDs, module load/unload and native completion hook. No physical E610 adapter.",
+      "iso_sha256": "2fcb6eed6de0322688cc69239c233dcbf82625f6690686c3cd3fe58d22321144",
+      "firmware": "uefi",
+      "boot": "real-iventoy-uefi",
+      "kernel": "6.12.0-54.el10.x86_64",
+      "driver_version": "6.4.5",
+      "driver_load": "passed",
+      "driver_load_unload": "passed",
+      "no_disk_attached": true,
+      "screenshot_sha256": "ce9e5089557987e257ce6495f47f49c79ccb47e00b96e372b26c82e3f790bf51",
+      "category": "transport",
+      "label": "el10-cpio-c10 / validation.json"
+    },
+    {
+      "status": "passed",
+      "scope": "Real isolated iVentoy PXE to Anaconda; final live-root driver, five E610 PCI IDs, module load/unload and native completion hook. No physical E610 adapter.",
+      "iso_sha256": "5e69f86ec8e454dae6fcdca88a0465bfb570bd264178c4c5b40f2f72760e0014",
+      "firmware": "uefi",
+      "boot": "real-iventoy-uefi",
+      "kernel": "6.12.0-55.12.1.el10_0.x86_64",
+      "driver_version": "6.4.5",
+      "driver_load": "passed",
+      "driver_load_unload": "passed",
+      "no_disk_attached": true,
+      "screenshot_sha256": "447a0afe6948c795c0d7d14c1fac41953a6ab26691522dd8f16fc3e276c7e60c",
+      "category": "transport",
+      "label": "el10-cpio-r10 / validation.json"
+    },
+    {
+      "status": "passed",
+      "scope": "Real isolated iVentoy PXE to Anaconda; final live-root driver, five E610 PCI IDs, module load/unload and native completion hook. No physical E610 adapter.",
+      "iso_sha256": "8c8efcf6c382a016f4f18cdf26275f1f811d0367ec845e11e7114a7af4ade3f3",
+      "firmware": "uefi",
+      "boot": "real-iventoy-uefi",
+      "kernel": "5.14.0-503.11.1.el9_5.x86_64",
+      "driver_version": "6.4.5",
+      "driver_load": "passed",
+      "driver_load_unload": "passed",
+      "no_disk_attached": true,
+      "screenshot_sha256": "4dc800a27c0b5f61f83565f30056baac490373faed5b8c022a968cd5adc40a25",
+      "category": "transport",
+      "label": "el9-final-alma95 / validation.json"
+    },
+    {
+      "status": "passed",
+      "scope": "Complete isolated UEFI PXE -> iVentoy ISO and generated auto script -> automatic installation -> two hard-disk boots; e1000e emulation, no physical E610.",
+      "iso_sha256": "2fcb6eed6de0322688cc69239c233dcbf82625f6690686c3cd3fe58d22321144",
+      "boot": "real-iventoy-uefi",
+      "installed_kernel": "6.12.0-54.el10.x86_64",
+      "driver_load": "passed",
+      "reboot": "passed",
+      "root_admin_ssh": "passed",
+      "policy": "passed",
+      "cli": "passed",
+      "controller_state": "installed",
+      "category": "transport",
+      "label": "real-iventoy-auto-c10 / validation.json"
+    },
+    {
+      "status": "passed",
+      "scope": "Native optical firmware boot to visually checked installer selection menu",
+      "iso_sha256": "7d4d53fe29c6b753f9988851edc1381e1e242b7bf661fdc1d1c269975b006d82",
+      "firmware": "uefi",
+      "no_disk_attached": true,
+      "screenshot_sha256": "6e88012cf8368731226d5e9fbea2bec32494bfb20cb0dbe0885d8679ad09da4b",
+      "category": "firmware",
+      "label": "r91-menu-uefi-final / validation.json"
+    },
+    {
+      "status": "passed",
+      "scope": "Native optical firmware boot to visually checked installer selection menu",
+      "iso_sha256": "7d4d53fe29c6b753f9988851edc1381e1e242b7bf661fdc1d1c269975b006d82",
+      "firmware": "bios",
+      "no_disk_attached": true,
+      "screenshot_sha256": "53650a8288f6e2a0896ec0b09d6dd660bab0b3a1925c8ecb8653352b7c909f0a",
+      "category": "firmware",
+      "label": "r91-menu-bios-final / validation.json"
+    }
+  ],
+  "production_published": false
 }
