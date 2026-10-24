@@ -12,6 +12,9 @@ media/ 下的 tar.gz 是中间产物，不能代替最终 ISO 或安装验证。
   isolinux 的 initrd；Ubuntu 处理镜像中的 GA/HWE 启动变体。
 - 每个 Debian initrd 独立生成模块索引，并保留 lib -> usr/lib 布局、
   原版内置模块和依赖信息；避免 NIC udeb 覆盖后造成显示或其他驱动失效。
+- Ubuntu 在原始 init-bottom/ORDER 的唯一 CPIO 记录中增加收尾准备，
+  不依赖会被 iVentoy 替换的 /init。只读 casper 模块目录使用独立
+  tmpfs 上层的临时 overlay，保留原版模块，确保 live root 仍选中 E610。
 - 目标系统的正常启动 initramfs 与 EL 救援启动 initramfs均包含驱动。
 - 已有自定义模块不同、目标内核未适配或安装验证失败时，停止并报告。
 - 新签名模块的公开 MOK 证书随包保存。Secure Boot 启用时必须按机器
@@ -42,6 +45,7 @@ Module.symvers 和对应编译器。脚本需要 /root/E610-DISPOSABLE-BUILDER
 标记，并拒绝在没有该标记的环境中运行。
 
 流程（示例变量自行设置；不能把输出目录设为原版目录）
+0. 将本目录的 assets/ 复制到 "$WORK/assets/"，使用同一代码版本。
 1. python3 audit.py --iso-root "$ISO_ROOT" --work "$WORK/audit"
    同时输出 inventory.json / inventory-v2.json；后者是后续工具输入。
 2. python3 prepare_builds.py --work "$WORK" --iso-root "$ISO_ROOT" \
@@ -68,7 +72,7 @@ Module.symvers 和对应编译器。脚本需要 /root/E610-DISPOSABLE-BUILDER
    bash /root/ventoy-linux-setup.run --apply 后应用 SSH、DHCP、主机名、
    内核锁定和禁用自动更新策略；其 --check 检查应用结果。
 
-验证本目录的归档解析与精简 initramfs 兼容性：
+验证本目录的归档解析、唯一启动脚本记录和精简 initramfs 兼容性（7 项）：
   python3 test_media.py
 
 不携带生产密码、私钥、清盘脚本或自动安装答案。制作 ISO 不代表允许

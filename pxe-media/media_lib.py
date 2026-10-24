@@ -66,6 +66,67 @@ def cpio_entries(data, offset=0):
         raise ValueError('not newc cpio at %s' % pos)
 
 
+def rewrite_initramfs_files(data, replacements):
+    """Replace unique regular files in their original CPIO, retaining inode data.
+
+    Some netboot patchers select the first copy of a pathname. Appending another
+    /init or ORDER therefore cannot reliably modify their selected script.
+    Only changed compressed frames are normalized to gzip; early archives and
+    untouched entries (including hard links and device nodes) remain intact.
+    """
+    counts = dict.fromkeys(replacements, 0)
+    def rewrite(blob):
+        pos, pieces, changed = 0, [], False
+        while pos < len(blob):
+            start = pos
+            while pos < len(blob) and blob[pos] == 0: pos += 1
+            pieces.append(blob[start:pos])
+            if pos == len(blob): break
+            if blob[pos:pos+6] in (b'070701', b'070702'):
+                for name, mode, content, end in cpio_entries(blob, pos):
+                    if name in replacements:
+                        header = bytearray(blob[pos:pos+110])
+                        if mode & 0o170000 != 0o100000 or int(header[38:46],16) != 1:
+                            raise ValueError('replacement must be an unlinked regular file: '+name)
+                        value = replacements[name]
+                        body = (pos+110+int(header[94:102],16)+3) & ~3
+                        header[54:62] = ('%08x' % len(value)).encode()
+                        if header[:6] == b'070702':
+                            header[102:110] = ('%08x' % (sum(value)&0xffffffff)).encode()
+                        pieces.append(bytes(header)+blob[pos+110:body]+value+b'\0'*((-len(value))%4))
+                        counts[name] += 1;changed = True
+                    else: pieces.append(blob[pos:end])
+                    pos = end
+                continue
+            tail = blob[pos:]
+            if tail.startswith(b'\x1f\x8b'):
+                dec=zlib.decompressobj(16+zlib.MAX_WBITS);plain=dec.decompress(tail)+dec.flush()
+                if not dec.eof: raise ValueError('truncated gzip frame')
+                consumed=len(tail)-len(dec.unused_data)
+            elif tail.startswith(b'\xfd7zXZ\0') or tail.startswith(b'\x5d\0'):
+                dec=lzma.LZMADecompressor();plain=dec.decompress(tail)
+                if not dec.eof: raise ValueError('truncated xz frame')
+                consumed=len(tail)-len(dec.unused_data)
+            elif tail.startswith(b'\x28\xb5\x2f\xfd'):
+                lib=ctypes.CDLL('libzstd.so.1');size=lib.ZSTD_findFrameCompressedSize
+                size.argtypes=[ctypes.c_void_p,ctypes.c_size_t];size.restype=ctypes.c_size_t
+                error=lib.ZSTD_isError;error.argtypes=[ctypes.c_size_t];error.restype=ctypes.c_uint
+                consumed=size(tail,len(tail))
+                if error(consumed): raise ValueError('invalid zstd frame')
+                plain=subprocess.run(['zstd','-dc'],input=tail[:consumed],capture_output=True,check=True).stdout
+            elif tail.startswith(b'\x02\x21\x4c\x18'):
+                plain=legacy_lz4(tail);consumed=len(tail)
+            else: raise ValueError('unknown initramfs compression at %s' % pos)
+            rebuilt, frame_changed = rewrite(plain)
+            pieces.append(gzip.compress(rebuilt,mtime=0) if frame_changed else tail[:consumed])
+            changed = changed or frame_changed;pos += consumed
+        return b''.join(pieces),changed
+    output,_=rewrite(data)
+    if any(n != 1 for n in counts.values()):
+        raise ValueError('replacement path must occur exactly once: '+str(counts))
+    return output
+
+
 def initramfs_files(data):
     """Read all early microcode archives, then the compressed main archive."""
     pos = 0

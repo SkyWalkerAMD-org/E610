@@ -1,8 +1,44 @@
 import gzip, lzma, pathlib, subprocess, unittest, ctypes, tempfile, shutil, os
 from assemble_boot import cpio, copy_boot_tree
-from media_lib import initramfs_files, normalize_for_append, file_path
+from media_lib import initramfs_files, normalize_for_append, file_path, rewrite_initramfs_files, cpio_entries
 
 class Archives(unittest.TestCase):
+    def test_ubuntu_native_order_survives_first_entry_readers(self):
+        from bake_iso import embed_initrd
+        original=b'#!/bin/sh\necho native-init\n'
+        order=b'/scripts/init-bottom/original\n'
+        raw=cpio([('init',original,0o100755),('scripts/init-bottom/ORDER',order,0o100755)])
+        payload={'ventoy-e610/ubuntu-stage.sh':(b'#!/bin/sh\nexit 0\n',0o100755)}
+        rows=list(initramfs_files(embed_initrd(raw,payload,True)))
+        self.assertEqual([d for n,_,d in rows if n=='init'],[original])
+        scripts=[d for n,_,d in rows if n=='scripts/init-bottom/ORDER']
+        self.assertEqual(len(scripts),1)
+        self.assertTrue(scripts[0].startswith(order))
+        self.assertIn(b'/bin/sh /ventoy-e610/ubuntu-stage.sh "$rootmnt"',scripts[0])
+        self.assertIn(b'exit 1',scripts[0])
+        self.assertEqual([d for n,_,d in rows if n=='ventoy-e610/ubuntu-stage.sh'],[payload['ventoy-e610/ubuntu-stage.sh'][0]])
+
+    def test_rewrite_keeps_one_script_and_preserves_hardlink_metadata(self):
+        raw=bytearray(gzip.decompress(cpio([('scripts/init-bottom/ORDER',b'old\n',0o100755),('busybox',b'ELF-content',0o100755),('sh',b'',0o100755)])))
+        pos=0;unchanged=[]
+        for name,mode,data,end in cpio_entries(raw):
+            if name in ('busybox','sh'):
+                raw[pos+6:pos+14]=b'0000abcd';raw[pos+38:pos+46]=b'00000002'
+                unchanged.append(bytes(raw[pos:end]))
+            pos=end
+        early=gzip.decompress(cpio([('early',b'microcode',0o100644)]))
+        frames=[gzip.compress(raw),lzma.compress(raw),subprocess.run(['zstd','-qc'],input=raw,capture_output=True,check=True).stdout]
+        for frame in frames:
+            result=rewrite_initramfs_files(early+frame,{'scripts/init-bottom/ORDER':b'new and longer\n'})
+            rows=list(initramfs_files(result))
+            self.assertEqual([d for n,_,d in rows if n=='scripts/init-bottom/ORDER'],[b'new and longer\n'])
+            self.assertTrue(result.startswith(early))
+            plain=gzip.decompress(result[len(early):])
+            for entry in unchanged:self.assertIn(entry,plain)
+        with self.assertRaises(ValueError):rewrite_initramfs_files(bytes(raw),{'missing':b'x'})
+        with self.assertRaises(ValueError):rewrite_initramfs_files(bytes(raw),{'busybox':b'x'})
+        with self.assertRaises(ValueError):rewrite_initramfs_files(bytes(raw)*2,{'scripts/init-bottom/ORDER':b'x'})
+
     def test_merged_usr_keeps_installer_and_udeb_modules(self):
         with tempfile.TemporaryDirectory() as temp:
             source=pathlib.Path(temp)/'source';root=pathlib.Path(temp)/'root'

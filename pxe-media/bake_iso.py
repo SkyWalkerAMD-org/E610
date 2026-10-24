@@ -5,7 +5,7 @@ The original ISO is never opened for writing. Reflink plus xorriso growing
 shares unchanged data, while the resulting ISO remains a standalone file.
 """
 import argparse, gzip, hashlib, io, json, os, pathlib, re, shutil, subprocess, tarfile
-from media_lib import initramfs_files, normalize_for_append
+from media_lib import initramfs_files, normalize_for_append, rewrite_initramfs_files
 from assemble_boot import cpio, prepare
 P=pathlib.Path
 HOOK='live_injection_7ed136ec_7a61_4b54_adc3_ae494d5106ea/hook.sh'
@@ -26,16 +26,17 @@ def archive_files(p):
     return files
 
 def embed_initrd(raw, files, ubuntu):
-    existing={};init=None
+    existing={};order=None
     for n,m,d in initramfs_files(raw):
         existing[n]=m
-        if n=='init':init=d
+        if n=='scripts/init-bottom/ORDER':order=d
     payload=dict(files)
     if ubuntu:
-        assert init is not None
-        marker=b'\nmaybe_break init\n';assert init.count(marker)==1
-        init=init.replace(marker,b'\n/bin/sh /ventoy-manual-preload/prepare-live.sh "$rootmnt"\n/bin/sh /ventoy-e610/prepare-live.sh "$rootmnt"\nmaybe_break init\n')
-        payload['init']=(init,0o100755)
+        assert order is not None and 'ventoy-e610/ubuntu-stage.sh' in payload
+        # iVentoy replaces /init. Use the native init-bottom sequence and edit
+        # its original CPIO record, so first-entry archive readers also see it.
+        order += b'\nif ! /bin/sh /ventoy-e610/ubuntu-stage.sh "$rootmnt"; then\n    panic "E610 installer preparation failed"\n    exit 1\nfi\n'
+        raw=rewrite_initramfs_files(raw,{'scripts/init-bottom/ORDER':order})
     dirs=set()
     for name in payload:
         for p in P(name).parents:
@@ -57,6 +58,8 @@ def main():
     for n,v in archive_files(a.work/'media'/item['archive']).items():
         assert n not in files or files[n]==v,n
         files[n]=v
+    if a.iso.startswith('Ubuntu/'):
+        files['ventoy-e610/ubuntu-stage.sh']=((a.work/'assets/ubuntu-stage.sh').read_bytes(),0o100755)
     updates={}
     for index,boot in enumerate(rec['boots']):
         raw=(P(rec['work'])/('initrd-'+str(index))).read_bytes()
@@ -76,7 +79,9 @@ def main():
     paths=[s.strip().strip("'") for s in (P(rec['work'])/'iso-files.txt').read_text().splitlines()]
     if '/isolinux/initrd.img' in paths:updates['/isolinux/initrd.img']=updates['/images/pxeboot/initrd.img']
     evidence={'format':1,'source_iso':a.iso,'source_size':source.stat().st_size,'source_sha256':sha(source),'embedded_in_iso':True,'kernel_replaced':False,'hardware_e610':'not_tested','installer_paths':list(updates),'driver_archive_sha256':item['sha256']}
+    evidence['manual_preload_sha256']=sha(a.work/'manual-common.tar.gz')
     if a.iso.startswith('Debian/'):evidence['boot_module_layout']='per-initrd'
+    if a.iso.startswith('Ubuntu/'):evidence['live_hook']='native-init-bottom-order-v3'
     for path in ('/md5sum.txt','/SHA256SUMS','/SHA512SUMS'):
         if path not in paths:continue
         old=folder/P(path).name
