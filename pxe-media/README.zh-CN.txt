@@ -16,8 +16,11 @@ media/ 下的 tar.gz 是中间产物，不能代替最终 ISO 或安装验证。
   不依赖会被 iVentoy 替换的 /init。只读 casper 模块目录使用独立
   tmpfs 上层的临时 overlay，保留原版模块，确保 live root 仍选中 E610。
 - EL 将驱动、索引与钩子合入原始主 CPIO，避免 iVentoy 丢弃追加归档；
-  Anaconda 切换根目录前也建立 live 模块覆盖。CentOS 7.9 原型通过
+  Anaconda 切换根目录前也建立 live 模块覆盖。CentOS 7.9 最终成品通过
   隔离真实 iVentoy UEFI 启动与 ixgbe 6.4.5 加载，28 个 EL 成品重测中。
+  EL10 的 initramfs 不含 chroot 时，调用 live 根目录自身的 loader、库
+  和 chroot；不混入构建宿主机二进制。修复后的 CentOS Stream 10 已通过
+  无硬盘 UEFI 光盘启动至 Anaconda，完整安装结果另行记录。
 - Ubuntu Desktop 的原生收尾钩子固定使用真实系统工具路径，避免 Ubiquity
   的兼容 depmod 空实现导致安装后模块索引没有生成。
 - 目标系统的正常启动 initramfs 与 EL 救援启动 initramfs均包含驱动。
