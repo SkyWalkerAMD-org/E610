@@ -25,12 +25,47 @@ def archive_files(p):
             files[m.name]=(tar.extractfile(m).read(),0o100000|m.mode)
     return files
 
+def resolve_payload_paths(files, links):
+    """Avoid materializing directories where BusyBox defers an original symlink.
+
+    EL10 moved dracut hooks to /var/lib. BusyBox cpio delays relative symlink
+    creation until the end; a new child below the old /usr/lib path creates a
+    real directory first, causing extraction to abort before later symlinks.
+    """
+    import posixpath
+    result={}
+    for name,value in files.items():
+        if name.startswith('/') or '..' in pathlib.PurePosixPath(name).parts:
+            raise ValueError('unsafe payload path: '+name)
+        target=name;seen=set()
+        while True:
+            if target in seen: raise ValueError('cyclic initramfs symlink: '+name)
+            seen.add(target)
+            parts=target.split('/');changed=False
+            for i in range(1,len(parts)+1):
+                prefix='/'.join(parts[:i])
+                if prefix not in links: continue
+                link=links[prefix]
+                base=link.lstrip('/') if link.startswith('/') else posixpath.join(posixpath.dirname(prefix),link)
+                target=posixpath.normpath(posixpath.join(base,*parts[i:]))
+                if target=='..' or target.startswith('../'):
+                    raise ValueError('initramfs symlink escapes root: '+name)
+                changed=True;break
+            if not changed: break
+            if len(seen)>40: raise ValueError('too many initramfs symlinks: '+name)
+        if target in result and result[target]!=value:
+            raise ValueError('conflicting canonical payload: '+target)
+        result[target]=value
+    return result
+
+
 def embed_initrd(raw, files, ubuntu, el=False):
-    existing={};order=None
+    existing={};links={};order=None
     for n,m,d in initramfs_files(raw):
         existing[n]=m
+        if m & 0o170000 == 0o120000: links[n]=d.decode()
         if n=='scripts/init-bottom/ORDER':order=d
-    payload=dict(files)
+    payload=resolve_payload_paths(files,links) if el else dict(files)
     if ubuntu:
         assert order is not None and 'ventoy-e610/ubuntu-stage.sh' in payload
         # iVentoy replaces /init. Use the native init-bottom sequence and edit
@@ -104,7 +139,9 @@ def main():
     if a.iso.startswith('Debian/'):evidence['boot_module_layout']='per-initrd'
     if a.iso.startswith('Ubuntu/'):evidence['live_hook']='native-init-bottom-order-v3'
     if a.iso.startswith('Ubuntu/') and 'desktop' in a.iso:evidence['installer_hook']='ubiquity-clean-path-v1'
-    if a.iso.split('/')[0] in ('CentOS','Rocky','RHEL','AlmaLinux'):evidence['archive_layout']='single-main-cpio-v3'
+    if a.iso.split('/')[0] in ('CentOS','Rocky','RHEL','AlmaLinux'):
+        evidence['archive_layout']='single-main-cpio-v3'
+        evidence['payload_paths']='canonical-symlinks-v1'
     for path in ('/md5sum.txt','/SHA256SUMS','/SHA512SUMS'):
         if path not in paths:continue
         old=folder/P(path).name

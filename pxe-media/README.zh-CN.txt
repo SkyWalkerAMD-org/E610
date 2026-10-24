@@ -21,6 +21,11 @@ media/ 下的 tar.gz 是中间产物，不能代替最终 ISO 或安装验证。
   EL10 的 initramfs 不含 chroot 时，调用 live 根目录自身的 loader、库
   和 chroot；不混入构建宿主机二进制。修复后的 CentOS Stream 10 已通过
   无硬盘 UEFI 光盘启动至 Anaconda，完整安装结果另行记录。
+  EL10 的 dracut/hooks 是指向 /var/lib 的链接；新增文件先解析原有
+  符号链接后写入规范路径，避免 iVentoy BusyBox cpio 延迟创建链接时
+  与新增目录冲突并中断后续解包。重建后的 CentOS Stream 10 和
+  Rocky 10.0 均已通过实际隔离 iVentoy 网启至 Anaconda、原生钩子
+  存在和 ixgbe 6.4.5 加载/卸载检查。
 - Ubuntu Desktop 的原生收尾钩子固定使用真实系统工具路径，避免 Ubiquity
   的兼容 depmod 空实现导致安装后模块索引没有生成。
 - 目标系统的正常启动 initramfs 与 EL 救援启动 initramfs均包含驱动。
@@ -80,7 +85,7 @@ Module.symvers 和对应编译器。脚本需要 /root/E610-DISPOSABLE-BUILDER
    bash /root/ventoy-linux-setup.run --apply 后应用 SSH、DHCP、主机名、
    内核锁定和禁用自动更新策略；其 --check 检查应用结果。
 
-验证本目录的归档解析、唯一启动脚本记录和精简 initramfs 兼容性（8 项）：
+验证本目录的归档解析、唯一启动脚本记录和精简 initramfs 兼容性（9 项）：
   python3 test_media.py
 
 不携带生产密码、私钥、清盘脚本或自动安装答案。制作 ISO 不代表允许

@@ -3,6 +3,23 @@ from assemble_boot import cpio, copy_boot_tree
 from media_lib import initramfs_files, normalize_for_append, file_path, rewrite_initramfs_files, cpio_entries
 
 class Archives(unittest.TestCase):
+    def test_el10_hook_does_not_shadow_deferred_symlink(self):
+        from bake_iso import embed_initrd, resolve_payload_paths
+        dirs=['usr','usr/bin','usr/lib','usr/lib/dracut','var','var/lib','var/lib/dracut','var/lib/dracut/hooks','var/lib/dracut/hooks/pre-pivot']
+        original=[(n,b'',0o40755) for n in dirs]
+        original += [('init',b'init',0o100755),('usr/bin/udevadm',b'ELF',0o100755),
+                     ('usr/lib/dracut/hooks',b'../../../var/lib/dracut/hooks',0o120777),
+                     ('usr/lib/systemd/systemd-udevd',b'../../bin/udevadm',0o120777)]
+        result=embed_initrd(cpio(original),{'usr/lib/dracut/hooks/pre-pivot/e610.sh':(b'hook',0o100755)},False,True)
+        rows=list(initramfs_files(result))
+        self.assertFalse(any(n.startswith('usr/lib/dracut/hooks/') for n,_,_ in rows))
+        self.assertEqual([d for n,_,d in rows if n=='var/lib/dracut/hooks/pre-pivot/e610.sh'],[b'hook'])
+        self.assertEqual([(m,d) for n,m,d in rows if n=='usr/lib/dracut/hooks'],[(0o120777,b'../../../var/lib/dracut/hooks')])
+        for links in ({'a':'b','b':'a'},{'a':'../../escape'}):
+            with self.assertRaises(ValueError): resolve_payload_paths({'a/file':(b'x',0o100644)},links)
+        with self.assertRaises(ValueError):
+            resolve_payload_paths({'a/file':(b'x',0o100644),'b/file':(b'y',0o100644)},{'a':'b'})
+
     def test_el_payload_is_inside_first_main_cpio(self):
         from bake_iso import embed_initrd
         early=gzip.decompress(cpio([('microcode',b'ucode',0o100644)]))
