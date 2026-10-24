@@ -1,7 +1,9 @@
 #!/bin/sh
 # Driver-only installer completion hook. Never changes partitions or accounts.
 set -eu
-export LC_ALL=C
+export LC_ALL=C PATH=/usr/sbin:/usr/bin:/sbin:/bin
+# Ubiquity prepends compat commands (including a no-op depmod) to PATH.
+# Invoke the installed system's real tools, including inside chroot.
 src=${0%/*}
 src=$(CDPATH= cd -- "$src" && pwd)
 target=${1:?Missing installed root}

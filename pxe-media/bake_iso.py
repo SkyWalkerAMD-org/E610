@@ -66,6 +66,8 @@ def main():
         files[n]=v
     if a.iso.startswith('Ubuntu/'):
         files['ventoy-e610/ubuntu-stage.sh']=((a.work/'assets/ubuntu-stage.sh').read_bytes(),0o100755)
+        if 'desktop' in a.iso:
+            files['ventoy-e610/install-target.sh']=((a.work/'assets/install-target.sh').read_bytes(),0o100755)
     if a.iso.split('/')[0] in ('CentOS','Rocky','RHEL','AlmaLinux'):
         files['ventoy-e610/el-stage.sh']=((a.work/'assets/el-stage.sh').read_bytes(),0o100755)
         files['usr/lib/dracut/hooks/pre-pivot/99-zz-ventoy-e610.sh']=(b'#!/bin/sh\n[ -f /sysroot/etc/os-release ] || return 0\nif ! /bin/sh /ventoy-e610/el-stage.sh /sysroot; then\n    die "E610 Anaconda preparation failed"\n    return 1\nfi\n',0o100755)
@@ -90,8 +92,18 @@ def main():
     if '/isolinux/initrd.img' in paths:updates['/isolinux/initrd.img']=updates['/images/pxeboot/initrd.img']
     evidence={'format':1,'source_iso':a.iso,'source_size':source.stat().st_size,'source_sha256':sha(source),'embedded_in_iso':True,'kernel_replaced':False,'hardware_e610':'not_tested','installer_paths':list(updates),'driver_archive_sha256':item['sha256']}
     evidence['manual_preload_sha256']=sha(a.work/'manual-common.tar.gz')
+    repair=a.work/'u243-integrity/firmware-repair.json'
+    if a.iso=='Ubuntu/ubuntu-24.04.3-live-server-amd64.iso' and repair.exists():
+        verified=json.loads(repair.read_text())
+        repaired=a.work/'u243-integrity/verified-firmware.deb'
+        path='/pool/main/l/linux-firmware/linux-firmware_20240318.git3b128b60-0ubuntu2.15_amd64.deb'
+        assert verified['path']==path and verified['size']==repaired.stat().st_size
+        assert verified['sha256']==sha(repaired)=='3b90e09a98c17c07b6df23e6242794dc5df3ad5eeb9de92fd5b08f7dab9d2693'
+        updates[path]=repaired
+        evidence['source_repairs']=[verified]
     if a.iso.startswith('Debian/'):evidence['boot_module_layout']='per-initrd'
     if a.iso.startswith('Ubuntu/'):evidence['live_hook']='native-init-bottom-order-v3'
+    if a.iso.startswith('Ubuntu/') and 'desktop' in a.iso:evidence['installer_hook']='ubiquity-clean-path-v1'
     if a.iso.split('/')[0] in ('CentOS','Rocky','RHEL','AlmaLinux'):evidence['archive_layout']='single-main-cpio-v3'
     for path in ('/md5sum.txt','/SHA256SUMS','/SHA512SUMS'):
         if path not in paths:continue
