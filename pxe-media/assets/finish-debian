@@ -1,0 +1,3 @@
+#!/bin/sh
+set -eu
+exec /bin/sh /ventoy-e610/install-target.sh /target

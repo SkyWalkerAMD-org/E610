@@ -1,5 +1,7 @@
 # E610 已适配系统与下载
 
+镜像安装适配已发布 **[E610 ISO Kit 6.4.5 r1](https://github.com/SkyWalkerAMD-org/E610/releases/tag/v6.4.5-iso-kit-r1)**，覆盖 AlmaLinux、CentOS、Debian、RHEL、Rocky、Ubuntu 共 43 个需补驱动的原版镜像，手动/PXE 共用成品。详见 [ISO Kit 指南](pxe-media/RELEASE.zh-CN.md)和[逐镜像记录](pxe-media/baked-catalog.json)。以下的 MultiOS r2 清单继续对应已安装系统离线驱动包，两者范围分别列出。
+
 推荐使用 **多系统统一离线包 r2**，支持 x86_64 / amd64，自动匹配系统与精确内核，不升级内核。
 覆盖 Ubuntu Server 22.04–22.04.5、24.04–24.04.5 的 GA/HWE 安装介质内核，Rocky Linux 8.4–8.10、9.0–9.8，保留 CentOS 7.9。
 不是任意同系列安全更新内核都能混用；完整清单见下表。
